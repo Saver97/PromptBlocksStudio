@@ -1,0 +1,5 @@
+# Optional CPU translation; model weights must be installed separately.
+ctranslate2==4.9.0
+sentencepiece==0.2.1
+numpy==2.2.6
+PyYAML==6.0.3

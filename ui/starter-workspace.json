@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "activeSchemeId": "public-starter-scheme",
+  "schemes": [
+    {
+      "id": "public-starter-scheme",
+      "name": "新方案",
+      "blocks": [
+        {
+          "id": "public-starter-block",
+          "name": "自由补充",
+          "role": "自由补充",
+          "enabled": true,
+          "weight": 1,
+          "collapsed": false,
+          "positive": [],
+          "negative": []
+        }
+      ],
+      "characters": [],
+      "parameters": {},
+      "models": {},
+      "notes": ""
+    }
+  ],
+  "templates": [],
+  "favorites": [],
+  "format": "comfy",
+  "theme": "forest"
+}

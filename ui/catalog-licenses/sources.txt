@@ -1,0 +1,3 @@
+老六词库：https://github.com/thisjam/sd-webui-oldsix-prompt
+n714 中文词库：https://github.com/n714/stable-diffusion-prompt-library-zh_CN
+原始词组与释义保留，不筛除内容。解析不兼容的配方以原文整体加入。

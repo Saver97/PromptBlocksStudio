@@ -1,0 +1,31 @@
+# Personal workspaces, credentials, browser state and migration snapshots
+data/
+smoke-data/
+backups/
+migration/
+*.log
+.env
+.env.*
+*-validation.json
+native-validation.json
+preview-*.png
+titlebar-*.png
+
+# Local dependencies, weights and generated builds
+.venv/
+venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+node_modules/
+build/
+build-*/
+dist/
+dist-*/
+artifacts/
+models/
+model-source/
+runtime-wheels/
+pip-*/
+.DS_Store
+Thumbs.db

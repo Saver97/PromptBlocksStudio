@@ -1,0 +1,29 @@
+{
+  "snapshot_date": "2026-11-17",
+  "catalogs": [
+    {
+      "repository": "https://github.com/Physton/sd-webui-prompt-all-in-one",
+      "source_file": "group_tags/zh_CN.yaml",
+      "target": "ui/library.json",
+      "entries": 3982,
+      "license": "MIT",
+      "note": "Local upstream file; revision not recorded. Empty translations fall back to the original tag."
+    },
+    {
+      "repository": "https://github.com/thisjam/sd-webui-oldsix-prompt",
+      "git_tree_sha": "9fb665c34bf8d4d06df8952189923de925913849",
+      "target": "ui/bundles.json",
+      "source_label": "老六词库",
+      "recipes": 273,
+      "license": "MIT"
+    },
+    {
+      "repository": "https://github.com/n714/stable-diffusion-prompt-library-zh_CN",
+      "git_tree_sha": "31199613c8ed198eb6fa74b20cc63725d568e62f",
+      "target": "ui/bundles.json",
+      "source_label": "n714 中文词库",
+      "recipes": 105,
+      "license": "MIT"
+    }
+  ]
+}
