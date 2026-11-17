@@ -1,0 +1,92 @@
+{
+  "format": "prompt-blocks-template",
+  "version": 1,
+  "name": "双人看书示例",
+  "characters": [
+    {
+      "alias": "A",
+      "name": "Alice",
+      "gender": "female",
+      "identityTags": [],
+      "description": {
+        "zh": "成年女性，黑色短发、棕色眼睛",
+        "en": "an adult woman with short black hair and brown eyes"
+      }
+    },
+    {
+      "alias": "B",
+      "name": "Betty",
+      "gender": "female",
+      "identityTags": [],
+      "description": {
+        "zh": "成年女性，棕色长发、蓝色眼睛",
+        "en": "an adult woman with long brown hair and blue eyes"
+      }
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tags",
+      "name": "画质与构图",
+      "role": "公共基础",
+      "positive": [
+        "best quality",
+        "2girls",
+        "upper body"
+      ],
+      "negative": [],
+      "weight": 1
+    },
+    {
+      "type": "tags",
+      "name": "服装",
+      "role": "服装",
+      "positive": [
+        "casual clothes"
+      ],
+      "negative": []
+    },
+    {
+      "type": "tags",
+      "name": "场景与光照",
+      "role": "场景",
+      "positive": [
+        "library",
+        {
+          "text": "soft lighting",
+          "weight": 1.1
+        }
+      ],
+      "negative": []
+    },
+    {
+      "type": "prose",
+      "name": "双人动作",
+      "role": "自由补充",
+      "positive": {
+        "zh": "{{A}} 站在左边，{{B}} 站在右边。{{B}} 双手捧着打开的书，{{A}} 用右手食指指向书页。",
+        "en": "{{A}} stands on the left, and {{B}} stands on the right. {{B}} holds an open book with both hands. {{A}} points to the page with her right index finger."
+      },
+      "negative": {
+        "zh": "",
+        "en": ""
+      }
+    },
+    {
+      "type": "tags",
+      "name": "负面约束",
+      "role": "负面约束",
+      "positive": [],
+      "negative": [
+        "low quality",
+        "bad anatomy",
+        "extra fingers",
+        "text",
+        "watermark"
+      ]
+    }
+  ],
+  "parameters": {},
+  "models": {},
+  "notes": ""
+}

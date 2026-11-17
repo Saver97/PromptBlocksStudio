@@ -139,7 +139,7 @@ function editParams(){
  const initial=copy(scheme()),fields={},modelFields={};let notes;
  const config=[['width','宽度'],['height','高度'],['steps','步数'],['cfg','CFG'],['seed','种子'],['denoise','重绘幅度'],['sampler_name','采样器'],['scheduler','调度器']];
  modal('配方参数',body=>{for(let i=0;i<config.length;i+=2){const row=el('div','form-row');for(const [key,label] of config.slice(i,i+2)){const input=field(row,label,initial.parameters?.[key]??'');fields[key]=input;}body.append(row);}for(const [key,label] of [['unet_name','模型'],['clip_name','编码器'],['vae_name','VAE']])modelFields[key]=field(body,label,initial.models?.[key]||'');notes=field(body,'方案备注',initial.notes||'','textarea');body.append(el('p','','参数随方案保存，导出时包含；不会自动提交或修改 ComfyUI。'));},()=>{
-  const p={...initial.parameters};for(const [key,input] of Object.entries(fields)){const value=input.value.trim();if(!value){delete p[key];continue;}if(['sampler_name','scheduler'].includes(key)){p[key]=value;continue;}const n=Number(value);if(!Number.isFinite(n)||n<0)throw Error('参数需要填写有效的非负数字');if(['width','height','steps','seed'].includes(key)&&!Number.isSafeInteger(n))throw Error('宽高、步数、种子需要填写安全范围内的整数');if(['width','height','steps'].includes(key)&&n===0)throw Error('宽高和步数需大于零');if(key==='denoise'&&n>1)throw Error('重绘幅度应在 0～1 之间');p[key]=n;}
+  const p={...initial.parameters};for(const [key,input] of Object.entries(fields)){const value=input.value.trim();if(!value){delete p[key];continue;}if(['sampler_name','scheduler'].includes(key)){p[key]=value;continue;}if(key==='seed'){if(!/^\d+$/.test(value)||BigInt(value)>18446744073709551615n)throw Error('种子需要填写 0～18446744073709551615 的整数');p[key]=Number.isSafeInteger(Number(value))?Number(value):value;continue;}const n=Number(value);if(!Number.isFinite(n)||n<0)throw Error('参数需要填写有效的非负数字');if(['width','height','steps','seed'].includes(key)&&!Number.isSafeInteger(n))throw Error('宽高、步数、种子需要填写安全范围内的整数');if(['width','height','steps'].includes(key)&&n===0)throw Error('宽高和步数需大于零');if(key==='denoise'&&n>1)throw Error('重绘幅度应在 0～1 之间');p[key]=n;}
   commit(()=>{scheme().parameters=p;scheme().models={...initial.models,...Object.fromEntries(Object.entries(modelFields).map(([k,v])=>[k,v.value.trim()]))};scheme().notes=notes.value;});
  });
 }
@@ -156,6 +156,7 @@ function importData(data){
 }
 function bind(){
  bindLanguage();
+ $('agentTemplateImport').onclick=openAgentImport;
  $('themeSelect').onchange=()=>commit(()=>{state.theme=$('themeSelect').value;});
  $('blocks').ondragover=e=>{if(!dragId)return;e.preventDefault();const rect=$('blocks').getBoundingClientRect();if(e.clientY<rect.top+45)$('blocks').scrollTop-=25;else if(e.clientY>rect.bottom-45)$('blocks').scrollTop+=25;};
  $('modalForm').onsubmit=e=>{if(e.submitter?.value!=='ok')return;e.preventDefault();try{if(modalAction?.()===false)return;$('modal').close();}catch(error){$('modalError').textContent=error.message;}};

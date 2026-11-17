@@ -46,3 +46,14 @@ dialog.language-dialog{max-height:90dvh;overflow:hidden}
 .role-change{background:var(--accent);color:var(--accent-ink);border-radius:3px;padding:1px 3px;font-weight:600;text-decoration:underline;text-underline-offset:3px}
 .library .tabs{gap:3px}.library .tabs button{font-size:11px;padding:7px 5px}.bundle-excerpt{display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:2;overflow:hidden;overflow-wrap:anywhere}.bundle-option .added{color:var(--accent);border-color:var(--accent)}#bundleSource{width:100%;font-size:11px}
 .block-quick-input{border-top:1px solid var(--separator);padding-top:9px;margin-top:6px}.block-quick-input textarea{width:100%;min-height:52px;max-height:180px;padding:7px;font-size:12px;background:var(--input-bg)}.block-input-actions{display:flex;align-items:center;gap:7px;margin-top:6px;flex-wrap:wrap}.block-input-actions select,.block-input-actions button{font-size:11px;padding:5px 7px}.block-input-actions small{margin-left:auto}
+
+.workspace-tools{flex-wrap:wrap}
+dialog.agent-template-dialog{width:min(1100px,95vw)}
+.template-actions{flex-wrap:wrap}
+.template-import-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:16px;min-height:0}
+.template-import-input,.template-import-preview{min-width:0}
+#modalBody .template-import-input textarea{min-height:300px;height:43vh;max-height:55vh;font:12px/1.7 Consolas,monospace;background:var(--input-bg);white-space:pre}
+.template-import-preview{padding:12px;background:var(--input-bg);border:1px solid var(--border);border-radius:8px;max-height:49vh;overflow:auto;overflow-wrap:anywhere}
+.template-block-preview{padding:10px 0;border-bottom:1px solid var(--separator)}
+.template-block-preview p{white-space:pre-wrap}
+@media(max-width:800px){.template-import-grid{grid-template-columns:1fr}#modalBody .template-import-input textarea{min-height:160px;height:25vh}.template-import-preview{max-height:30vh}}

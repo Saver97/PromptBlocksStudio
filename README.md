@@ -10,6 +10,7 @@
 - **标签选择**：中英文搜索、分类筛选、收藏，点一次加入，再点取消。每个块也可以直接输入词库中没有的提示词。
 - **整组配方**：从词库配方中选一整组加入当前块；保留原有权重，加入后可逐词编辑。
 - **方案与组合**：保存多套完整方案，将常用内容存为组合；支持 JSON 备份与导入。初次运行是一个空白方案，不含个人方案、收藏或自建组合。
+- **Agent 模板导入**：复制固定格式模板给其他 Agent，粘贴其 JSON 输出后预览并导入为新方案；标签、自然语言、角色和参数按字段分开，全程本地解析。
 - **角色占位符**：在角色定义中设置 `A`、`B`，自然语言使用 `{{A}}`、`{{B}}`；复制时展开角色姓名和可选身份、外貌介绍。
 - **翻译与润色**：中英文对照、角色指代提醒、替换标记、返回结果预览及停止请求。结果未通过检查时也能查看返回内容，自行决定是否采用。
 - **输出检查**：支持 ComfyUI、NAI 和纯文本格式；相同文本与权重去重，权重冲突及正负重复会提示。
@@ -39,6 +40,81 @@ py -3.10 -m venv .venv
 4. 如需中文动作描述，先打开“角色定义”，再添加“自然语言”块。用输入框上方的按钮插入 `{{A}}`、`{{B}}`。
 5. 在翻译设置中配置离线翻译或 API。润色结果先预览，再决定是否采用；修改中文后需重新更新英文。
 6. 在右侧复制正面或负面提示词，粘贴到生图工具。`Ctrl+K` 搜索，`Ctrl+Z` 撤销，`Ctrl+Shift+Z` 重做。
+
+## 让其他 Agent 生成分块提示词
+
+中间组装区点击 **按模板导入 → 复制给 Agent 的模板**，将模板及需求交给其他 Agent。把返回的完整 JSON 粘贴回来，查看预览后点 **导入为新方案**。需要让 Agent 修改现有内容时，可用弹窗里的 **复制当前方案模板**。
+
+模板不依赖本工具的 API 设置。结构规范及可直接复制的文件见 [模板导入说明](docs/模板导入说明.md)、[Agent 提示词模板](docs/Agent提示词模板.txt) 和 [JSON 示例](docs/prompt-blocks-template.example.json)。
+
+### 使用步骤
+
+1. 在工作台中点击 **按模板导入**，再点 **复制给 Agent 的模板**。把复制内容发送给其他 Agent，在末尾补充人物、服装、动作、镜头和画风需求。
+2. 要求 Agent **只返回一个完整 JSON 代码块**。如需修改现有配方，改用 **复制当前方案模板**，再描述要修改的部分。
+3. 将 Agent 返回的 JSON（可以连同外层 `json` 代码围栏）粘贴到左侧输入框。右侧会预览每个块的正负面内容、角色、参数与模型名称。
+4. 格式错误会指出具体字段，如 `blocks[2].positive`；修正后点击 **导入为新方案**。同名方案自动加后缀，不会覆盖现有方案；可以撤销、重做。
+5. 在新方案中继续选词、调权重、编辑角色与动作，最后复制右侧正负面文本到生图工作流。
+
+整个导入过程只做本地 JSON 解析与校验，不调用 LLM、不自动翻译，也不会根据句意猜测分块。词库没有的标签仍然保留。只有中文的自然语言也能导入，但会标记英文待完成。
+
+### 可直接粘贴的完整模板
+
+下面的示例可直接导入，也可以交给其他 Agent 按同样结构改写。人物和动作仅用于展示格式。
+
+```json
+{
+  "format": "prompt-blocks-template",
+  "version": 1,
+  "name": "双人看书 · 模板示例",
+  "characters": [
+    {
+      "alias": "A",
+      "name": "Alice",
+      "gender": "female",
+      "identityTags": [],
+      "description": {"zh": "成年女性，黑色短发、棕色眼睛", "en": "an adult woman with short black hair and brown eyes"}
+    },
+    {
+      "alias": "B",
+      "name": "Betty",
+      "gender": "female",
+      "identityTags": [],
+      "description": {"zh": "成年女性，棕色长发、蓝色眼睛", "en": "an adult woman with long brown hair and blue eyes"}
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tags", "name": "公共画质与构图", "role": "公共基础",
+      "positive": ["best quality", "2girls", "upper body"], "negative": []
+    },
+    {
+      "type": "tags", "name": "服装与场景", "role": "场景",
+      "positive": ["casual clothes", "library", {"text": "soft lighting", "label": "柔光", "weight": 1.1}], "negative": []
+    },
+    {
+      "type": "prose", "name": "双人动作", "role": "自由补充",
+      "positive": {
+        "zh": "{{A}} 站在左边，{{B}} 站在右边。{{B}} 双手捧着一本打开的书，{{A}} 用右手食指指向书页。",
+        "en": "{{A}} stands on the left, and {{B}} stands on the right. {{B}} holds an open book with both hands. {{A}} points to the page with her right index finger."
+      },
+      "negative": {"zh": "", "en": ""}
+    },
+    {
+      "type": "tags", "name": "负面约束", "role": "负面约束",
+      "positive": [], "negative": ["low quality", "bad anatomy", "extra fingers", "watermark"]
+    }
+  ],
+  "parameters": {},
+  "models": {},
+  "notes": "未指定的参数与模型留空。"
+}
+```
+
+- `tags` 的正负面是数组，每项代表一个完整标签；权重写在对象的 `weight` 中，不在字符串里嵌套 SD/NAI 权重语法。
+- `prose` 的正负面是 `zh` / `en` 对照对象，整段保留。角色代号必须先定义，中英文占位符及其出现次数需要一致。
+- `role` 可选：自由补充、公共基础、角色、服装、场景、光照、画师串、负面约束、完整组合。
+- `parameters` 可填 `width`、`height`、`steps`、`cfg`、`seed`、`denoise`、`sampler_name`、`scheduler`；`models` 可填 `unet_name`、`clip_name`、`vae_name`。未知字段省略，不猜数值。
+- 大于 `9007199254740991` 的种子使用十进制字符串，例如 `"18446744073709551615"`，避免精度丢失。
 
 ## API 设置
 
@@ -115,6 +191,7 @@ Physton 分类词条来自其 `group_tags/zh_CN.yaml`，空中文释义以英文
 .\.venv\Scripts\python.exe -m unittest discover -s tests -p '*_test.py'
 node tests/core.cjs
 node tests/bundles.cjs
+node tests/agent-template.cjs
 .\.venv\Scripts\python.exe -m PyInstaller --noconfirm PromptBlocksStudio.spec
 .\dist\PromptBlocksStudio\PromptBlocksStudio.exe --smoke-test
 ```
