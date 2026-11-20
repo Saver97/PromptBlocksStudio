@@ -57,3 +57,14 @@ dialog.agent-template-dialog{width:min(1100px,95vw)}
 .template-block-preview{padding:10px 0;border-bottom:1px solid var(--separator)}
 .template-block-preview p{white-space:pre-wrap}
 @media(max-width:800px){.template-import-grid{grid-template-columns:1fr}#modalBody .template-import-input textarea{min-height:160px;height:25vh}.template-import-preview{max-height:30vh}}
+
+.block-find-bar {display:flex;align-items:center;gap:10px;padding:7px 12px}
+.block-find-bar input {min-width:0;max-width:28em;flex:1}
+.block-find-bar small {white-space:nowrap}
+.block-find-toggle[aria-expanded="true"] {border-color:var(--accent)}
+.block-find-hit {background:#ffe27a;color:#241d0a}
+.block-find-alias {margin-inline-start:.5em}
+block-find-surface {display:block;position:relative;min-width:0}
+block-find-surface > textarea, block-find-surface > input {display:block}
+.block-find-paint {position:absolute;box-sizing:border-box;overflow:hidden;white-space:pre-wrap;overflow-wrap:break-word;color:transparent;pointer-events:none;user-select:none;border:0}
+.block-find-paint .block-find-hit {background:rgba(249,188,43,.52);color:transparent}

@@ -3,11 +3,115 @@ const Blocks = (() => {
   const copy = value => JSON.parse(JSON.stringify(value));
   const id = () => crypto.randomUUID();
   const roles = ['自由补充','公共基础','角色','服装','场景','光照','画师串','负面约束','完整组合'];
-  // Optional generic examples, never installed as a user's saved scheme.
-  const characterPresets = [
-    {label:'示例角色 Alice',shortName:'Alice',name:'Alice',identityTags:'',gender:'female',sourceDescription:'成年女性，黑色短发、棕色眼睛',description:'an adult woman with short black hair and brown eyes'},
-    {label:'示例角色 Betty',shortName:'Betty',name:'Betty',identityTags:'',gender:'female',sourceDescription:'成年女性，棕色长发、蓝色眼睛',description:'an adult woman with long brown hair and blue eyes'}
+  const newBandCharacters = [
+    {label:'椎名立希',name:'Shiina Taki',band:'mygo!!!!!',features:[['long straight dark brown hair','深棕色长直发'],['violet eyes','紫罗兰色眼睛'],['asymmetrical earrings','不对称耳饰']]},
+    {label:'高松灯',name:'Takamatsu Tomori',band:'mygo!!!!!',features:[['short muted ash-purple bob cut','灰紫色短波波头'],['rose-brown eyes','粉棕色眼睛']]},
+    {label:'千早爱音',name:'Chihaya Anon',band:'mygo!!!!!',features:[['long straight pink hair','粉色长直发'],['grey-blue eyes','灰蓝色眼睛']]},
+    {label:'要乐奈',name:'Kaname Raana',band:'mygo!!!!!',features:[['short silver-white bob cut','银白色短波波头'],['heterochromia','异色瞳'],['yellow right eye','本人右眼金黄'],['blue left eye','本人左眼蓝色']]},
+    {label:'三角初华',name:'Misumi Uika',band:'ave mujica',features:[['shoulder-length pale blonde hair','齐肩浅金发'],['violet eyes','紫罗兰色眼睛']]},
+    {label:'祐天寺喵梦',name:'Yuutenji Nyamu',band:'ave mujica',features:[['short purple bob cut','紫色短波波头'],['reddish pink eyes','玫红色眼睛']]}
   ];
+  // Bilingual shape and colour cues for the default portrait of each character.
+  const franchiseGroups = [
+    {group:"绝区零", tag:"zenless zone zero", members:[
+      {label:"妮可", name:"Nicole Demara", features:[["long pink hair tied up at both sides", "两侧束起的粉色长发"], ["light green eyes", "浅绿眼睛"], ["black hair clips", "黑色发夹"], ["playful self-assured gaze", "俏皮自信的眼神"]]},
+      {label:"朱鸢", name:"Zhu Yuan", features:[["black ponytail", "黑色马尾"], ["orange streak in bangs", "橙色挑染刘海"], ["amber-red eyes", "琥珀红眼睛"], ["upright athletic stance", "挺拔矫健的站姿"]]},
+      {label:"简", name:"Jane Doe", features:[["short black bob", "黑色短波波头"], ["teal eyes", "青绿眼睛"], ["rounded rat ears", "圆形鼠耳"], ["sly half-smile", "带着狡黠笑意的神态"]]},
+      {label:"耀嘉音", name:"Astra Yao", features:[["long black hair", "黑色长发"], ["blunt bangs", "齐刘海"], ["magenta eyes", "玫红眼睛"], ["poised stage presence", "从容的舞台仪态"]]},
+      {label:"伊芙琳", name:"Evelyn Chevalier", features:[["long blonde ponytail", "金色长马尾"], ["side-swept bangs", "斜刘海"], ["violet eyes", "紫色眼睛"], ["composed athletic bearing", "冷静利落的体态"]]},
+      {label:"仪玄", name:"Yixuan", features:[["long silver-white hair", "银白长发"], ["golden eyes", "金色眼睛"], ["black forehead ornament", "黑色额饰"], ["relaxed upright posture", "松弛挺拔的身姿"]]},
+    ]},
+    {group:"原神", tag:"genshin impact", members:[
+      {label:"刻晴", name:"Keqing", features:[["long lavender twintails", "淡紫色双马尾"], ["pointed twin hair buns", "尖角形双发髻"], ["amethyst eyes", "紫晶色眼睛"], ["alert focused gaze", "专注警觉的目光"]]},
+      {label:"甘雨", name:"Ganyu", features:[["long pale blue hair", "浅蓝长发"], ["black horns with red markings", "带红纹的黑色双角"], ["violet eyes", "紫色眼睛"], ["gentle reserved expression", "温和内敛的神态"]]},
+      {label:"琴", name:"Jean Gunnhildr", features:[["high blonde ponytail", "金色高马尾"], ["blue-grey eyes", "灰蓝色眼睛"], ["upright knightly bearing", "挺拔的骑士仪态"]]},
+      {label:"优菈", name:"Eula Lawrence", features:[["layered pale blue hair", "层次分明的浅蓝发"], ["purple and gold gradient eyes", "紫金渐变眼睛"], ["black headband", "黑色发箍"], ["graceful dancer-like posture", "舒展的舞者身姿"]]},
+      {label:"雷电将军", name:"Raiden Shogun", features:[["long violet braid", "紫色长辫"], ["violet eyes", "紫色眼睛"], ["beauty mark under the right eye", "本人右眼下的泪痣"], ["calm commanding gaze", "平静而有威严的目光"]]},
+      {label:"八重神子", name:"Yae Miko", features:[["long pink hair", "粉色长发"], ["drooping fox ears", "下垂的狐耳"], ["violet eyes", "紫色眼睛"], ["knowing smile", "含着笑意的从容神态"]]},
+    ]},
+    {group:"崩坏3", tag:"honkai impact 3rd", members:[
+      {label:"琪亚娜 · 早期", name:"Kiana Kaslana", features:[["white twin braids", "白色双麻花辫"], ["bright blue eyes", "亮蓝色眼睛"], ["lively athletic bearing", "轻快矫健的体态"]]},
+      {label:"琪亚娜 · 终焉之律者", name:"Kiana Kaslana", form:"herrscher of finality", features:[["long flowing white hair with a curled forelock", "白色披肩长发与弯翘额发"], ["blue-violet eyes with diamond pupils", "带菱形瞳孔的蓝紫眼睛"], ["serene confident gaze", "从容坚定的目光"]]},
+      {label:"琪亚娜 · 后崩坏书", name:"Kiana Kaslana", form:"a post-honkai odyssey", features:[["long white ponytail with violet streaks", "带紫色挑染的白色长马尾"], ["blue eyes", "蓝色眼睛"], ["mature athletic silhouette", "成熟矫健的身形"], ["calm warm gaze", "沉稳温和的目光"]]},
+      {label:"雷电芽衣 · 雷之律者", name:"Raiden Mei", form:"herrscher of thunder", features:[["long dark purple hair and straight bangs", "深紫长发与齐刘海"], ["paired crimson horns", "一对绯红色的角"], ["violet-red eyes", "紫红色眼睛"], ["stern composed gaze", "沉静凌厉的目光"]]},
+      {label:"雷电芽衣 · 后崩坏书", name:"Raiden Mei", form:"a post-honkai odyssey", migration:"postHonkaiMei20261119", features:[["long loose indigo hair with level bangs", "自然披散的靛紫长直发与平齐刘海"], ["violet eyes", "紫色眼睛"], ["a white feather earring on the right ear", "本人右耳单侧白羽耳坠"], ["calm mature poise", "成熟沉静的仪态"]]},
+      {label:"无量塔姬子", name:"Murata Himeko", features:[["long crimson hair", "绯红长发"], ["golden eyes", "金色眼睛"], ["loosely tied hair", "松松束起的头发"], ["confident mature bearing", "成熟自信的仪态"]]},
+      {label:"布洛妮娅 · 早期", name:"Bronya Zaychik", features:[["silver-grey twin drill curls", "银灰色双螺旋卷发"], ["grey eyes", "灰色眼睛"], ["petite build and a reserved expression", "娇小身形与内敛神情"]]},
+      {label:"布洛妮娅 · 次生银翼", name:"Bronya Zaychik", form:"silverwing: n-ex", features:[["long flowing silver-grey hair", "披散的银灰长发"], ["grey eyes", "灰色眼睛"], ["composed adult face", "沉静的成年面容"], ["tall poised silhouette", "高挑挺拔的身形"]]},
+      {label:"德丽莎", name:"Theresa Apocalypse", features:[["long white hair", "白色长发"], ["blue eyes", "蓝色眼睛"], ["side-swept fringe", "斜分刘海"], ["petite stature", "娇小身形"]]},
+    ]},
+    {group:"崩坏·星穹铁道", tag:"honkai: star rail", members:[
+      {label:"姬子", name:"Himeko", features:[["long wavy red hair", "红色波浪长发"], ["golden eyes", "金色眼睛"], ["long side-swept bangs", "长斜刘海"], ["composed mature bearing", "从容成熟的仪态"]]},
+      {label:"三月七", name:"March 7th", features:[["shoulder-length pink hair", "齐肩粉发"], ["pink and blue gradient eyes", "粉蓝渐变眼睛"], ["bright cheerful expression", "开朗明快的神情"]]},
+      {label:"卡芙卡", name:"Kafka", features:[["wine-red ponytail", "酒红色马尾"], ["pinkish violet eyes", "粉紫色眼睛"], ["sunglasses on head", "头顶墨镜"], ["relaxed confident bearing", "松弛自信的仪态"]]},
+    ]},
+    {group:"VOCALOID", tag:"vocaloid", members:[
+      {label:"初音未来", name:"Hatsune Miku", features:[["long turquoise twintails", "青绿色长双马尾"], ["teal eyes", "青绿眼睛"], ["rectangular hair ties", "方框形发饰"], ["lively slender silhouette", "轻盈纤细的身形"]]},
+    ]},
+    {group:"Re:从零开始的异世界生活", tag:"re:zero kara hajimeru isekai seikatsu", members:[
+      {label:"蕾姆", name:"Rem", features:[["short blue bob", "蓝色短波波头"], ["bangs covering the right eye", "刘海遮住本人右眼"], ["blue eyes", "蓝色眼睛"], ["gentle attentive gaze", "温柔专注的眼神"]]},
+      {label:"拉姆", name:"Ram", features:[["short pink bob", "粉色短波波头"], ["bangs covering the left eye", "刘海遮住本人左眼"], ["red eyes", "红色眼睛"], ["cool self-possessed gaze", "冷静自持的目光"]]},
+    ]},
+  ];
+  const characterPresets = [
+    {label:'示例角色 Alice',group:'通用示例',shortName:'Alice',name:'Alice',identityTags:'',gender:'female',sourceDescription:'成年女性，黑色短发、棕色眼睛',description:'an adult woman with short black hair and brown eyes'},
+    {label:'示例角色 Betty',group:'通用示例',shortName:'Betty',name:'Betty',identityTags:'',gender:'female',sourceDescription:'成年女性，棕色长发、蓝色眼睛',description:'an adult woman with long brown hair and blue eyes'},
+    {label:'丰川祥子',shortName:'Sakiko',group:'Ave Mujica',name:'Togawa Sakiko',identityTags:'togawa sakiko, bang dream!',gender:'female',sourceDescription:'浅蓝色长发、金色眼睛、黑色发带',description:'long light blue hair, golden eyes, and black hair ribbons'},
+    {label:'长崎素世',shortName:'Soyo',group:'MyGO!!!!!',name:'Nagasaki Soyo',identityTags:'nagasaki soyo, bang dream!',gender:'female',sourceDescription:'浅棕色波浪长发、浅蓝色眼睛',description:'long light brown wavy hair and light blue eyes'},
+    {label:'若叶睦',shortName:'Mutsumi',group:'Ave Mujica',name:'Wakaba Mutsumi',identityTags:'wakaba mutsumi, bang dream!',gender:'female',sourceDescription:'浅薄荷绿长发、浅金色眼睛',description:'long pale mint green hair and pale gold eyes'},
+    {label:'八幡海玲',shortName:'Umiri',group:'Ave Mujica',name:'Yahata Umiri',identityTags:'yahata umiri, bang dream!',gender:'female',sourceDescription:'深灰色头发、紫色发梢、蓝色眼睛',description:'dark grey hair with violet tips and blue eyes'}
+  ];
+  function addPreset(c, group, identity, shortName) {
+    const preset = {label:c.label, name:c.name, group, gender:'female',
+      identityTags:identity.map(([text])=>text).join(', '),
+      sourceDescription:c.features.map(([,zh])=>zh).join('、'),
+      description:c.features.map(([en])=>en).join(', ')};
+    if(shortName)preset.shortName=shortName;
+    characterPresets.push(preset);
+    return {label:c.label, entries:[...identity,...c.features]};
+  }
+  const originalBandFeatures = [
+    ['丰川祥子', [['long light blue hair','浅蓝色长发'],['golden eyes','金色眼睛'],['black hair ribbons','黑色发带']]],
+    ['长崎素世', [['long light brown wavy hair','浅棕色波浪长发'],['light blue eyes','浅蓝色眼睛']]],
+    ['若叶睦', [['long pale mint green hair','浅薄荷绿长发'],['pale gold eyes','浅金色眼睛']]],
+    ['八幡海玲', [['dark grey hair','深灰色头发'],['violet hair tips','紫色发梢'],['blue eyes','蓝色眼睛']]]
+  ];
+  const originalBandTemplates = originalBandFeatures.map(([label, features]) => {
+    const preset = characterPresets.find(p => p.label === label);
+    return {label, entries: [[preset.name.toLowerCase(), label], ['bang dream!', 'BanG Dream!'],
+      [preset.group.toLowerCase(), preset.group], ...features]};
+  });
+  const bandTemplates = newBandCharacters.map(c=>{
+    const group=c.band==='mygo!!!!!'?'MyGO!!!!!':'Ave Mujica';
+    return addPreset(c,group,[[c.name.toLowerCase(),c.label],['bang dream!','BanG Dream!'],[c.band,group]],c.name.split(' ')[1]);
+  });
+  const franchiseTemplateBatches=new Map();
+  for(const {group,tag,members} of franchiseGroups){
+    for(const c of members){
+      const identity=[[c.name.toLowerCase(),c.label],[tag,group]];
+      if(c.form)identity.push([c.form,c.label.split(' · ')[1]]);
+      const migration=c.migration || 'franchisePresets20261119';
+      if(!franchiseTemplateBatches.has(migration))franchiseTemplateBatches.set(migration,[]);
+      franchiseTemplateBatches.get(migration).push(addPreset(c,group,identity));
+    }
+  }
+  function installPresets(state, migration, templates) {
+    if(state.migrations?.[migration])return;
+    for(const {label,entries} of templates){
+      if(state.templates.some(t=>t.role==='角色'&&t.name===label))continue;
+      state.templates.push({id:id(),name:label,role:'角色',weight:1,negative:[],
+        positive:entries.map(([text,label])=>({text,label,enabled:true,weight:1}))});
+    }
+    state.migrations={...state.migrations,[migration]:true};
+  }
+  function installBandTemplates(state){
+    installPresets(state,'bandPresets20261119',bandTemplates);
+  }
+  function installCharacterTemplates(state){
+    installPresets(state,'originalBandCharacterTemplates',originalBandTemplates);
+    installBandTemplates(state);
+    for(const [key,templates] of franchiseTemplateBatches)installPresets(state,key,templates);
+  }
   function upgradeCharacters(list) {
     // Upgrade only untouched built-in identities; preserve custom names and appearance.
     return (list||[]).map(c=>{const preset=characterPresets.find(x=>x.shortName===c.name&&x.description===c.description);
@@ -99,5 +203,5 @@ const Blocks = (() => {
     const s={version:2,activeSchemeId:p.id,schemes:[p],templates:old.presets.map(t=>({...copy(t),id:id(),role:'完整组合'})),favorites:copy(old.favorites||[]),format:old.format||'comfy'};
     return validate(s);
   }
-  return {copy,id,roles,characterPresets,upgradeCharacters,identityTokens,proseWarnings,block,prose,scheme,validate,validateCharacters,languageFields,aliases,fromTemplate,duplicate,assemble,importLegacy};
+  return {copy,id,roles,characterPresets,installBandTemplates,installCharacterTemplates,upgradeCharacters,identityTokens,proseWarnings,block,prose,scheme,validate,validateCharacters,languageFields,aliases,fromTemplate,duplicate,assemble,importLegacy};
 })();

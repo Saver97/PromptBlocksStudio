@@ -85,13 +85,22 @@ function editCharacters(){let list,auto,autoIdentity;const rows=[];
   body.append(el('p','','身份标签回答“画谁”，固定英文外貌回答“长什么样”。这两项直接拼接，不经过动作翻译。自然语言用 {{A}} 引用，输出时替换成完整姓名。'));
   const identityLabel=el('label','check-label');autoIdentity=el('input');autoIdentity.type='checkbox';autoIdentity.checked=scheme().autoIdentity!==false;identityLabel.append(autoIdentity,el('span','','自动添加被引用角色的身份标签（同词去重）'));body.append(identityLabel);
   const autoLabel=el('label','check-label'),check=el('input');check.type='checkbox';check.checked=scheme().autoIntroduce!==false;auto=check;autoLabel.append(check,el('span','','自动补充被引用角色的外貌介绍'));body.append(autoLabel);list=el('div','character-editor');body.append(list);
-  function addRow(c){const card=el('div','character-definition'),top=el('div','form-row');const alias=field(top,'代号',c.alias),name=field(top,'输出姓名',c.name);alias.maxLength=16;name.placeholder='例如 Alice';card.append(top);
-   const preset=selectField(card,'从常用角色填入',[['','手动填写'],...knownCharacters.map((x,i)=>[String(i),x.label])],'');
-   const identity=field(card,'固定身份标签（英文，逗号分隔）',c.identityTags||'');identity.placeholder='character name, series name（原创角色可留空）';
+  function addRow(c){const card=el('div','character-definition'),top=el('div','form-row');const alias=field(top,'代号',c.alias),name=field(top,'输出姓名',c.name);alias.maxLength=16;name.placeholder='例如 Nagasaki Soyo';card.append(top);
+   const preset=selectField(card,'从常用角色填入',[['','手动填写']],'');
+   const groups=new Set(['MyGO!!!!!','Ave Mujica',...knownCharacters.map(p=>p.group)]);
+   for(const label of groups){
+     const group=document.createElement('optgroup');group.label=label;
+     knownCharacters.forEach((p,i)=>{if(p.group===label)group.append(new Option(p.label,String(i)));});
+     preset.append(group);
+   }
+   const identity=field(card,'固定身份标签（英文，逗号分隔）',c.identityTags||'');identity.placeholder='例如 nagasaki soyo, bang dream!';
    const gender=selectField(card,'性别（用于译文检查）',[['unknown','未指定'],['female','女性'],['male','男性'],['other','其他']],c.gender||'unknown');
    const pair=translatorPair(card,'外貌描述',c.sourceDescription||'',c.description||'',c.translatedFrom||'',false);
    const note=el('p','muted','常用角色会一次填入完整姓名、身份标签和已校对的英文外貌。外貌只有主动点击翻译时才会重译；原创角色可不填身份标签。文字组装不等于区域绑定或锁脸。');card.append(note);
    preset.onchange=()=>{if(preset.value==='')return;const p=knownCharacters[Number(preset.value)];name.value=p.name;identity.value=p.identityTags;gender.value=p.gender;pair.source.value=p.sourceDescription;pair.english.value=p.description;pair.english.dispatchEvent(new Event('input'));};
+   const syncChoice=()=>{const i=knownCharacters.findIndex(p=>p.name===name.value&&p.identityTags===identity.value&&p.gender===gender.value&&p.sourceDescription===pair.source.value&&p.description===pair.english.value);preset.value=i<0?'':String(i);};
+   for(const input of [name,identity,gender,pair.source,pair.english])input.addEventListener('input',syncChoice);
+   syncChoice();
    const row={alias,name,identity,gender,pair,removed:false};rows.push(row);card.append(btn('移除定义','移除角色定义 '+c.alias,()=>{row.removed=true;card.remove();}));list.append(card);
   }
   const existing=scheme().characters||[];for(const c of existing.length?existing:[{alias:'A',name:'',description:''},{alias:'B',name:'',description:''}])addRow(c);
@@ -103,6 +112,7 @@ function editProse(b,isTemplate=false,isNew=false){let name,pos,neg,preview;moda
  $('modal').classList.add('language-dialog');name=field(body,'名称',b.name);body.append(el('p','','这里只写动作、表情和场景；身份与外貌在“角色定义”中固定。每句明确谁对谁做什么，必要时交代另外一只手的位置。支持 {{A}}，小写 {{a}} 也可以。'));
  pos=translatorPair(body,'正面描述',b.positiveSource||'',b.positiveText||'',b.positiveTranslatedFrom||'');
  const extra=el('details');extra.open=!!(b.negativeSource||b.negativeText);extra.append(el('summary','','负面自然语言（可选）'));body.append(extra);neg=translatorPair(extra,'负面描述',b.negativeSource||'',b.negativeText||'',b.negativeTranslatedFrom||'',true,'negative');
+ BlockSearch.editor(b,[pos.source,pos.english,neg.source,neg.english]);
  preview=el('div','preview');body.append(el('p','muted','展开预览（按当前方案的角色定义）'),preview);
  const update=()=>{const p=copy(scheme()),draft={...copy(b),...read()};const i=p.blocks.findIndex(x=>x.id===b.id);if(i>=0)p.blocks[i]=draft;else p.blocks=[draft];const out=Blocks.assemble(p,state.format);preview.textContent=out.errors.length?out.errors.join('\n'):out.positive;};
  for(const pair of [pos,neg])for(const input of [pair.source,pair.english])input.addEventListener('input',update);update();
