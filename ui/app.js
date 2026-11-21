@@ -1,7 +1,8 @@
 'use strict';
 const $=id=>document.getElementById(id),copy=Blocks.copy;
 let state,library=[],native=false,selectedId=null,targetSide='positive',libraryView='words',favoritesOnly=false,shown=100;
-let history=[],future=[],saveTimer,saveChain=Promise.resolve(),toastTimer,modalAction,dragId=null;
+let history=[],future=[],saveTimer,saveChain=Promise.resolve(),toastTimer,modalAction;
+let blockDrag = null;
 let chromeTheme='',chromeUpdate=Promise.resolve();
 function syncWindowTheme(theme){
  if(!native||!window.pywebview.api.set_window_colors||chromeTheme===theme)return;
@@ -78,6 +79,38 @@ function renderLibrary(){
 }
 function useTemplate(t,replace){const next=Blocks.fromTemplate(t);commit(()=>{mergeCharacters(scheme(),t.characters);if(replace){const i=scheme().blocks.findIndex(b=>b.id===selectedId);if(i<0)throw Error('请先选择要替换的块');scheme().blocks.splice(i,1,next);}else scheme().blocks.push(next);selectedId=next.id;});toast(replace?'已替换当前块，可撤销':'已加入独立副本');}
 function moveBlock(id,offset){const a=scheme().blocks,i=a.findIndex(b=>b.id===id),j=i+offset;if(i<0||j<0||j>=a.length)return;commit(()=>{a.splice(j,0,a.splice(i,1)[0]);});}
+function startBlockDrag(event, source, side, token) {
+ blockDrag = {source, side, token};
+ event.dataTransfer.effectAllowed = 'move';
+ event.dataTransfer.setData('application/x-prompt-block', source.id);
+}
+function endBlockDrag() {
+ blockDrag = null;
+ document.querySelector('.block.drag-over')?.classList.remove('drag-over');
+}
+function acceptsBlockDrop(target) {
+ return blockDrag && blockDrag.source !== target && (!blockDrag.token || target.kind !== 'prose');
+}
+function dropOnBlock(event, target) {
+ if (!acceptsBlockDrop(target)) return;
+ event.preventDefault();
+ const {source, side, token} = blockDrag;
+ endBlockDrag();
+ const blocks = scheme().blocks;
+ const from = blocks.indexOf(source), to = blocks.indexOf(target);
+ if (from < 0 || to < 0) return;
+ if (token) {
+  const index = source[side].indexOf(token);
+  if (index < 0) return;
+  commit(() => {
+   source[side].splice(index, 1);
+   target[side].push(token);
+  });
+  toast('已移至「' + target.name + '」的' + (side === 'positive' ? '正面' : '负面'));
+ } else {
+  commit(() => { blocks.splice(to, 0, blocks.splice(from, 1)[0]); });
+ }
+}
 function renderBlocks(){
  const frag=document.createDocumentFragment();
  for(const b of scheme().blocks){
@@ -85,9 +118,18 @@ function renderBlocks(){
   card.onclick=e=>{if(e.target.closest('button,input,select,textarea,label'))return;selectedId=b.id;render();};
   const collapsed=b.collapsed&&!BlockSearch.isOpen(b);
   const head=el('div','block-head'),handle=btn('⋮⋮','拖动排序 '+b.name,()=>{selectedId=b.id;render();},'drag');handle.draggable=true;
-  handle.ondragstart=e=>{dragId=b.id;e.dataTransfer.effectAllowed='move';e.dataTransfer.setData('text/plain',b.id);};handle.ondragend=()=>{dragId=null;document.querySelectorAll('.drag-over').forEach(e=>e.classList.remove('drag-over'));};
-  card.ondragover=e=>{if(dragId&&dragId!==b.id){e.preventDefault();card.classList.add('drag-over');}};card.ondragleave=()=>card.classList.remove('drag-over');
-  card.ondrop=e=>{e.preventDefault();if(dragId&&dragId!==b.id){const from=scheme().blocks.findIndex(x=>x.id===dragId),to=scheme().blocks.findIndex(x=>x.id===b.id);if(from>=0)commit(()=>{scheme().blocks.splice(to,0,scheme().blocks.splice(from,1)[0]);});}dragId=null;card.classList.remove('drag-over');};
+  handle.ondragstart = event => startBlockDrag(event, b);
+  handle.ondragend = endBlockDrag;
+  card.ondragover = event => {
+   if (!acceptsBlockDrop(b)) return;
+   event.preventDefault();
+   event.dataTransfer.dropEffect = 'move';
+   card.classList.add('drag-over');
+  };
+  card.ondragleave = event => {
+   if (!card.contains(event.relatedTarget)) card.classList.remove('drag-over');
+  };
+  card.ondrop = event => dropOnBlock(event, b);
   const enabled=el('input');enabled.type='checkbox';enabled.checked=b.enabled;enabled.setAttribute('aria-label','启用块 '+b.name);enabled.onchange=()=>commit(()=>{b.enabled=enabled.checked;});
   const title=el('div','block-title');title.append(el('b','',b.name),el('small','',`${b.kind==='prose'?'自然语言 · '+b.role:b.role+' · 正 '+b.positive.length+' / 负 '+b.negative.length}${b.sourceTemplateId?' · 组合副本':''}`));
   const weight=el('input');weight.type='number';weight.min='-20';weight.max='20';weight.step='.1';weight.value=b.weight;weight.setAttribute('aria-label','整块权重 '+b.name);weight.disabled=b.kind==='prose';if(b.kind==='prose')weight.title='自然语言保留原文，不应用标签倍率';weight.onchange=()=>{const v=Number(weight.value);if(weight.value===''||!Number.isFinite(v)||Math.abs(v)>20){weight.value=b.weight;toast('整块权重范围为 -20～20');return;}commit(()=>{b.weight=v;});};
@@ -101,6 +143,10 @@ function renderBlocks(){
     const label=el('div','token-side-label',side==='positive'?'正面':'负面');const list=el('div','token-list');
     b[side].forEach((t,i)=>{const chip=el('div','token'+(!t.enabled?' off':'')),check=el('input');check.type='checkbox';check.checked=t.enabled;check.setAttribute('aria-label',`启用词 ${b.name} ${side} ${i}`);check.onchange=()=>commit(()=>{t.enabled=check.checked;});
       const edit=btn(t.label||t.text,'编辑词 '+t.text,()=>editToken(b,side,i),'edit-token');edit.title=t.text;
+      edit.draggable = true;
+      edit.setAttribute('aria-description', '点击编辑，拖到另一标签块可移动词条');
+      edit.ondragstart = event => startBlockDrag(event, b, side, t);
+      edit.ondragend = endBlockDrag;
       chip.append(check,edit);if(t.weight!==1)chip.append(el('span','weight-badge','×'+t.weight));chip.append(btn('×','移除词 '+t.text,()=>commit(()=>{b[side].splice(i,1);}),'remove-token'));list.append(chip);
     });if(!b[side].length)list.append(el('span','empty','暂无词条'));body.append(label,list);
    }if(!b.positive.length&&!b.negative.length)body.append(el('p','empty','从左侧加词，或在下面直接输入提示词。'));body.append(blockInput(b));card.append(body);}
@@ -178,7 +224,7 @@ function bind(){
  bindLanguage();
  $('agentTemplateImport').onclick=openAgentImport;
  $('themeSelect').onchange=()=>commit(()=>{state.theme=$('themeSelect').value;});
- $('blocks').ondragover=e=>{if(!dragId)return;e.preventDefault();const rect=$('blocks').getBoundingClientRect();if(e.clientY<rect.top+45)$('blocks').scrollTop-=25;else if(e.clientY>rect.bottom-45)$('blocks').scrollTop+=25;};
+ $('blocks').ondragover=e=>{if(!blockDrag)return;const rect=$('blocks').getBoundingClientRect();if(e.clientY<rect.top+45)$('blocks').scrollTop-=25;else if(e.clientY>rect.bottom-45)$('blocks').scrollTop+=25;};
  $('modalForm').onsubmit=e=>{if(e.submitter?.value!=='ok')return;e.preventDefault();try{if(modalAction?.()===false)return;$('modal').close();}catch(error){$('modalError').textContent=error.message;}};
  $('schemeSelect').onchange=()=>commit(()=>{state.activeSchemeId=$('schemeSelect').value;});
  $('newScheme').onclick=()=>nameDialog('新建方案','新方案',name=>commit(()=>{const p=Blocks.scheme(name);state.schemes.push(p);state.activeSchemeId=p.id;}));
@@ -202,7 +248,7 @@ function bind(){
  $('backup').onclick=()=>exportData(state,'提示词积木工作区.json');
  $('exportScheme').onclick=()=>exportData({...copy(state),schemes:[copy(scheme())]},scheme().name+'.json');
  $('restore').onclick=async()=>{try{if(native){const data=await window.pywebview.api.import_file();if(data)importData(data);}else{const input=el('input');input.type='file';input.accept='.json';input.onchange=async()=>{if(input.files[0])try{importData(JSON.parse(await input.files[0].text()));}catch(e){toast(e.message);}};input.click();}}catch(e){toast(e.message);}};
- $('help').onclick=()=>modal('使用说明',body=>{for(const text of ['① 先选中间的内容块，再从左侧点 ＋ 加词，再点 ✓ 取消。负面词库词条自动进入该块负面栏。','② 每块可以折叠、启停、整块调权重、复制和排序。块内词条也可单独启停和编辑。','③ 左侧“组合块”可整体加入，或替换选中块。加入的是副本，编辑不会改变公共组合或其他方案。','④ 在顶部保存多个方案。切换会保留当前内容；复制方案适合对比不同角色、场景或画师串。','⑤ 相同文本与权重会去重，但保留来源；不同权重和正负冲突会提示，不自动覆盖。','⑥ 整块倍率与词条权重相乘。词块只是组织提示词，不代表区域控制或人物绑定。','⑦ 模型、种子等参数在右侧记录。导出当前配方保留块结构；整套存为组合会合并为一个块。','⑧ 支持导入旧版或新版备份，默认合并。导入前建议先导出备份。','⑨ 点“角色定义”给 A、B 配置完整姓名、固定身份标签与外貌，再添加“自然语言”块。中文描述可插入 {{A}}、{{B}}；翻译后自动展开成英文姓名。看书或牵手示例按钮会新建独立方案。','⑩ 中文原文和英文分别保存。改过中文、缺少英文或漏掉角色代号会提示，更新英文后可复制。翻译设置支持本地离线模型和自备接口，也可复制翻译请求给助手。黄色指代提醒不会阻止复制；请核对后使用。','快捷键：Ctrl+K 搜索；Ctrl+Z 撤销；Ctrl+Shift+Z 重做。','词库来源：Physton、老六、n714（MIT）；详情见 README 与第三方许可文件。分块交互思路参考 Infinite Canvas。'])body.append(el('p','',text));},()=>{},'知道了');
+ $('help').onclick=()=>modal('使用说明',body=>{for(const text of ['① 先选中间的内容块，再从左侧点 ＋ 加词，再点 ✓ 取消。负面词库词条自动进入该块负面栏。','② 每块可以折叠、启停、整块调权重、复制和排序。点击词条可编辑，拖到另一个标签块可移动，正负面归属和词条权重会保留。','③ 左侧“组合块”可整体加入，或替换选中块。加入的是副本，编辑不会改变公共组合或其他方案。','④ 在顶部保存多个方案。切换会保留当前内容；复制方案适合对比不同角色、场景或画师串。','⑤ 相同文本与权重会去重，但保留来源；不同权重和正负冲突会提示，不自动覆盖。','⑥ 整块倍率与词条权重相乘。词块只是组织提示词，不代表区域控制或人物绑定。','⑦ 模型、种子等参数在右侧记录。导出当前配方保留块结构；整套存为组合会合并为一个块。','⑧ 支持导入旧版或新版备份，默认合并。导入前建议先导出备份。','⑨ 点“角色定义”给 A、B 配置完整姓名、固定身份标签与外貌，再添加“自然语言”块。中文描述可插入 {{A}}、{{B}}；翻译后自动展开成英文姓名。看书或牵手示例按钮会新建独立方案。','⑩ 中文原文和英文分别保存。改过中文、缺少英文或漏掉角色代号会提示，更新英文后可复制。翻译设置支持本地离线模型和自备接口，也可复制翻译请求给助手。黄色指代提醒不会阻止复制；请核对后使用。','快捷键：Ctrl+K 搜索；Ctrl+Z 撤销；Ctrl+Shift+Z 重做。','词库来源：Physton、老六、n714（MIT）；详情见 README 与第三方许可文件。分块交互思路参考 Infinite Canvas。'])body.append(el('p','',text));},()=>{},'知道了');
  document.addEventListener('keydown',e=>{if(e.ctrlKey&&e.key.toLowerCase()==='k'){e.preventDefault();$('search').focus();$('search').select();}if(e.ctrlKey&&e.key.toLowerCase()==='z'&&!$('modal').open&&!/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)){e.preventDefault();e.shiftKey?redo():undo();}});
 }
 async function boot(){try{
