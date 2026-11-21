@@ -53,10 +53,8 @@ class OfflineTranslator:
             chunks.append(current)
         return chunks
 
-    def _infer(self, source):
-        if not HAN.search(source):
-            return source
-        tokens = self.source.encode(source, out_type=str) + ['</s>']
+    def _infer(self, source, prefix=()):
+        tokens = list(prefix) + self.source.encode(source, out_type=str) + ['</s>']
         result = self.translator.translate_batch([tokens], beam_size=4, max_decoding_length=512,
                                                  repetition_penalty=1.0)[0]
         sequence = result.hypotheses[0]
@@ -86,7 +84,7 @@ class OfflineTranslator:
             prepared = PLACEHOLDER.sub(lambda m: mapping[m.group()], text)
             output = []
             for line in prepared.split('\n'):
-                output.append(' '.join(self._infer(chunk) for chunk in self._chunks(line)) if HAN.search(line) else line)
+                output.append(' '.join((self._infer(chunk) if HAN.search(chunk) else chunk) for chunk in self._chunks(line)) if HAN.search(line) else line)
             result = '\n'.join(output)
             # Restore aliases only after translation. Reject lost, added or ambiguous references.
             for placeholder, name in mapping.items():
@@ -101,3 +99,59 @@ class OfflineTranslator:
             while len(self.cache) > 128:
                 self.cache.popitem(last=False)
             return answer
+
+
+class EnglishToChinese(OfflineTranslator):
+    def __init__(self):
+        super().__init__(Path(__file__).resolve().parent / 'models' / 'opus-mt-en-zh-int8')
+
+    def translate_items(self, items, kind):
+        if kind not in ('tags', 'prose') or not isinstance(items, list) or not items:
+            raise ValueError('请提供英文词条或描述。')
+        if not all(isinstance(item, str) and item.strip() for item in items):
+            raise ValueError('英文内容不能为空。')
+        if sum(map(len, items)) > 12000:
+            raise ValueError('每次最多翻译 12000 个字符，请分段处理。')
+        with self.lock:
+            self._load()
+            return [self._translate_item(item, kind) for item in items]
+
+    def _translate_item(self, text, kind):
+        key = (kind, text)
+        if key in self.cache:
+            self.cache.move_to_end(key)
+            return self.cache[key]
+        if kind == 'tags' and re.fullmatch(r'<[^>]+>|embedding:\S+', text, re.I):
+            return text
+        normalized = text.replace('_', ' ') if kind == 'tags' else text
+        # Use numeric stand-ins since the model transliterates English names.
+        markers = {}
+        number = 7311
+        for alias in dict.fromkeys(PLACEHOLDER.findall(normalized)):
+            while str(number) in normalized:
+                number += 1
+            markers[alias] = str(number)
+            number += 1
+        prepared = PLACEHOLDER.sub(lambda m: ' ' + markers[m.group()] + ' ', normalized)
+        lines = []
+        for line in prepared.split('\n'):
+            sentences = re.split(r'(?<=[.!?。！？])\s+', line)
+            translated = []
+            for sentence in sentences:
+                if not re.search(r'[a-z]', sentence, re.I):
+                    translated.append(sentence.strip())
+                    continue
+                for chunk in self._chunks(sentence):
+                    translated.append(self._infer(chunk, ('>>cmn_Hans<<',)))
+            lines.append(''.join(translated))
+        result = '\n'.join(lines).strip()
+        for alias, marker in markers.items():
+            result = result.replace(marker, alias)
+        if Counter(PLACEHOLDER.findall(text)) != Counter(PLACEHOLDER.findall(result)):
+            raise ValueError('本地模型改写了角色代号，请将长句拆开后重试。')
+        if kind == 'tags':
+            result = result.rstrip('。') or result
+        self.cache[key] = result
+        if len(self.cache) > 128:
+            self.cache.popitem(last=False)
+        return result

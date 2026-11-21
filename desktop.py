@@ -72,6 +72,19 @@ class Api:
         except Exception:
             return {'error': '翻译失败，请检查接口设置。'}
 
+    def translate_to_chinese(self, items, kind, request_id=None):
+        try:
+            values = self._translator.requests.run(
+                request_id, self._translator.english_to_chinese.translate_items, items, kind)
+            return {'translations': values}
+        except RequestCancelled:
+            return {'cancelled': True}
+        except ValueError as exc:
+            return {'error': str(exc)}
+        except Exception:
+            logging.exception('Local English to Chinese translation failed')
+            return {'error': '本地英译中失败，请检查离线组件。'}
+
     def polish(self, text, side='positive', characters=None, request_id=None):
         try:
             return self._translator.requests.run(request_id, self._translator.polish, text, side, characters)

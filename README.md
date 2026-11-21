@@ -131,7 +131,7 @@ py -3.10 -m venv .venv
 
 ## 可选：本地离线翻译
 
-离线模块使用 **OPUS-MT 中译英 + CTranslate2 INT8 CPU 推理**，不占用生图显存。它是翻译模型，不负责 LLM 中文润色；复杂动作与代词仍需人工检查。
+离线模块使用 **OPUS-MT 中英双向翻译 + CTranslate2 INT8 CPU 推理**，不占用生图显存。它是翻译模型，不负责 LLM 中文润色；复杂动作与代词仍需人工检查。
 
 仓库不包含模型权重，也不会在启动时自动下载。安装依赖：
 
@@ -139,7 +139,11 @@ py -3.10 -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements-offline.txt
 ```
 
-模型来源：[Helsinki-NLP/opus-mt-zh-en](https://huggingface.co/Helsinki-NLP/opus-mt-zh-en)，许可 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)。需要将原模型转换为 CTranslate2 INT8，转换方式参见 [CTranslate2 Transformers 文档](https://opennmt.net/CTranslate2/guides/transformers.html)。准备后的目录为：
+标签块点「翻译词条」会补全正负面词条的中文显示名。已有中文的词条会跳过，可撤销整次操作。自然语言编辑框可从右侧英文翻译到左侧中文，核对后保存。
+
+英译中使用 [Helsinki-NLP/opus-mt-en-zh](https://huggingface.co/Helsinki-NLP/opus-mt-en-zh)，按同样方式转换到 `models/opus-mt-en-zh-int8/`，推理时使用简体中文目标标记 `>>cmn_Hans<<`。
+
+中译英模型来源：[Helsinki-NLP/opus-mt-zh-en](https://huggingface.co/Helsinki-NLP/opus-mt-zh-en)，许可 [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/)。需要将原模型转换为 CTranslate2 INT8，转换方式参见 [CTranslate2 Transformers 文档](https://opennmt.net/CTranslate2/guides/transformers.html)。准备后的目录为：
 
 ```text
 models/opus-mt-zh-en-int8/

@@ -10,6 +10,8 @@
 
 ## 可选模型
 
+英译中模型 Helsinki-NLP / opus-mt-en-zh，原模型卡标注 Apache-2.0，桌面离线版转换为 CTranslate2 INT8。来源：https://huggingface.co/Helsinki-NLP/opus-mt-en-zh
+
 Helsinki-NLP / opus-mt-zh-en，University of Helsinki Language Technology Research Group，CC BY 4.0。
 来源：https://huggingface.co/Helsinki-NLP/opus-mt-zh-en
 许可：https://creativecommons.org/licenses/by/4.0/

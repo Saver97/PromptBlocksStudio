@@ -55,8 +55,50 @@ function addPolishControls(wrap,controls,pair,label,side,status){
  controls.prepend(polish);
  pair.requests.track(polish);
 }
+async function localChinese(items, kind, requestId) {
+ const api = window.pywebview?.api;
+ if (!api?.translate_to_chinese) throw Error('请在更新后的桌面程序中使用本地英译中。');
+ const result = await api.translate_to_chinese(items, kind, requestId);
+ if (result.error) throw Error(result.error);
+ if (result.cancelled) throw Error('请求已停止。');
+ return result.translations;
+}
+async function chineseTagLabels(texts) {
+ const labels = new Map(), missing = [];
+ for (const text of new Set(texts)) {
+  const known = lookup.get(norm(text))?.label;
+  if (known && /[\u3400-\u9fff]/.test(known)) labels.set(text, known);
+  else missing.push(text);
+ }
+ for (let start = 0; start < missing.length;) {
+  let end = start + 1, length = missing[start].length;
+  while (end < missing.length && length + missing[end].length <= 12000) {
+   length += missing[end++].length;
+  }
+  const batch = missing.slice(start, end);
+  const translated = await localChinese(batch, 'tags', crypto.randomUUID());
+  batch.forEach((text, i) => labels.set(text, translated[i]));
+  start = end;
+ }
+ return texts.map(text => labels.get(text));
+}
+async function translateBlockLabels(block, button) {
+ const tokens = [...block.positive, ...block.negative].filter(t => !/[\u3400-\u9fff]/.test(t.label || ''));
+ if (!tokens.length) { toast('词条已有显示名称。'); return; }
+ const snapshot = tokens.map(t => ({text:t.text, label:t.label}));
+ button.disabled = true;
+ button.textContent = '翻译中…';
+ try {
+  const labels = await chineseTagLabels(snapshot.map(t => t.text));
+  if (!button.isConnected || !scheme().blocks.includes(block)) return;
+  if (tokens.some((t,i) => t.text !== snapshot[i].text || t.label !== snapshot[i].label)) return;
+  commit(() => tokens.forEach((t,i) => { t.label = labels[i]; }));
+  toast('已补全词条显示名，可撤销。');
+ } catch (error) { if (button.isConnected) toast(error.message); }
+ finally { button.disabled = false; button.textContent = '翻译词条'; }
+}
 function translatorPair(body,label,sourceValue,textValue,translatedFrom='',placeholders=true,side='positive'){
- const wrap=el('div','translation-pair'),row=el('div','form-row');const source=field(row,label+' · 中文原文',sourceValue,'textarea'),english=field(row,label+' · 英文输出',textValue,'textarea');wrap.append(row);
+ const wrap=el('div','translation-pair'),row=el('div','form-row');const source=field(row,label+' · 中文',sourceValue,'textarea'),english=field(row,label+' · 英文输出',textValue,'textarea');wrap.append(row);
  source.placeholder=placeholders?'例如：{{B}} 用右手握住 {{A}} 的左手。':'例如：浅蓝色长发，金色眼睛';english.placeholder='点击翻译，或粘贴助手返回的英文';
  const controls=el('div','language-actions'),status=el('span','muted'),diagnostics=el('div','translation-checks'),pair={source,english,translatedFrom};
  const returned=el('div','translation-return polish-panel');returned.hidden=true;const returnedStatus=el('p','muted'),returnedText=field(returned,label+' · 翻译返回内容','','textarea');returned.prepend(returnedStatus);let returnedSource='',returnedEnglish='';
@@ -73,8 +115,27 @@ function translatorPair(body,label,sourceValue,textValue,translatedFrom='',place
    english.value=result.text;pair.translatedFrom=original;english.dispatchEvent(new Event('input'));status.textContent=result.notice||'已翻译，返回内容保留在下方供核对。';
   }catch(e){if(source.isConnected&&pair.requests.accepts(task))status.textContent=e.message;}finally{pair.requests.finish(task);}
  });
- controls.append(translate,btn('复制翻译请求','复制翻译请求 '+label,()=>copyTranslationRequest(source.value)),status);wrap.append(controls,diagnostics);
- pair.requests=llmRequestControls(controls,status);pair.requests.track(translate);wrap.append(returned);
+ const reverse = btn('英文 → 中文（本地）', '本地英译中 '+label, async () => {
+  const original = english.value, previous = source.value;
+  if (!original.trim()) { status.textContent = '请先填写英文。'; return; }
+  const task = pair.requests.start();
+  if (!task) return;
+  status.textContent = '正在本地翻译英文…';
+  try {
+   const [translation] = await localChinese([original], 'prose', task.id);
+   if (!$('modal').open || !source.isConnected || !pair.requests.accepts(task)) return;
+   if (english.value !== original || source.value !== previous) {
+    status.textContent = '内容已变动，请再次翻译。'; return;
+   }
+   pair.translatedFrom = translation;
+   source.value = translation;
+   source.dispatchEvent(new Event('input'));
+   status.textContent = '中文译文已填入，可编辑后保存。';
+  } catch (error) { if (source.isConnected && pair.requests.accepts(task)) status.textContent = error.message; }
+  finally { pair.requests.finish(task); }
+ });
+ controls.append(translate,reverse,btn('复制翻译请求','复制翻译请求 '+label,()=>copyTranslationRequest(source.value)),status);wrap.append(controls,diagnostics);
+ pair.requests=llmRequestControls(controls,status);pair.requests.track(translate);pair.requests.track(reverse);wrap.append(returned);
  if(placeholders)addPolishControls(wrap,controls,pair,label,side,status);
  if(placeholders){const insert=el('div','language-actions role-insert');insert.append(el('span','muted','插入角色：'));for(const alias of [...new Set(['A','B',...(scheme().characters||[]).map(c=>c.alias)])])insert.append(btn('{{'+alias+'}}','插入角色 '+alias,()=>{const start=source.selectionStart,end=source.selectionEnd;source.setRangeText('{{'+alias+'}}',start,end,'end');source.focus();source.dispatchEvent(new Event('input'));}));wrap.insertBefore(insert,row);}
  const updateStatus=()=>{status.textContent=source.value.trim()?(english.value.trim()?(pair.translatedFrom===source.value?'英文对应当前原文':'中文已修改，请更新英文'):'待翻译，可先保存中文草稿'):'可直接填写英文';diagnostics.replaceChildren(...(placeholders?Blocks.proseWarnings(english.value,scheme().characters,source.value):[]).map(w=>el('div','warning',w)));};source.addEventListener('input',updateStatus);english.addEventListener('input',()=>{pair.translatedFrom=source.value;updateStatus();});updateStatus();body.append(wrap);return pair;
@@ -124,7 +185,7 @@ function translationSettings(){let engine,endpoint,model,key,status,apiPanel,loc
  $('modal').classList.add('language-dialog');
  body.append(el('p','','翻译可选本地 OPUS-MT 或文字接口。中文润色始终使用下方文字接口，也支持本机运行的 LLM。仅主动点击时发送当前段落；润色另附当前段落引用的角色定义，不发送整套词库。'));
  engine=selectField(body,'翻译引擎',[['local-opus','本地离线 · OPUS-MT（CPU）'],['api','在线 / 自备接口']],'local-opus');
- localNote=el('p','','OPUS-MT 中译英 · INT8 · 仅使用 CPU。首次翻译需要加载模型，后续重复文本会直接复用结果。原文和译文均可保存。');body.append(localNote);
+ localNote=el('p','','OPUS-MT 中英双向 · INT8 · 仅使用 CPU。首次翻译需要加载模型，后续重复文本会直接复用结果。原文和译文均可保存。');body.append(localNote);
  apiPanel=el('div','character-editor');body.append(apiPanel);
  apiPanel.append(el('p','muted','API 格式：Responses（/responses）；思考强度：低（low）。基础地址只追加 /responses，不添加版本号；完整 /responses 地址原样使用。润色与 API 翻译共用，翻译选本地时也能单独润色。'));
  endpoint=field(apiPanel,'Base URL / 完整 Responses 地址','');endpoint.placeholder='例如 https://api.deepseek.com';model=field(apiPanel,'模型名称','');model.placeholder='填写服务提供的文字模型名';key=field(apiPanel,'API Key（留空保留已有值）','');key.type='password';key.autocomplete='off';status=el('p','muted','正在读取本机设置…');body.append(status);

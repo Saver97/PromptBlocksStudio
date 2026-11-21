@@ -23,14 +23,15 @@ for package in ('ctranslate2', 'sentencepiece'):
         datas += data
         binaries += binary
         hiddenimports += imports
-model = root / 'models' / 'opus-mt-zh-en-int8'
-if model.is_dir():
-    required = ('model.bin', 'config.json', 'shared_vocabulary.json', 'source.spm', 'target.spm')
-    if not all((model / name).is_file() for name in required):
-        raise RuntimeError('Offline model directory exists but is incomplete')
-    if not all(find_spec(p) for p in ('ctranslate2', 'sentencepiece')):
-        raise RuntimeError('Install requirements-offline.txt before bundling the model')
-    datas.append((str(model), 'models/opus-mt-zh-en-int8'))
+for model_name in ('opus-mt-zh-en-int8', 'opus-mt-en-zh-int8'):
+    model = root / 'models' / model_name
+    if model.is_dir():
+        required = ('model.bin', 'config.json', 'shared_vocabulary.json', 'source.spm', 'target.spm')
+        if not all((model / name).is_file() for name in required):
+            raise RuntimeError('Offline model directory exists but is incomplete')
+        if not all(find_spec(p) for p in ('ctranslate2', 'sentencepiece')):
+            raise RuntimeError('Install requirements-offline.txt before bundling the model')
+        datas.append((str(model), 'models/' + model_name))
 
 a = Analysis([str(root / 'desktop.py')], pathex=[str(root)], binaries=binaries,
              datas=datas, hiddenimports=hiddenimports, hookspath=[], hooksconfig={},

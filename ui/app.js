@@ -203,6 +203,10 @@ function renderBlocks(){
       chip.append(check,edit);if(t.weight!==1)chip.append(el('span','weight-badge','×'+t.weight));chip.append(btn('×','移除词 '+t.text,()=>commit(()=>{b[side].splice(i,1);}),'remove-token'));list.append(chip);
     });if(!b[side].length)list.append(el('span','empty','暂无词条'));body.append(label,list);
    }if(!b.positive.length&&!b.negative.length)body.append(el('p','empty','从左侧加词，或在下面直接输入提示词。'));body.append(blockInput(b));card.append(body);}
+  if (b.kind !== 'prose') {
+   const translate = btn('翻译词条', '本地英译中 · '+b.name, () => translateBlockLabels(b, translate));
+   actions.append(translate);
+  }
   BlockSearch.attach(card,actions,b);
   frag.append(card);
  }
@@ -225,7 +229,20 @@ function renderOutput(){
  }
  if(scheme().notes)$('parameters').append(el('p','',scheme().notes));
 }
-function editToken(b,side,i){const t=b[side][i];let text,label,weight;modal('编辑词条',body=>{text=field(body,'英文提示词',t.text);label=field(body,'显示名称',t.label);weight=field(body,'词条权重',t.weight);weight.type='number';weight.step='.1';weight.min='-20';weight.max='20';BlockSearch.editor(b,[text,label]);},()=>{const w=Number(weight.value);if(!text.value.trim()||weight.value===''||!Number.isFinite(w)||Math.abs(w)>20)throw Error('请填写提示词，权重范围为 -20～20');commit(()=>{b[side][i]={...t,text:text.value.trim(),label:label.value.trim()||text.value.trim(),weight:w};});});}
+function editToken(b,side,i){const t=b[side][i];let text,label,weight;modal('编辑词条',body=>{text=field(body,'英文提示词',t.text);label=field(body,'显示名称',t.label);
+ const translate = btn('英文 → 中文（本地）','翻译词条显示名称',async () => {
+  const original=text.value.trim(), previous=label.value;
+  if (!original) { $('modalError').textContent='请先填写英文提示词。'; return; }
+  translate.disabled=true;
+  try {
+   const [name]=await chineseTagLabels([original]);
+   if ($('modal').open && label.isConnected && text.value.trim()===original && label.value===previous) {
+    label.value=name; label.dispatchEvent(new Event('input')); $('modalError').textContent='';
+   }
+  } catch(error) { if(label.isConnected) $('modalError').textContent=error.message; }
+  finally { translate.disabled=false; }
+ });
+ body.append(translate);weight=field(body,'词条权重',t.weight);weight.type='number';weight.step='.1';weight.min='-20';weight.max='20';BlockSearch.editor(b,[text,label]);},()=>{const w=Number(weight.value);if(!text.value.trim()||weight.value===''||!Number.isFinite(w)||Math.abs(w)>20)throw Error('请填写提示词，权重范围为 -20～20');commit(()=>{b[side][i]={...t,text:text.value.trim(),label:label.value.trim()||text.value.trim(),weight:w};});});}
 function editBlock(b){if(b.kind==='prose'){editProse(b);return;}let name,role;modal('编辑内容块',body=>{name=field(body,'名称',b.name);role=selectField(body,'类型',Blocks.roles.map(r=>[r,r]),b.role);body.append(el('p','','块内标签可直接点击编辑。需要增加更多词时，选中本块后从词库添加或粘贴。'));if(b.recipe){const info=field(body,'来源配方',b.recipe,'textarea');info.readOnly=true;}},()=>{if(!name.value.trim())throw Error('请填写名称');commit(()=>{b.name=name.value.trim();b.role=role.value;});});}
 function saveBlock(b){nameDialog('保存组合块',b.name,name=>commit(()=>{state.templates.push({id:Blocks.id(),name,role:b.role,positive:copy(b.positive),negative:copy(b.negative),weight:b.weight,recipe:b.recipe||'',...Blocks.languageFields(b),characters:charactersForBlock(b)});}));}
 function updateSource(b){const t=state.templates.find(t=>t.id===b.sourceTemplateId);if(!t)return;modal('更新来源组合',body=>body.append(el('p','',`用当前块的词条、权重与启停状态更新组合库里的“${t.name}”。其他方案中已有的副本保持不变，之后加入会使用更新后的内容。`)),()=>commit(()=>{Object.assign(t,{role:b.role,positive:copy(b.positive),negative:copy(b.negative),weight:b.weight,...Blocks.languageFields(b),characters:charactersForBlock(b)});}),'更新组合');}

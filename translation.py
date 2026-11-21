@@ -12,7 +12,7 @@ import ssl
 import threading
 from urllib import error, parse, request
 import truststore
-from offline_translation import OfflineTranslator
+from offline_translation import OfflineTranslator, EnglishToChinese
 from request_control import Requests
 
 
@@ -67,6 +67,7 @@ class Translator:
         self.path = Path(directory) / 'translation.json'
         self.lock = threading.Lock()
         self.offline = OfflineTranslator()
+        self.english_to_chinese = EnglishToChinese()
         self.requests = Requests()
 
     def _engine(self, data):
