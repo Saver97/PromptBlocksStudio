@@ -116,8 +116,14 @@ function renderOutput(){
  $('warnings').replaceChildren(...out.errors.map(w=>el('div','warning error',w)),...out.warnings.map(w=>el('div','warning',w)));$('copyPositive').disabled=$('copyNegative').disabled=out.errors.length>0;
  $('sourceList').replaceChildren(...['positive','negative'].flatMap(side=>out.sources[side].map(t=>el('p','',`${side==='positive'?'正':'负'} · ${t.text}${t.kind==='prose'?'':' ×'+t.weight} ← ${t.blocks.join('、')}`))));
  const p=scheme().parameters||{},m=scheme().models||{},parts=[];
- if(p.width&&p.height)parts.push(`${p.width} × ${p.height}`);if(p.steps!=null)parts.push(p.steps+' 步');if(p.cfg!=null)parts.push('CFG '+p.cfg);if(p.seed!=null)parts.push('seed '+p.seed);if(p.sampler_name)parts.push(p.sampler_name);if(p.scheduler)parts.push(p.scheduler);if(p.denoise!=null)parts.push('denoise '+p.denoise);
- $('parameters').replaceChildren(el('p','',parts.join(' / ')||'未设置，可在这里记录配方参数。'),...Object.entries(m).filter(([,v])=>v).map(([k,v])=>el('p','',`${{unet_name:'模型',clip_name:'编码器',vae_name:'VAE'}[k]||k}：${v}`)));
+ if(p.width&&p.height)parts.push(`${p.width} × ${p.height}`);if(p.steps!=null)parts.push(p.steps+' 步');if(p.cfg!=null)parts.push('CFG '+p.cfg);if(p.sampler_name)parts.push(p.sampler_name);if(p.scheduler)parts.push(p.scheduler);if(p.denoise!=null)parts.push('denoise '+p.denoise);
+ const seeds=Blocks.schemeSeeds(p);
+ $('parameters').replaceChildren(...(parts.length||!seeds.length?[el('p','',parts.join(' / ')||'未设置，可在这里记录配方参数。')]:[]),...Object.entries(m).filter(([,v])=>v).map(([k,v])=>el('p','',`${{unet_name:'模型',clip_name:'编码器',vae_name:'VAE'}[k]||k}：${v}`)));
+ for (const seed of seeds) {
+  const row = el('div', 'seed-row');
+  row.append(el('span', '', '种子 ' + seed), btn('复制', '复制种子 ' + seed, () => copyPlainText(String(seed))));
+  $('parameters').append(row);
+ }
  if(scheme().notes)$('parameters').append(el('p','',scheme().notes));
 }
 function editToken(b,side,i){const t=b[side][i];let text,label,weight;modal('编辑词条',body=>{text=field(body,'英文提示词',t.text);label=field(body,'显示名称',t.label);weight=field(body,'词条权重',t.weight);weight.type='number';weight.step='.1';weight.min='-20';weight.max='20';BlockSearch.editor(b,[text,label]);},()=>{const w=Number(weight.value);if(!text.value.trim()||weight.value===''||!Number.isFinite(w)||Math.abs(w)>20)throw Error('请填写提示词，权重范围为 -20～20');commit(()=>{b[side][i]={...t,text:text.value.trim(),label:label.value.trim()||text.value.trim(),weight:w};});});}
@@ -138,10 +144,22 @@ function editTemplate(t){if(t.kind==='prose'){editProse(t,true);return;}
 }
 function pasteIntoBlock(){const b=selected();if(!b){toast('请先选择内容块');return;}if(b.kind==='prose'){editProse(b);return;}promptDialog('粘贴到「'+b.name+'」',{},p=>commit(()=>{for(const side of ['positive','negative'])b[side].push(...p[side]);}));}
 function editParams(){
- const initial=copy(scheme()),fields={},modelFields={};let notes;
- const config=[['width','宽度'],['height','高度'],['steps','步数'],['cfg','CFG'],['seed','种子'],['denoise','重绘幅度'],['sampler_name','采样器'],['scheduler','调度器']];
- modal('配方参数',body=>{for(let i=0;i<config.length;i+=2){const row=el('div','form-row');for(const [key,label] of config.slice(i,i+2)){const input=field(row,label,initial.parameters?.[key]??'');fields[key]=input;}body.append(row);}for(const [key,label] of [['unet_name','模型'],['clip_name','编码器'],['vae_name','VAE']])modelFields[key]=field(body,label,initial.models?.[key]||'');notes=field(body,'方案备注',initial.notes||'','textarea');body.append(el('p','','参数随方案保存，导出时包含；不会自动提交或修改 ComfyUI。'));},()=>{
-  const p={...initial.parameters};for(const [key,input] of Object.entries(fields)){const value=input.value.trim();if(!value){delete p[key];continue;}if(['sampler_name','scheduler'].includes(key)){p[key]=value;continue;}if(key==='seed'){if(!/^\d+$/.test(value)||BigInt(value)>18446744073709551615n)throw Error('种子需要填写 0～18446744073709551615 的整数');p[key]=Number.isSafeInteger(Number(value))?Number(value):value;continue;}const n=Number(value);if(!Number.isFinite(n)||n<0)throw Error('参数需要填写有效的非负数字');if(['width','height','steps','seed'].includes(key)&&!Number.isSafeInteger(n))throw Error('宽高、步数、种子需要填写安全范围内的整数');if(['width','height','steps'].includes(key)&&n===0)throw Error('宽高和步数需大于零');if(key==='denoise'&&n>1)throw Error('重绘幅度应在 0～1 之间');p[key]=n;}
+ const initial=copy(scheme()),fields={},modelFields={};let notes,seedInput;
+ const config=[['width','宽度'],['height','高度'],['steps','步数'],['cfg','CFG'],['denoise','重绘幅度'],['sampler_name','采样器'],['scheduler','调度器']];
+ modal('配方参数',body=>{for(let i=0;i<config.length;i+=2){const row=el('div','form-row');for(const [key,label] of config.slice(i,i+2)){const input=field(row,label,initial.parameters?.[key]??'');fields[key]=input;}body.append(row);}
+  seedInput=field(body,'种子（每行一个）',Blocks.schemeSeeds(initial.parameters || {}).join('\n'),'textarea');
+  seedInput.rows=3;
+  for(const [key,label] of [['unet_name','模型'],['clip_name','编码器'],['vae_name','VAE']])modelFields[key]=field(body,label,initial.models?.[key]||'');notes=field(body,'方案备注',initial.notes||'','textarea');body.append(el('p','','参数随方案保存，导出时包含；不会自动提交或修改 ComfyUI。'));},()=>{
+  const p={...initial.parameters};for(const [key,input] of Object.entries(fields)){const value=input.value.trim();if(!value){delete p[key];continue;}if(['sampler_name','scheduler'].includes(key)){p[key]=value;continue;}const n=Number(value);if(!Number.isFinite(n)||n<0)throw Error('参数需要填写有效的非负数字');if(['width','height','steps'].includes(key)&&!Number.isSafeInteger(n))throw Error('宽高和步数需要填写安全范围内的整数');if(['width','height','steps'].includes(key)&&n===0)throw Error('宽高和步数需大于零');if(key==='denoise'&&n>1)throw Error('重绘幅度应在 0～1 之间');p[key]=n;}
+  const seeds = seedInput.value.split(/\s+/).filter(Boolean).map(text => {
+   Blocks.seedValue(text);
+   const value = Number(text);
+   return Number.isSafeInteger(value) ? value : text;
+  });
+  if (seeds.length) p.seed = seeds[0];
+  else delete p.seed;
+  if (seeds.length > 1) p.extra_seeds = seeds.slice(1);
+  else delete p.extra_seeds;
   commit(()=>{scheme().parameters=p;scheme().models={...initial.models,...Object.fromEntries(Object.entries(modelFields).map(([k,v])=>[k,v.value.trim()]))};scheme().notes=notes.value;});
  });
 }

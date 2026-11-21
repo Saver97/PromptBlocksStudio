@@ -44,18 +44,19 @@ const AgentTemplate = (() => {
     });
   }
   function parameters(value = {}) {
-    const keys = ['width', 'height', 'steps', 'cfg', 'seed', 'denoise', 'sampler_name', 'scheduler'];
+    const keys = ['width', 'height', 'steps', 'cfg', 'seed', 'extra_seeds', 'denoise', 'sampler_name', 'scheduler'];
     object(value, 'parameters', keys);
     const result = {};
     for (const [key, v] of Object.entries(value)) {
       const at = 'parameters.' + key;
       if (['sampler_name', 'scheduler'].includes(key)) result[key] = text(v, at, '', true);
-      else if (key === 'seed' && typeof v === 'string') {
-        if (!/^\d+$/.test(v) || BigInt(v) > 18446744073709551615n) fail(at, '种子字符串须为 0～18446744073709551615 的十进制整数');
-        result[key] = v;
+      else if (key === 'seed') result.seed = Blocks.seedValue(v);
+      else if (key === 'extra_seeds') {
+        if (!Array.isArray(v)) fail(at, '附加种子需要填写为数组');
+        result.extra_seeds = v.map(Blocks.seedValue);
       } else {
         if (typeof v !== 'number' || !Number.isFinite(v) || v < 0) fail(at, '需要非负数字');
-        if (['width', 'height', 'steps', 'seed'].includes(key) && !Number.isSafeInteger(v)) fail(at, '需要安全范围内的整数；大种子请用字符串');
+        if (['width', 'height', 'steps'].includes(key) && !Number.isSafeInteger(v)) fail(at, '需要安全范围内的整数；大种子请用字符串');
         if (['width', 'height', 'steps'].includes(key) && !v) fail(at, '必须大于零');
         if (key === 'denoise' && v > 1) fail(at, '重绘幅度应在 0～1 之间');
         result[key] = v;
@@ -143,7 +144,7 @@ const AgentTemplate = (() => {
 4. type=prose 时 positive/negative 是 {"zh":"中文原文","en":"对应英文"}；整段保留，不能拆成标签。中英文 {{A}}/{{B}} 出现次数必须一致。角色代号先在 characters 定义；不要省略双花括号。自然语言块 weight 必须为 1 或省略。
 5. 角色字段为 alias（A、B 等）、name（输出姓名）、gender（unknown/female/male/other）、identityTags（英文身份标签数组）、description（zh/en 外貌）。只填已知身份，不捏造身份标签。角色身份与固定外貌会自动拼入输出，无需在其他块重复。没有角色时 characters=[]。
 6. role 仅可用：自由补充、公共基础、角色、服装、场景、光照、画师串、负面约束、完整组合。
-7. parameters 可含 width、height、steps、cfg、seed、denoise、sampler_name、scheduler；models 可含 unet_name、clip_name、vae_name。未知参数和模型省略，不猜。大于 9007199254740991 的种子必须写为十进制字符串；宽高和步数为正整数，denoise 为 0～1，权重为 -20～20。
+7. parameters 可含 width、height、steps、cfg、seed、extra_seeds（按顺序填写附加种子的数组）、denoise、sampler_name、scheduler；models 可含 unet_name、clip_name、vae_name。未知参数和模型省略，不猜。大于 9007199254740991 的种子必须写为十进制字符串；宽高和步数为正整数，denoise 为 0～1，权重为 -20～20。
 8. 不添加 id、API Key 或其他字段；不输出注释、尾随逗号。没有内容的标签用 []，没有内容的自然语言用 {"zh":"","en":""}。可选 notes 记录说明。只有中文也可导入，但工具会提示英文尚未完成。
 
 结构示例：
@@ -172,7 +173,7 @@ ${JSON.stringify(example, null, 2)}
   return {parse, serialize, example, instructions};
 })();
 
-async function copyAgentText(value) {
+async function copyPlainText(value) {
   try { if (native) await window.pywebview.api.copy(value); else await navigator.clipboard.writeText(value); toast('已复制'); }
   catch (e) { toast('复制失败：' + e.message); }
 }
@@ -205,8 +206,8 @@ function openAgentImport() {
     $('modal').classList.add('agent-template-dialog');
     body.append(el('p', '', '把模板发给其他 Agent，生成后将完整 JSON 粘贴回来。按格式本地读取，导入为新方案。'));
     const actions = el('div', 'actions template-actions');
-    actions.append(btn('复制给 Agent 的模板', '复制给 Agent 的模板', () => copyAgentText(AgentTemplate.instructions)),
-      btn('复制当前方案模板', '复制当前方案模板', () => { try { copyAgentText(AgentTemplate.serialize(scheme())); } catch (e) { $('modalError').textContent = e.message; } }));
+    actions.append(btn('复制给 Agent 的模板', '复制给 Agent 的模板', () => copyPlainText(AgentTemplate.instructions)),
+      btn('复制当前方案模板', '复制当前方案模板', () => { try { copyPlainText(AgentTemplate.serialize(scheme())); } catch (e) { $('modalError').textContent = e.message; } }));
     body.append(actions);
     const grid = el('div', 'template-import-grid'), left = el('div', 'template-import-input');
     input = field(left, '粘贴模板 JSON', '', 'textarea'); input.spellcheck = false; input.placeholder = '{"format":"prompt-blocks-template","version":1,…}';

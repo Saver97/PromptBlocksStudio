@@ -68,3 +68,6 @@ block-find-surface {display:block;position:relative;min-width:0}
 block-find-surface > textarea, block-find-surface > input {display:block}
 .block-find-paint {position:absolute;box-sizing:border-box;overflow:hidden;white-space:pre-wrap;overflow-wrap:break-word;color:transparent;pointer-events:none;user-select:none;border:0}
 .block-find-paint .block-find-hit {background:rgba(249,188,43,.52);color:transparent}
+
+.seed-row {display:flex; align-items:center; justify-content:space-between; gap:8px; margin:4px 0}
+.seed-row span {overflow-wrap:anywhere; font-variant-numeric:tabular-nums}

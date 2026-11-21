@@ -129,6 +129,17 @@ const Blocks = (() => {
   function block(name='自由补充', role='自由补充', positive=[], negative=[]) {
     return {id:id(),name,role,enabled:true,weight:1,collapsed:false,positive:copy(positive),negative:copy(negative)};
   }
+  function seedValue(value) {
+    if (typeof value === 'number' && Number.isSafeInteger(value) && value >= 0) return value;
+    if (typeof value === 'string' && /^\d+$/.test(value) && BigInt(value) <= 18446744073709551615n) return value;
+    throw Error('种子须为 0～18446744073709551615 的整数，大整数请用十进制字符串');
+  }
+  function schemeSeeds(parameters = {}) {
+    const seeds = parameters.seed == null ? [] : [parameters.seed];
+    if (parameters.extra_seeds === undefined) return seeds;
+    if (!Array.isArray(parameters.extra_seeds)) throw Error('附加种子需要填写为数组');
+    return seeds.concat(parameters.extra_seeds.map(seedValue));
+  }
   function scheme(name='新方案') {return {id:id(),name,blocks:[block()],characters:[],parameters:{},models:{},notes:''};}
   function prose(name='自然语言描述') {return {...block(name),kind:'prose',positiveText:'',negativeText:'',positiveSource:'',negativeSource:''};}
   const aliases = text => [...text.matchAll(/\{\{\s*([A-Za-z][A-Za-z0-9_]{0,15})\s*\}\}/g)].map(m=>m[1].toUpperCase());
@@ -145,6 +156,9 @@ const Blocks = (() => {
     for(const p of s.schemes){validateCharacters(p.characters);for(const key of ['autoIntroduce','autoIdentity'])if(p[key]!==undefined&&typeof p[key]!=='boolean')throw Error('角色自动补充开关无效');}
     for(const t of s.templates){identity(t);content(t);if(t.weight!==undefined&&(!Number.isFinite(t.weight)||Math.abs(t.weight)>20))throw Error('组合块权重无效');}
     if(!s.schemes.some(p=>p.id===s.activeSchemeId)||s.favorites.some(f=>typeof f!=='string'))throw Error('当前方案或收藏无效');
+    for (const item of [...s.schemes, ...s.templates]) {
+      if (item.parameters?.extra_seeds !== undefined) schemeSeeds(item.parameters);
+    }
     const upgraded=copy(s);for(const p of [...upgraded.schemes,...upgraded.templates]){if(p.characters)p.characters=upgradeCharacters(p.characters);for(const b of p.blocks||[])if(b.characters)b.characters=upgradeCharacters(b.characters);}return upgraded;
   }
   function fromTemplate(t) {return {...block(t.name,t.role,t.positive,t.negative),...languageFields(t),weight:t.weight??1,sourceTemplateId:t.id,recipe:t.recipe||''};}
@@ -203,5 +217,5 @@ const Blocks = (() => {
     const s={version:2,activeSchemeId:p.id,schemes:[p],templates:old.presets.map(t=>({...copy(t),id:id(),role:'完整组合'})),favorites:copy(old.favorites||[]),format:old.format||'comfy'};
     return validate(s);
   }
-  return {copy,id,roles,characterPresets,installBandTemplates,installCharacterTemplates,upgradeCharacters,identityTokens,proseWarnings,block,prose,scheme,validate,validateCharacters,languageFields,aliases,fromTemplate,duplicate,assemble,importLegacy};
+  return {seedValue,schemeSeeds,copy,id,roles,characterPresets,installBandTemplates,installCharacterTemplates,upgradeCharacters,identityTokens,proseWarnings,block,prose,scheme,validate,validateCharacters,languageFields,aliases,fromTemplate,duplicate,assemble,importLegacy};
 })();
