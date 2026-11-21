@@ -85,8 +85,59 @@ function startBlockDrag(event, source, side, token) {
  event.dataTransfer.setData('application/x-prompt-block', source.id);
 }
 function endBlockDrag() {
+ clearTokenMarker();
  blockDrag = null;
  document.querySelector('.block.drag-over')?.classList.remove('drag-over');
+}
+function clearTokenMarker() {
+ if (blockDrag?.marker) {
+  delete blockDrag.marker.dataset.insert;
+  delete blockDrag.marker;
+ }
+}
+function enableTokenSorting(list, block, side) {
+ function insertionAt(event) {
+  if (!blockDrag?.token || blockDrag.source !== block || blockDrag.side !== side) return null;
+  let chip = event.target.closest('.token');
+  if (!chip) {
+   // In the gap between wrapped chips, use the nearest visible edge.
+   let nearest = Infinity;
+   for (const candidate of list.children) {
+    const r = candidate.getBoundingClientRect();
+    const dx = Math.max(r.left - event.clientX, event.clientX - r.right, 0);
+    const dy = Math.max(r.top - event.clientY, event.clientY - r.bottom, 0);
+    const distance = dx * dx + dy * dy;
+    if (distance < nearest) { nearest = distance; chip = candidate; }
+   }
+  }
+  if (!chip) return null;
+  const rect = chip.getBoundingClientRect();
+  const after = event.clientX >= rect.left + rect.width / 2;
+  return {chip, after, index: Number(chip.dataset.tokenIndex) + Number(after)};
+ }
+ list.ondragover = event => {
+  const insert = insertionAt(event);
+  if (!insert) return;
+  event.preventDefault();
+  event.dataTransfer.dropEffect = 'move';
+  if (blockDrag.marker !== insert.chip) clearTokenMarker();
+  insert.chip.dataset.insert = insert.after ? 'after' : 'before';
+  blockDrag.marker = insert.chip;
+ };
+ list.ondragleave = event => {
+  if (!list.contains(event.relatedTarget)) clearTokenMarker();
+ };
+ list.ondrop = event => {
+  const insert = insertionAt(event);
+  if (!insert) return;
+  event.preventDefault();
+  event.stopPropagation();
+  const tokens = block[side], from = tokens.indexOf(blockDrag.token);
+  const to = insert.index - Number(from < insert.index);
+  endBlockDrag();
+  if (from < 0 || from === to) return;
+  commit(() => { tokens.splice(to, 0, tokens.splice(from, 1)[0]); });
+ };
 }
 function acceptsBlockDrop(target) {
  return blockDrag && blockDrag.source !== target && (!blockDrag.token || target.kind !== 'prose');
@@ -141,10 +192,12 @@ function renderBlocks(){
   if(!collapsed&&b.kind!=='prose'){const body=el('div','block-body');for(const side of ['positive','negative']){
     if(!b[side].length)continue;
     const label=el('div','token-side-label',side==='positive'?'正面':'负面');const list=el('div','token-list');
+    enableTokenSorting(list, b, side);
     b[side].forEach((t,i)=>{const chip=el('div','token'+(!t.enabled?' off':'')),check=el('input');check.type='checkbox';check.checked=t.enabled;check.setAttribute('aria-label',`启用词 ${b.name} ${side} ${i}`);check.onchange=()=>commit(()=>{t.enabled=check.checked;});
       const edit=btn(t.label||t.text,'编辑词 '+t.text,()=>editToken(b,side,i),'edit-token');edit.title=t.text;
+      chip.dataset.tokenIndex = i;
       edit.draggable = true;
-      edit.setAttribute('aria-description', '点击编辑，拖到另一标签块可移动词条');
+      edit.setAttribute('aria-description', '点击编辑，拖到同栏词条前后可排序，拖到另一标签块可移动');
       edit.ondragstart = event => startBlockDrag(event, b, side, t);
       edit.ondragend = endBlockDrag;
       chip.append(check,edit);if(t.weight!==1)chip.append(el('span','weight-badge','×'+t.weight));chip.append(btn('×','移除词 '+t.text,()=>commit(()=>{b[side].splice(i,1);}),'remove-token'));list.append(chip);
@@ -248,7 +301,7 @@ function bind(){
  $('backup').onclick=()=>exportData(state,'提示词积木工作区.json');
  $('exportScheme').onclick=()=>exportData({...copy(state),schemes:[copy(scheme())]},scheme().name+'.json');
  $('restore').onclick=async()=>{try{if(native){const data=await window.pywebview.api.import_file();if(data)importData(data);}else{const input=el('input');input.type='file';input.accept='.json';input.onchange=async()=>{if(input.files[0])try{importData(JSON.parse(await input.files[0].text()));}catch(e){toast(e.message);}};input.click();}}catch(e){toast(e.message);}};
- $('help').onclick=()=>modal('使用说明',body=>{for(const text of ['① 先选中间的内容块，再从左侧点 ＋ 加词，再点 ✓ 取消。负面词库词条自动进入该块负面栏。','② 每块可以折叠、启停、整块调权重、复制和排序。点击词条可编辑，拖到另一个标签块可移动，正负面归属和词条权重会保留。','③ 左侧“组合块”可整体加入，或替换选中块。加入的是副本，编辑不会改变公共组合或其他方案。','④ 在顶部保存多个方案。切换会保留当前内容；复制方案适合对比不同角色、场景或画师串。','⑤ 相同文本与权重会去重，但保留来源；不同权重和正负冲突会提示，不自动覆盖。','⑥ 整块倍率与词条权重相乘。词块只是组织提示词，不代表区域控制或人物绑定。','⑦ 模型、种子等参数在右侧记录。导出当前配方保留块结构；整套存为组合会合并为一个块。','⑧ 支持导入旧版或新版备份，默认合并。导入前建议先导出备份。','⑨ 点“角色定义”给 A、B 配置完整姓名、固定身份标签与外貌，再添加“自然语言”块。中文描述可插入 {{A}}、{{B}}；翻译后自动展开成英文姓名。看书或牵手示例按钮会新建独立方案。','⑩ 中文原文和英文分别保存。改过中文、缺少英文或漏掉角色代号会提示，更新英文后可复制。翻译设置支持本地离线模型和自备接口，也可复制翻译请求给助手。黄色指代提醒不会阻止复制；请核对后使用。','快捷键：Ctrl+K 搜索；Ctrl+Z 撤销；Ctrl+Shift+Z 重做。','词库来源：Physton、老六、n714（MIT）；详情见 README 与第三方许可文件。分块交互思路参考 Infinite Canvas。'])body.append(el('p','',text));},()=>{},'知道了');
+ $('help').onclick=()=>modal('使用说明',body=>{for(const text of ['① 先选中间的内容块，再从左侧点 ＋ 加词，再点 ✓ 取消。负面词库词条自动进入该块负面栏。','② 每块可以折叠、启停、整块调权重、复制和排序。点击词条可编辑，拖到同栏词条前后可排序，拖到另一个标签块可移动，正负面归属和词条权重会保留。','③ 左侧“组合块”可整体加入，或替换选中块。加入的是副本，编辑不会改变公共组合或其他方案。','④ 在顶部保存多个方案。切换会保留当前内容；复制方案适合对比不同角色、场景或画师串。','⑤ 相同文本与权重会去重，但保留来源；不同权重和正负冲突会提示，不自动覆盖。','⑥ 整块倍率与词条权重相乘。词块只是组织提示词，不代表区域控制或人物绑定。','⑦ 模型、种子等参数在右侧记录。导出当前配方保留块结构；整套存为组合会合并为一个块。','⑧ 支持导入旧版或新版备份，默认合并。导入前建议先导出备份。','⑨ 点“角色定义”给 A、B 配置完整姓名、固定身份标签与外貌，再添加“自然语言”块。中文描述可插入 {{A}}、{{B}}；翻译后自动展开成英文姓名。看书或牵手示例按钮会新建独立方案。','⑩ 中文原文和英文分别保存。改过中文、缺少英文或漏掉角色代号会提示，更新英文后可复制。翻译设置支持本地离线模型和自备接口，也可复制翻译请求给助手。黄色指代提醒不会阻止复制；请核对后使用。','快捷键：Ctrl+K 搜索；Ctrl+Z 撤销；Ctrl+Shift+Z 重做。','词库来源：Physton、老六、n714（MIT）；详情见 README 与第三方许可文件。分块交互思路参考 Infinite Canvas。'])body.append(el('p','',text));},()=>{},'知道了');
  document.addEventListener('keydown',e=>{if(e.ctrlKey&&e.key.toLowerCase()==='k'){e.preventDefault();$('search').focus();$('search').select();}if(e.ctrlKey&&e.key.toLowerCase()==='z'&&!$('modal').open&&!/INPUT|TEXTAREA|SELECT/.test(e.target.tagName)){e.preventDefault();e.shiftKey?redo():undo();}});
 }
 async function boot(){try{

@@ -71,3 +71,8 @@ block-find-surface > textarea, block-find-surface > input {display:block}
 
 .seed-row {display:flex; align-items:center; justify-content:space-between; gap:8px; margin:4px 0}
 .seed-row span {overflow-wrap:anywhere; font-variant-numeric:tabular-nums}
+
+.token[data-insert] {position:relative}
+.token[data-insert]::after {content:"";position:absolute;top:0;bottom:0;width:3px;border-radius:2px;background:var(--accent);pointer-events:none}
+.token[data-insert="before"]::after {left:-4px}
+.token[data-insert="after"]::after {right:-4px}
