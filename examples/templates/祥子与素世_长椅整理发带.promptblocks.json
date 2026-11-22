@@ -1,0 +1,155 @@
+{
+  "format": "prompt-blocks-template",
+  "version": 1,
+  "name": "祥子与素世 · 长椅上整理发带",
+  "characters": [
+    {
+      "alias": "A",
+      "name": "Togawa Sakiko",
+      "gender": "female",
+      "identityTags": [
+        "togawa sakiko",
+        "bang dream!"
+      ],
+      "description": {
+        "zh": "浅蓝色长直发，金色眼睛，黑色发带。",
+        "en": "long straight light blue hair, golden eyes, and black hair ribbons."
+      }
+    },
+    {
+      "alias": "B",
+      "name": "Nagasaki Soyo",
+      "gender": "female",
+      "identityTags": [
+        "nagasaki soyo",
+        "bang dream!"
+      ],
+      "description": {
+        "zh": "浅棕色波浪长发，浅蓝色眼睛。",
+        "en": "long light brown wavy hair and light blue eyes."
+      }
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tags",
+      "name": "公共画质与构图",
+      "role": "公共基础",
+      "positive": [
+        "masterpiece",
+        "best quality",
+        "very aesthetic",
+        "2girls",
+        "cowboy shot",
+        "sitting"
+      ],
+      "negative": []
+    },
+    {
+      "type": "tags",
+      "name": "共同服装",
+      "role": "服装",
+      "positive": [
+        "school uniform",
+        "blazer",
+        "pleated skirt"
+      ],
+      "negative": []
+    },
+    {
+      "type": "tags",
+      "name": "花园背景",
+      "role": "场景",
+      "positive": [
+        "outdoors",
+        "garden",
+        "trees",
+        "bench"
+      ],
+      "negative": []
+    },
+    {
+      "type": "tags",
+      "name": "柔和日光",
+      "role": "光照",
+      "positive": [
+        "soft lighting",
+        "dappled sunlight"
+      ],
+      "negative": []
+    },
+    {
+      "type": "prose",
+      "name": "构图与身体朝向",
+      "role": "自由补充",
+      "positive": {
+        "zh": "{{A}} 坐在白色长椅的画面左侧，{{B}} 坐在画面右侧。{{B}} 侧过身朝向 {{A}}，微微前倾。{{A}} 的上身略向后倾，但仍坐稳在长椅上。镜头从两人斜前方、与眼睛齐平的位置取景，画面从头顶到大腿中部，完整保留四只手和相互接触的位置。",
+        "en": "{{A}} sits on the left side of a white bench in the image, and {{B}} sits on the right. {{B}} turns toward {{A}} and leans forward slightly. {{A}} leans back a little while remaining firmly seated. The camera is at eye level, slightly off to the front, framing both figures from the tops of the heads to mid-thigh. All four hands and the points of contact remain fully visible."
+      },
+      "negative": {
+        "zh": "",
+        "en": ""
+      }
+    },
+    {
+      "type": "prose",
+      "name": "四只手与发带互动",
+      "role": "自由补充",
+      "positive": {
+        "zh": "{{B}} 用右手的拇指和食指轻轻捋顺 {{A}} 左耳旁的黑色发带，左手轻放在 {{A}} 的左肩上。{{A}} 抬起左手，松松地握住 {{B}} 正在整理发带的右手腕，像是在小声抗议，却没有把那只手推开。{{A}} 的另一只手，也就是右手，放在自己膝上，轻轻攥住一小撮裙料。",
+        "en": "{{B}} uses the thumb and index finger of the right hand to gently straighten the black ribbon beside {{A}}'s left ear, while resting the left hand lightly on {{A}}'s left shoulder. {{A}} raises the left hand and loosely holds {{B}}'s right wrist as if quietly protesting, without pushing the hand away. {{A}}'s other hand, the right hand, rests on the lap and lightly gathers a small fold of the skirt fabric."
+      },
+      "negative": {
+        "zh": "",
+        "en": ""
+      }
+    },
+    {
+      "type": "prose",
+      "name": "视线与表情",
+      "role": "自由补充",
+      "positive": {
+        "zh": "{{A}} 脸颊泛红，眉头微微蹙起，嘴唇抿着，抬眼看向 {{B}}，表情害羞又倔强。{{B}} 看着 {{A}} 的眼睛，露出温柔、带一点得意的微笑，姿态从容。两人的脸保持适当距离，发带旁的手不要挡住眼睛。",
+        "en": "{{A}} blushes faintly, with slightly knitted brows and pressed lips, and looks up toward {{B}} with a shy but stubborn expression. {{B}} meets {{A}}'s eyes with a gentle, slightly pleased smile and a relaxed posture. The faces remain comfortably apart, and the hand beside the ribbon leaves both eyes unobstructed."
+      },
+      "negative": {
+        "zh": "",
+        "en": ""
+      }
+    },
+    {
+      "type": "tags",
+      "name": "画质、手部与双人结构约束",
+      "role": "负面约束",
+      "positive": [],
+      "negative": [
+        "worst quality",
+        "low quality",
+        "lowres",
+        "blurry",
+        "bad anatomy",
+        "bad hands",
+        "extra arms",
+        "missing arms",
+        "extra hands",
+        "extra fingers",
+        "missing fingers",
+        "fused fingers",
+        "disconnected limbs",
+        "merged bodies",
+        "duplicate",
+        "extra person",
+        "cropped head",
+        "cropped hands",
+        "watermark",
+        "text",
+        "fused hands",
+        "disembodied hand",
+        "hand covering face"
+      ]
+    }
+  ],
+  "parameters": {},
+  "models": {},
+  "notes": "双人长椅互动：素世扶肩并整理发带，祥子轻握素世手腕、另一手攥住膝上裙料。身份和外貌保存在角色定义；构图、肢体、表情分别成块。先沿用现有工作流参数。已做模板解析检查，尚未实际生图。"
+}

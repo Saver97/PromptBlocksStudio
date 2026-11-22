@@ -17746,5 +17746,5537 @@
       }
     ],
     "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "猫嘴",
+    "raw": ":3",
+    "category": "人物 / 嘴巴",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-c80755dc76d517e76817",
+    "tokens": [
+      {
+        "text": ":3",
+        "label": "猫嘴",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "M字摆腿",
+    "raw": "standing_split,_leg_up",
+    "category": "表情动作 / 腿部动作",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-311fbc623ce6613c4342",
+    "tokens": [
+      {
+        "text": "standing_split",
+        "label": "站立劈叉|站立高抬腿",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "_leg_up",
+        "label": "_leg_up",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "蹲下分开双腿",
+    "raw": "squatting,_open_legs",
+    "category": "表情动作 / 腿部动作",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-c78090db5272c9e3ffbc",
+    "tokens": [
+      {
+        "text": "squatting",
+        "label": "蹲下",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "_open_legs",
+        "label": "_open_legs",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "洛可可",
+    "raw": "(illustration),(paper figure),(lococo),((impasto)),(shiny skin)",
+    "category": "画面 / 艺术风格",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-8d361b109a1eecc88da7",
+    "tokens": [
+      {
+        "text": "illustration",
+        "label": "插画",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "paper figure",
+        "label": "paper figure",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "lococo",
+        "label": "lococo",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "impasto",
+        "label": "impasto",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "shiny skin",
+        "label": "有光泽的皮肤",
+        "weight": 1.1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "水彩画",
+    "raw": "(((ink))), ((watercolor))",
+    "category": "画面 / 艺术类型",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-8e01945f583d0db69e7d",
+    "tokens": [
+      {
+        "text": "ink",
+        "label": "ink",
+        "weight": 1.331,
+        "enabled": true
+      },
+      {
+        "text": "watercolor",
+        "label": "watercolor",
+        "weight": 1.21,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "浮世绘",
+    "raw": "illustration,(((ukiyoe))),((sketch)),((japanese_art))",
+    "category": "画面 / 艺术类型",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-ffa0198f0cd656763685",
+    "tokens": [
+      {
+        "text": "illustration",
+        "label": "插画",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "ukiyoe",
+        "label": "ukiyoe",
+        "weight": 1.331,
+        "enabled": true
+      },
+      {
+        "text": "sketch",
+        "label": "素描",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "japanese_art",
+        "label": "japanese_art",
+        "weight": 1.21,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "中国风",
+    "raw": "((wash painting)),((ink s...))",
+    "category": "画面 / 艺术类型",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-a6e96cf7998b6f47a900",
+    "tokens": [
+      {
+        "text": "wash painting",
+        "label": "wash painting",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "ink s...",
+        "label": "ink s...",
+        "weight": 1.21,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "油画",
+    "raw": "((dyeing)),((oil painting)),((impasto))",
+    "category": "画面 / 艺术类型",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-ea81f587b63a9c36713f",
+    "tokens": [
+      {
+        "text": "dyeing",
+        "label": "dyeing",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "oil painting",
+        "label": "油画",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "impasto",
+        "label": "impasto",
+        "weight": 1.21,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "黑白草图",
+    "raw": "(posing sketch), (monochrome)",
+    "category": "画面 / 艺术类型",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-58d6d656684768ceac5f",
+    "tokens": [
+      {
+        "text": "posing sketch",
+        "label": "posing sketch",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "monochrome",
+        "label": "单色图片",
+        "weight": 1.1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "铅笔速写",
+    "raw": "(monochrome), (gray scale), (pencil sketch lines",
+    "category": "画面 / 艺术类型",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-49d259a22f770a8df9e5",
+    "tokens": [
+      {
+        "text": "(monochrome), (gray scale), (pencil sketch lines",
+        "label": "铅笔速写",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": "原样保留：括号不配对，请检查粘贴内容"
+  },
+  {
+    "source": "现有词库",
+    "name": "秋景",
+    "raw": "(autumn maple forest:1.3),(very few fallen leaves),(path)",
+    "category": "环境 / 季节",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-5368efe224246a7f51be",
+    "tokens": [
+      {
+        "text": "autumn maple forest",
+        "label": "autumn maple forest",
+        "weight": 1.3,
+        "enabled": true
+      },
+      {
+        "text": "very few fallen leaves",
+        "label": "very few fallen leaves",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "path",
+        "label": "路径",
+        "weight": 1.1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "冰雪",
+    "raw": "snow,ice",
+    "category": "环境 / 天气",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-55d89bc24719c3b433f7",
+    "tokens": [
+      {
+        "text": "snow",
+        "label": "雪白色",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "ice",
+        "label": "ice",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "液体背景",
+    "raw": "liquid background, Sputtered water",
+    "category": "环境 / 氛围",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-611fa0cc2818b8cf0575",
+    "tokens": [
+      {
+        "text": "liquid background",
+        "label": "liquid background",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Sputtered water",
+        "label": "Sputtered water",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "法兰西",
+    "raw": "modern,Europe",
+    "category": "场景 / 室外",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-0a59d1989748876f3bae",
+    "tokens": [
+      {
+        "text": "modern",
+        "label": "modern",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Europe",
+        "label": "Europe",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "工业化古建筑",
+    "raw": "Industrial wind, Chinese architecture",
+    "category": "场景 / 室外",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-70ed02850318223e1e3e",
+    "tokens": [
+      {
+        "text": "Industrial wind",
+        "label": "Industrial wind",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Chinese architecture",
+        "label": "Chinese architecture",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "浴缸",
+    "raw": "bathtub,",
+    "category": "场景 / 浴室",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-1c303f0ec75b4580476f",
+    "tokens": [
+      {
+        "text": "bathtub",
+        "label": "bathtub",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "步枪",
+    "raw": "rifle,",
+    "category": "物品 / 武器",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-b0a20351997ad18d9804",
+    "tokens": [
+      {
+        "text": "rifle",
+        "label": "rifle",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "灌木",
+    "raw": "bush/shrub,",
+    "category": "物品 / 植物",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-136de57ee36780327d70",
+    "tokens": [
+      {
+        "text": "bush/shrub",
+        "label": "bush/shrub",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "唐风",
+    "raw": "hanfu, tang style outfits,<lora:hanfuTang_v32:0.7>",
+    "category": "汉服 / 唐风:",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-b12bf6ce3284b4e40673",
+    "tokens": [
+      {
+        "text": "hanfu",
+        "label": "汉服",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "tang style outfits",
+        "label": "tang style outfits",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "<lora:hanfuTang_v32:0.7>",
+        "label": "<lora:hanfuTang_v32:0.7>",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "宋风",
+    "raw": "hanfu, song style outfits,<lora:hanfuSong_v31:0.7>",
+    "category": "汉服 / 宋风:",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-2c8256ec4aee6f34239c",
+    "tokens": [
+      {
+        "text": "hanfu",
+        "label": "汉服",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "song style outfits",
+        "label": "song style outfits",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "<lora:hanfuSong_v31:0.7>",
+        "label": "<lora:hanfuSong_v31:0.7>",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "明风",
+    "raw": "hanfu, ming style outfits,<lora:hanfuMing_v31:0.7>",
+    "category": "汉服 / 明风:",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-729a8020891fab12df64",
+    "tokens": [
+      {
+        "text": "hanfu",
+        "label": "汉服",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "ming style outfits",
+        "label": "ming style outfits",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "<lora:hanfuMing_v31:0.7>",
+        "label": "<lora:hanfuMing_v31:0.7>",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "水魔法",
+    "raw": "((water drops)),wet clothes,((beautiful detailed water)),((floating)),dynamic angle",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-3ad6bbeb7a9dfb52e274",
+    "tokens": [
+      {
+        "text": "water drops",
+        "label": "water drops",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "wet clothes",
+        "label": "wet clothes",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "beautiful detailed water",
+        "label": "beautiful detailed water",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "floating",
+        "label": "floating",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "dynamic angle",
+        "label": "动态角度",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "冰魔法",
+    "raw": "beautiful detailed glow, (detailed ice), beautiful detailed water",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-89b240d812aaa6deda6e",
+    "tokens": [
+      {
+        "text": "beautiful detailed glow",
+        "label": "beautiful detailed glow",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "detailed ice",
+        "label": "detailed ice",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "beautiful detailed water",
+        "label": "beautiful detailed water",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "冰系改",
+    "raw": "beautiful detailed glow,detailed ice,beautiful detailed water,(floating palaces:1.2),(ice crystal texture wings),（Iridescence and rainbow hair:2.5）",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-05ffc25f4709dea75c7b",
+    "tokens": [
+      {
+        "text": "beautiful detailed glow",
+        "label": "beautiful detailed glow",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "detailed ice",
+        "label": "detailed ice",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "beautiful detailed water",
+        "label": "beautiful detailed water",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "floating palaces",
+        "label": "floating palaces",
+        "weight": 1.2,
+        "enabled": true
+      },
+      {
+        "text": "ice crystal texture wings",
+        "label": "ice crystal texture wings",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "（Iridescence and rainbow hair:2.5）",
+        "label": "（Iridescence and rainbow hair:2.5）",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "星冰乐",
+    "raw": "beautiful detailed glow,detailed ice,beautiful detailed water, (floating palaces:1.3),(((ice crystal texture wings)))",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-f94f72b1f802b2ad6796",
+    "tokens": [
+      {
+        "text": "beautiful detailed glow",
+        "label": "beautiful detailed glow",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "detailed ice",
+        "label": "detailed ice",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "beautiful detailed water",
+        "label": "beautiful detailed water",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "floating palaces",
+        "label": "floating palaces",
+        "weight": 1.3,
+        "enabled": true
+      },
+      {
+        "text": "ice crystal texture wings",
+        "label": "ice crystal texture wings",
+        "weight": 1.331,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "森林冰",
+    "raw": "((detailed beautiful snow forest with trees)), ((snowflakes)), floating",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-5b605aff1428e10edec0",
+    "tokens": [
+      {
+        "text": "detailed beautiful snow forest with trees",
+        "label": "detailed beautiful snow forest with trees",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "snowflakes",
+        "label": "雪花",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "floating",
+        "label": "floating",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "结晶法",
+    "raw": "(((crystals texture Hair))),((beautiful detailed glass hair)),((glass shaped texture hand)),((crystallize texture body)),gem body,hands as clear as jewels,crystallization of clothes,((crystals texture skin)),sparkle, lens flare, light leaks,broken glass,detailed glass shaped clothes,beautiful detailed gemstone sky, gemstone sea, crystals texture flowers,((detailed crystallized clothing))",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-f7f36565d81dc381265f",
+    "tokens": [
+      {
+        "text": "crystals texture Hair",
+        "label": "crystals texture Hair",
+        "weight": 1.331,
+        "enabled": true
+      },
+      {
+        "text": "beautiful detailed glass hair",
+        "label": "beautiful detailed glass hair",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "glass shaped texture hand",
+        "label": "glass shaped texture hand",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "crystallize texture body",
+        "label": "crystallize texture body",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "gem body",
+        "label": "gem body",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "hands as clear as jewels",
+        "label": "hands as clear as jewels",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "crystallization of clothes",
+        "label": "crystallization of clothes",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "crystals texture skin",
+        "label": "crystals texture skin",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "sparkle",
+        "label": "sparkle",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "lens flare",
+        "label": "透镜光晕",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "light leaks",
+        "label": "漏光光效",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "broken glass",
+        "label": "broken glass",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "detailed glass shaped clothes",
+        "label": "detailed glass shaped clothes",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "beautiful detailed gemstone sky",
+        "label": "beautiful detailed gemstone sky",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "gemstone sea",
+        "label": "gemstone sea",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "crystals texture flowers",
+        "label": "crystals texture flowers",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "detailed crystallized clothing",
+        "label": "detailed crystallized clothing",
+        "weight": 1.21,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "核爆法",
+    "raw": "beautiful detailed glow,((flames of war)),(((nuclear explosion behide)))",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-6c81c716111e7ca7c48e",
+    "tokens": [
+      {
+        "text": "beautiful detailed glow",
+        "label": "beautiful detailed glow",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "flames of war",
+        "label": "flames of war",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "nuclear explosion behide",
+        "label": "nuclear explosion behide",
+        "weight": 1.331,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "风魔法",
+    "raw": "((breeze)), flying splashes, flying petals, wind",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-6e9f07bda35b4c7fcbc9",
+    "tokens": [
+      {
+        "text": "breeze",
+        "label": "breeze",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "flying splashes",
+        "label": "flying splashes",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "flying petals",
+        "label": "flying petals",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "wind",
+        "label": "wind",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "流沙法",
+    "raw": "((surrounded by heavy floating sand flow and floating sharp stones)),((((ink)))),((illustration)),((watercolor))",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-e48b5f987645c8e393b1",
+    "tokens": [
+      {
+        "text": "surrounded by heavy floating sand flow and floating sharp stones",
+        "label": "surrounded by heavy floating sand flow and floating sharp stones",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "ink",
+        "label": "ink",
+        "weight": 1.4641,
+        "enabled": true
+      },
+      {
+        "text": "illustration",
+        "label": "插画",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "watercolor",
+        "label": "watercolor",
+        "weight": 1.21,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "雷电法",
+    "raw": "(detailed light), ((lightning in hand)),lightning surrounds,(((lightning chain)))",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-29e1d34e6345b1dcb013",
+    "tokens": [
+      {
+        "text": "detailed light",
+        "label": "detailed light",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "lightning in hand",
+        "label": "lightning in hand",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "lightning surrounds",
+        "label": "lightning surrounds",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "lightning chain",
+        "label": "lightning chain",
+        "weight": 1.331,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "圣光法",
+    "raw": "(sunlight),(angel),dynamic angle, floating, wing, halo, floating white silk,(Holy Light),silver stars",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-091a4869ddb94d1f29d8",
+    "tokens": [
+      {
+        "text": "sunlight",
+        "label": "sunlight",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "angel",
+        "label": "天使",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "dynamic angle",
+        "label": "动态角度",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "floating",
+        "label": "floating",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "wing",
+        "label": "wing",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "halo",
+        "label": "光环",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "floating white silk",
+        "label": "floating white silk",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Holy Light",
+        "label": "Holy Light",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "silver stars",
+        "label": "silver stars",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "苇名法",
+    "raw": "beautiful detailed pampas grass field, open hakama, surrounded by floating sakura, yellow full moon, beautiful detailed dark midnight sky, messy white long hair",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-bff9063537d41e0b19a0",
+    "tokens": [
+      {
+        "text": "beautiful detailed pampas grass field",
+        "label": "beautiful detailed pampas grass field",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "open hakama",
+        "label": "open hakama",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "surrounded by floating sakura",
+        "label": "surrounded by floating sakura",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "yellow full moon",
+        "label": "yellow full moon",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "beautiful detailed dark midnight sky",
+        "label": "beautiful detailed dark midnight sky",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "messy white long hair",
+        "label": "messy white long hair",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "自然法",
+    "raw": "beautiful and delicate water, the finest grass, very delicate light, nature, painting, water spray, breeze, flowers and grass meadow, near the water edge, (sunset, starry sky in a circle), randomly distributed clouds, river, splashing water, falling petals",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-9b1ced7f2dac429a2390",
+    "tokens": [
+      {
+        "text": "beautiful and delicate water",
+        "label": "beautiful and delicate water",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "the finest grass",
+        "label": "the finest grass",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "very delicate light",
+        "label": "very delicate light",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "nature",
+        "label": "大自然",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "painting",
+        "label": "绘画",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "water spray",
+        "label": "water spray",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "breeze",
+        "label": "breeze",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "flowers and grass meadow",
+        "label": "flowers and grass meadow",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "near the water edge",
+        "label": "near the water edge",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "sunset",
+        "label": "日落",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "starry sky in a circle",
+        "label": "starry sky in a circle",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "randomly distributed clouds",
+        "label": "randomly distributed clouds",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "river",
+        "label": "河流",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "splashing water",
+        "label": "splashing water",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "falling petals",
+        "label": "falling petals",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "森林法",
+    "raw": "(detailed light) , feather, leaves, nature, (sunlight), river, (forest),(bloom)",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-df491502bd5b53c74769",
+    "tokens": [
+      {
+        "text": "detailed light",
+        "label": "detailed light",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "feather",
+        "label": "feather",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "leaves",
+        "label": "leaves",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "nature",
+        "label": "大自然",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "sunlight",
+        "label": "sunlight",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "river",
+        "label": "河流",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "forest",
+        "label": "森林",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "bloom",
+        "label": "bloom",
+        "weight": 1.1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "虹彩法",
+    "raw": "floating and rainbow long hair,Iridescence and rainbow, beautiful detailed starry sky",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-06acb29c1f3521d550f8",
+    "tokens": [
+      {
+        "text": "floating and rainbow long hair",
+        "label": "floating and rainbow long hair",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Iridescence and rainbow",
+        "label": "Iridescence and rainbow",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "beautiful detailed starry sky",
+        "label": "beautiful detailed starry sky",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "暗锁法",
+    "raw": "chain ring, chain storm, dark chain,((wholeblack bloomer)), darkside, night, deep dark, darkness, ((dark clouds)),((ruins)),shadow, death garden",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-6c5602f9f17f8aa9231e",
+    "tokens": [
+      {
+        "text": "chain ring",
+        "label": "chain ring",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "chain storm",
+        "label": "chain storm",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "dark chain",
+        "label": "dark chain",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "wholeblack bloomer",
+        "label": "wholeblack bloomer",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "darkside",
+        "label": "darkside",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "night",
+        "label": "夜晚",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "deep dark",
+        "label": "deep dark",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "darkness",
+        "label": "darkness",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "dark clouds",
+        "label": "dark clouds",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "ruins",
+        "label": "废墟",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "shadow",
+        "label": "shadow",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "death garden",
+        "label": "death garden",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "火烧云",
+    "raw": "beautiful detailed glow, floating ashes, beautiful and detailed explosion, red moon, fire, fire cloud, wings on fire, a cloudy sky, smoke of gunpowder, burning, black dress, dove of peace, (floating cloud:1.2)",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-718728bb1b2207f0dba9",
+    "tokens": [
+      {
+        "text": "beautiful detailed glow",
+        "label": "beautiful detailed glow",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "floating ashes",
+        "label": "floating ashes",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "beautiful and detailed explosion",
+        "label": "beautiful and detailed explosion",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "red moon",
+        "label": "red moon",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "fire",
+        "label": "fire",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "fire cloud",
+        "label": "fire cloud",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "wings on fire",
+        "label": "wings on fire",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "a cloudy sky",
+        "label": "a cloudy sky",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "smoke of gunpowder",
+        "label": "smoke of gunpowder",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "burning",
+        "label": "燃烧",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "black dress",
+        "label": "black dress",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "dove of peace",
+        "label": "dove of peace",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "floating cloud",
+        "label": "floating cloud",
+        "weight": 1.2,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "城堡法",
+    "raw": "beautiful detailed glow, detailed ice, beautiful detailed water, (magic circle:1.2), (floating palaces:1.3)",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-814d568f26c365d422ab",
+    "tokens": [
+      {
+        "text": "beautiful detailed glow",
+        "label": "beautiful detailed glow",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "detailed ice",
+        "label": "detailed ice",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "beautiful detailed water",
+        "label": "beautiful detailed water",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "magic circle",
+        "label": "magic circle",
+        "weight": 1.2,
+        "enabled": true
+      },
+      {
+        "text": "floating palaces",
+        "label": "floating palaces",
+        "weight": 1.3,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "黄昏法",
+    "raw": "(water bloom), (delicate glow), (breeze), long Flowers meadow,(((sunset)), (less stars form a circle), randomly distributed clouds, (rivers), (willows with branches falling into the water)",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-d9faa806ee25af56dbda",
+    "tokens": [
+      {
+        "text": "(water bloom), (delicate glow), (breeze), long Flowers meadow,(((sunset)), (less stars form a circle), randomly distributed clouds, (rivers), (willows with branches falling into the water)",
+        "label": "黄昏法",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": "原样保留：括号不配对，请检查粘贴内容"
+  },
+  {
+    "source": "现有词库",
+    "name": "泡泡法",
+    "raw": "((colorful bubble)),(floating),detailed light",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-5558570016a4248bba95",
+    "tokens": [
+      {
+        "text": "colorful bubble",
+        "label": "colorful bubble",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "floating",
+        "label": "floating",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "detailed light",
+        "label": "detailed light",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "蔷薇法",
+    "raw": "((rose)), (vine), cage, bandage, red rope, (detail light), falling rose petals",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-38e2533dcfaf903a4a70",
+    "tokens": [
+      {
+        "text": "rose",
+        "label": "玫瑰",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "vine",
+        "label": "vine",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "cage",
+        "label": "cage",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "bandage",
+        "label": "绷带",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "red rope",
+        "label": "red rope",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "detail light",
+        "label": "detail light",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "falling rose petals",
+        "label": "falling rose petals",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "星空法",
+    "raw": "(starry tornado:1.4), starry Nebula, beautiful detailed sky",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-445069726d8df502ffe7",
+    "tokens": [
+      {
+        "text": "starry tornado",
+        "label": "starry tornado",
+        "weight": 1.4,
+        "enabled": true
+      },
+      {
+        "text": "starry Nebula",
+        "label": "starry Nebula",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "beautiful detailed sky",
+        "label": "beautiful detailed sky",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "月亮法",
+    "raw": "((moon)), starry sky, (lighting particle), fog, snow,(bloom)",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-04c4b8eae943952f4bdd",
+    "tokens": [
+      {
+        "text": "moon",
+        "label": "月亮",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "starry sky",
+        "label": "星空",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "lighting particle",
+        "label": "lighting particle",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "fog",
+        "label": "fog",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "snow",
+        "label": "雪白色",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "bloom",
+        "label": "bloom",
+        "weight": 1.1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "雪月法",
+    "raw": "beautiful detailed glow, detailed ice, beautiful detailed water, (cold full moon), snowflake, (floating cloud:1.2)",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-d8c2edb728018644f2c9",
+    "tokens": [
+      {
+        "text": "beautiful detailed glow",
+        "label": "beautiful detailed glow",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "detailed ice",
+        "label": "detailed ice",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "beautiful detailed water",
+        "label": "beautiful detailed water",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "cold full moon",
+        "label": "cold full moon",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "snowflake",
+        "label": "snowflake",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "floating cloud",
+        "label": "floating cloud",
+        "weight": 1.2,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "森火法",
+    "raw": "((burning forest)), spark, light leaks, burning sky, flame, flames burning around, (flying sparks)",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-b07f08dd1ff39581bb86",
+    "tokens": [
+      {
+        "text": "burning forest",
+        "label": "burning forest",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "spark",
+        "label": "spark",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "light leaks",
+        "label": "漏光光效",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "burning sky",
+        "label": "burning sky",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "flame",
+        "label": "flame",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "flames burning around",
+        "label": "flames burning around",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "flying sparks",
+        "label": "flying sparks",
+        "weight": 1.1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "废土法",
+    "raw": "((destroyed)),explosion, buildings in disarray, The residual eaves DuanBi, cumulus, mouldy, floating, wind, Dead end machine,(broken robot),(Mechanical robot girl), in the rubble of a devastated city",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-27706f0df8d25f96210a",
+    "tokens": [
+      {
+        "text": "destroyed",
+        "label": "destroyed",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "explosion",
+        "label": "爆炸",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "buildings in disarray",
+        "label": "buildings in disarray",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "The residual eaves DuanBi",
+        "label": "The residual eaves DuanBi",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "cumulus",
+        "label": "积云",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "mouldy",
+        "label": "mouldy",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "floating",
+        "label": "floating",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "wind",
+        "label": "wind",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Dead end machine",
+        "label": "Dead end machine",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "broken robot",
+        "label": "broken robot",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "Mechanical robot girl",
+        "label": "Mechanical robot girl",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "in the rubble of a devastated city",
+        "label": "in the rubble of a devastated city",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "战甲法",
+    "raw": "mecha clothes, robot girl, sliver bodysuit,((sliver)) and (broken) body",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-bdf9df8704cc3c5b39f4",
+    "tokens": [
+      {
+        "text": "mecha clothes",
+        "label": "mecha clothes",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "robot girl",
+        "label": "robot girl",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "sliver bodysuit",
+        "label": "sliver bodysuit",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "((sliver)) and (broken) body",
+        "label": "((sliver)) and (broken) body",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "黄金法",
+    "raw": "Extremely gorgeous metal style, Metal crown with ornate stripes, Various metals background, Sputtered molten iron, floating hair, Hair like melted metal, Clothes made of silver, Clothes with gold lace, flowing gold and silver, everything flowing and melt, flowing iron, flowing silver, lace flowing and melt",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-072663f3d163654bebf3",
+    "tokens": [
+      {
+        "text": "Extremely gorgeous metal style",
+        "label": "Extremely gorgeous metal style",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Metal crown with ornate stripes",
+        "label": "Metal crown with ornate stripes",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Various metals background",
+        "label": "Various metals background",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Sputtered molten iron",
+        "label": "Sputtered molten iron",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "floating hair",
+        "label": "floating hair",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Hair like melted metal",
+        "label": "Hair like melted metal",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Clothes made of silver",
+        "label": "Clothes made of silver",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Clothes with gold lace",
+        "label": "Clothes with gold lace",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "flowing gold and silver",
+        "label": "flowing gold and silver",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "everything flowing and melt",
+        "label": "everything flowing and melt",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "flowing iron",
+        "label": "flowing iron",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "flowing silver",
+        "label": "flowing silver",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "lace flowing and melt",
+        "label": "lace flowing and melt",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "机娘法",
+    "raw": "mecha clothes, robot girl",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-8a019074cb749dd72a25",
+    "tokens": [
+      {
+        "text": "mecha clothes",
+        "label": "mecha clothes",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "robot girl",
+        "label": "robot girl",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "死灵法",
+    "raw": "ink,(((bone))), (((ribs))), rose, black hair, blue eyes, greyscale, no shadow, simple background, bright skin",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-b5df427b1aed58e90cd2",
+    "tokens": [
+      {
+        "text": "ink",
+        "label": "ink",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "bone",
+        "label": "骨头",
+        "weight": 1.331,
+        "enabled": true
+      },
+      {
+        "text": "ribs",
+        "label": "ribs",
+        "weight": 1.331,
+        "enabled": true
+      },
+      {
+        "text": "rose",
+        "label": "玫瑰",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "black hair",
+        "label": "黑色头发",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "blue eyes",
+        "label": "蓝色眼睛",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "greyscale",
+        "label": "灰度",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "no shadow",
+        "label": "no shadow",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "simple background",
+        "label": "简单的背景",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "bright skin",
+        "label": "bright skin",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "水晶法",
+    "raw": "(((gorgeous crystal armor))),(((crystal wings))),((altocumulus)),(clear_sky),(snow mountain),((flowery flowers)),(flowery bubbles),cloud map plane, crystal, crystal poppies,Brilliant light, thick_coating, glass tint,(watercolor)",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-d8a5fcdf5585f1c2864e",
+    "tokens": [
+      {
+        "text": "gorgeous crystal armor",
+        "label": "gorgeous crystal armor",
+        "weight": 1.331,
+        "enabled": true
+      },
+      {
+        "text": "crystal wings",
+        "label": "crystal wings",
+        "weight": 1.331,
+        "enabled": true
+      },
+      {
+        "text": "altocumulus",
+        "label": "高积云",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "clear_sky",
+        "label": "clear_sky",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "snow mountain",
+        "label": "snow mountain",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "flowery flowers",
+        "label": "flowery flowers",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "flowery bubbles",
+        "label": "flowery bubbles",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "cloud map plane",
+        "label": "cloud map plane",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "crystal",
+        "label": "水晶",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "crystal poppies",
+        "label": "crystal poppies",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Brilliant light",
+        "label": "Brilliant light",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "thick_coating",
+        "label": "thick_coating",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "glass tint",
+        "label": "glass tint",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "watercolor",
+        "label": "watercolor",
+        "weight": 1.1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "水森法",
+    "raw": "((an extremely delicate and beautiful)),floating, (detailed wet clothes), (detailed light),feather, nature, (sunlight), river, floating palace, beautiful and delicate water,(bloom),(shine)",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-94c93b12a44005ded45d",
+    "tokens": [
+      {
+        "text": "an extremely delicate and beautiful",
+        "label": "an extremely delicate and beautiful",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "floating",
+        "label": "floating",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "detailed wet clothes",
+        "label": "detailed wet clothes",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "detailed light",
+        "label": "detailed light",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "feather",
+        "label": "feather",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "nature",
+        "label": "大自然",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "sunlight",
+        "label": "sunlight",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "river",
+        "label": "河流",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "floating palace",
+        "label": "floating palace",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "beautiful and delicate water",
+        "label": "beautiful and delicate water",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "bloom",
+        "label": "bloom",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "shine",
+        "label": "shine",
+        "weight": 1.1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "冰火法",
+    "raw": "(blue spark),(red and blue hair),blue eyes, burning sky,flame,Rainbow in the sky,((Flames burning ice)),(((fire butterflies))),(((ice crystal texture wings))),(Flying sparks),(detailed ice),((a lot of luminous ice crystals)),((burning feathers)),(feathers made of ice),(frozen feathers),(((ice and fire together)))",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-3a86aac9978993cc10e5",
+    "tokens": [
+      {
+        "text": "blue spark",
+        "label": "blue spark",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "red and blue hair",
+        "label": "red and blue hair",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "blue eyes",
+        "label": "蓝色眼睛",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "burning sky",
+        "label": "burning sky",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "flame",
+        "label": "flame",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Rainbow in the sky",
+        "label": "Rainbow in the sky",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Flames burning ice",
+        "label": "Flames burning ice",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "fire butterflies",
+        "label": "fire butterflies",
+        "weight": 1.331,
+        "enabled": true
+      },
+      {
+        "text": "ice crystal texture wings",
+        "label": "ice crystal texture wings",
+        "weight": 1.331,
+        "enabled": true
+      },
+      {
+        "text": "Flying sparks",
+        "label": "Flying sparks",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "detailed ice",
+        "label": "detailed ice",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "a lot of luminous ice crystals",
+        "label": "a lot of luminous ice crystals",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "burning feathers",
+        "label": "burning feathers",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "feathers made of ice",
+        "label": "feathers made of ice",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "frozen feathers",
+        "label": "frozen feathers",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "ice and fire together",
+        "label": "ice and fire together",
+        "weight": 1.331,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "龙骑士",
+    "raw": "(anger), dragon horns, (silver armor), metal, complex pattern, cape, indifference",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-01942fe6dcb5ecd54013",
+    "tokens": [
+      {
+        "text": "anger",
+        "label": "anger",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "dragon horns",
+        "label": "龙角",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "silver armor",
+        "label": "silver armor",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "metal",
+        "label": "metal",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "complex pattern",
+        "label": "complex pattern",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "cape",
+        "label": "披肩",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "indifference",
+        "label": "indifference",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "坠落法",
+    "raw": "((full body)),(helpless),tear, crying,(((((falling from the sky))))),((Weathering With You)),((falling)),((face towards the sky))，(hair flows upwards),((disheveled hair)),(1 girl), floating, beautiful detailed sky",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-181ad18c87487f37656a",
+    "tokens": [
+      {
+        "text": "full body",
+        "label": "full body",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "helpless",
+        "label": "helpless",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "tear",
+        "label": "啜泣",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "crying",
+        "label": "大哭",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "falling from the sky",
+        "label": "falling from the sky",
+        "weight": 1.61051,
+        "enabled": true
+      },
+      {
+        "text": "Weathering With You",
+        "label": "Weathering With You",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "falling",
+        "label": "falling",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "face towards the sky",
+        "label": "face towards the sky",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "hair flows upwards",
+        "label": "hair flows upwards",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "disheveled hair",
+        "label": "蓬发",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "1 girl",
+        "label": "1 girl",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "floating",
+        "label": "floating",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "beautiful detailed sky",
+        "label": "beautiful detailed sky",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "水下法",
+    "raw": "((underwater)),(beautiful detailed water),((coral)),dynamic angle, floating,(detailed light),floating hair,(splash),((fishes)),leaves dress, feather, nature,(sunlight),(underwater forest),(bloom),(detailed glow),drenched, seaweed, fish,(((Tyndall effect)))",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-c9388c7ce50ebf48fc76",
+    "tokens": [
+      {
+        "text": "underwater",
+        "label": "水中",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "beautiful detailed water",
+        "label": "beautiful detailed water",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "coral",
+        "label": "珊瑚色",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "dynamic angle",
+        "label": "动态角度",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "floating",
+        "label": "floating",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "detailed light",
+        "label": "detailed light",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "floating hair",
+        "label": "floating hair",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "splash",
+        "label": "splash",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "fishes",
+        "label": "fishes",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "leaves dress",
+        "label": "leaves dress",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "feather",
+        "label": "feather",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "nature",
+        "label": "大自然",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "sunlight",
+        "label": "sunlight",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "underwater forest",
+        "label": "underwater forest",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "bloom",
+        "label": "bloom",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "detailed glow",
+        "label": "detailed glow",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "drenched",
+        "label": "drenched",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "seaweed",
+        "label": "海藻",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "fish",
+        "label": "fish",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Tyndall effect",
+        "label": "丁达尔效应",
+        "weight": 1.331,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "秘境法",
+    "raw": "(extremely detailed CG unity 8k wallpaper),(((masterpiece))), (((best quality))), ((ultra-detailed)), (best illustration),(best shadow), ((an extremely delicate and beautiful)),dynamic angle,floating, fairyland,dynamic angle,sea of flowers,beautiful detailed garden,wind,classic,spring, (detailed light),feather, nature, (sunlight), river, forest,(((floating palace))),((the best building)),beautiful and delicate water,(painting),(sketch),(bloom),(shine)",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-d30ab380ac53eddcc6d8",
+    "tokens": [
+      {
+        "text": "extremely detailed CG unity 8k wallpaper",
+        "label": "extremely detailed CG unity 8k wallpaper",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "masterpiece",
+        "label": "masterpiece",
+        "weight": 1.331,
+        "enabled": true
+      },
+      {
+        "text": "best quality",
+        "label": "best quality",
+        "weight": 1.331,
+        "enabled": true
+      },
+      {
+        "text": "ultra-detailed",
+        "label": "ultra-detailed",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "best illustration",
+        "label": "best illustration",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "best shadow",
+        "label": "best shadow",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "an extremely delicate and beautiful",
+        "label": "an extremely delicate and beautiful",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "dynamic angle",
+        "label": "动态角度",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "floating",
+        "label": "floating",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "fairyland",
+        "label": "fairyland",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "dynamic angle",
+        "label": "动态角度",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "sea of flowers",
+        "label": "sea of flowers",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "beautiful detailed garden",
+        "label": "beautiful detailed garden",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "wind",
+        "label": "wind",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "classic",
+        "label": "classic",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "spring",
+        "label": "spring",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "detailed light",
+        "label": "detailed light",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "feather",
+        "label": "feather",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "nature",
+        "label": "大自然",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "sunlight",
+        "label": "sunlight",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "river",
+        "label": "河流",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "forest",
+        "label": "森林",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "floating palace",
+        "label": "floating palace",
+        "weight": 1.331,
+        "enabled": true
+      },
+      {
+        "text": "the best building",
+        "label": "the best building",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "beautiful and delicate water",
+        "label": "beautiful and delicate water",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "painting",
+        "label": "绘画",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "sketch",
+        "label": "素描",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "bloom",
+        "label": "bloom",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "shine",
+        "label": "shine",
+        "weight": 1.1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "摄影法",
+    "raw": "(((masterpiece))), ((the best quality, super fine illustrations, beautiful and delicate water)), ((very delicate light)), ((nature, painting)), ((fine lighting, more transparent stars, high-quality snowflakes, high-quality mountains, very fine 8KCG wallpapers)), (plateau), (((snow mountain))), sunrise, randomly distributed clouds, (snow field), cliff, ((rotating star sky)), ((lake in mountain stream)), luminous particles",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-b9a1831e7419c4a85a82",
+    "tokens": [
+      {
+        "text": "masterpiece",
+        "label": "masterpiece",
+        "weight": 1.331,
+        "enabled": true
+      },
+      {
+        "text": "the best quality",
+        "label": "the best quality",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "super fine illustrations",
+        "label": "super fine illustrations",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "beautiful and delicate water",
+        "label": "beautiful and delicate water",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "very delicate light",
+        "label": "very delicate light",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "nature",
+        "label": "大自然",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "painting",
+        "label": "绘画",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "fine lighting",
+        "label": "fine lighting",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "more transparent stars",
+        "label": "more transparent stars",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "high-quality snowflakes",
+        "label": "high-quality snowflakes",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "high-quality mountains",
+        "label": "high-quality mountains",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "very fine 8KCG wallpapers",
+        "label": "very fine 8KCG wallpapers",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "plateau",
+        "label": "高原",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "snow mountain",
+        "label": "snow mountain",
+        "weight": 1.331,
+        "enabled": true
+      },
+      {
+        "text": "sunrise",
+        "label": "sunrise",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "randomly distributed clouds",
+        "label": "randomly distributed clouds",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "snow field",
+        "label": "snow field",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "cliff",
+        "label": "悬崖",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "rotating star sky",
+        "label": "rotating star sky",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "lake in mountain stream",
+        "label": "lake in mountain stream",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "luminous particles",
+        "label": "luminous particles",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "摩登法",
+    "raw": "1980s (style),simple background, retro artstyle",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-f24233d47fa52a30519d",
+    "tokens": [
+      {
+        "text": "1980s (style)",
+        "label": "1980s (style)",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "simple background",
+        "label": "简单的背景",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "retro artstyle",
+        "label": "retro artstyle",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "血魔法",
+    "raw": "(white hair), red long hair, red eyes, (full body), (((with sword))), angry face, (beautiful detailed eyes), Blood drop,Blood fog, floating hair, disheveled hair, Splashing blood,(Bloodstain)",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-2293555729c01baa77bc",
+    "tokens": [
+      {
+        "text": "white hair",
+        "label": "白色头发",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "red long hair",
+        "label": "red long hair",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "red eyes",
+        "label": "红色眼睛",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "full body",
+        "label": "full body",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "with sword",
+        "label": "with sword",
+        "weight": 1.331,
+        "enabled": true
+      },
+      {
+        "text": "angry face",
+        "label": "angry face",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "beautiful detailed eyes",
+        "label": "美丽的眼睛",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "Blood drop",
+        "label": "Blood drop",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Blood fog",
+        "label": "Blood fog",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "floating hair",
+        "label": "floating hair",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "disheveled hair",
+        "label": "蓬发",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Splashing blood",
+        "label": "Splashing blood",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Bloodstain",
+        "label": "Bloodstain",
+        "weight": 1.1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "唤龙术",
+    "raw": "((dragon)), ((dragon background))",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-24f95decd8d91f6d1c98",
+    "tokens": [
+      {
+        "text": "dragon",
+        "label": "龙",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "dragon background",
+        "label": "dragon background",
+        "weight": 1.21,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "战姬法",
+    "raw": "hair fluttering in the wind,((mechanical arm armor)),((mechanical body armor)),riding motor, bodysuit,((ruins of city in war, fire, burning cars, burning buildings)),air force fleet in the sky",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-48f99da42766101827db",
+    "tokens": [
+      {
+        "text": "hair fluttering in the wind",
+        "label": "hair fluttering in the wind",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "mechanical arm armor",
+        "label": "mechanical arm armor",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "mechanical body armor",
+        "label": "mechanical body armor",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "riding motor",
+        "label": "riding motor",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "bodysuit",
+        "label": "bodysuit",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "ruins of city in war",
+        "label": "ruins of city in war",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "fire",
+        "label": "fire",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "burning cars",
+        "label": "burning cars",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "burning buildings",
+        "label": "burning buildings",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "air force fleet in the sky",
+        "label": "air force fleet in the sky",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "龙机法",
+    "raw": "mecha clothes, robot girl, sliver bodysuit, dragon wings, ((a dragon stands behind the girl)), beautiful detailed sliver dragon armor",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-547802f5f8c310796c83",
+    "tokens": [
+      {
+        "text": "mecha clothes",
+        "label": "mecha clothes",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "robot girl",
+        "label": "robot girl",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "sliver bodysuit",
+        "label": "sliver bodysuit",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "dragon wings",
+        "label": "dragon wings",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "a dragon stands behind the girl",
+        "label": "a dragon stands behind the girl",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "beautiful detailed sliver dragon armor",
+        "label": "beautiful detailed sliver dragon armor",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "星蝶术",
+    "raw": "((Beautiful butterflies in detail)),((Beautiful stars in detail)),(((halter dress ))),particle,(Starry sky in beautiful detail),(Hazy fog),(Ruins of beautiful details),(((Standing on the surface of the sea)))",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-7c87d7518148245adfe1",
+    "tokens": [
+      {
+        "text": "Beautiful butterflies in detail",
+        "label": "Beautiful butterflies in detail",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "Beautiful stars in detail",
+        "label": "Beautiful stars in detail",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "halter dress",
+        "label": "绕颈露背吊带裙",
+        "weight": 1.331,
+        "enabled": true
+      },
+      {
+        "text": "particle",
+        "label": "particle",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Starry sky in beautiful detail",
+        "label": "Starry sky in beautiful detail",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "Hazy fog",
+        "label": "Hazy fog",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "Ruins of beautiful details",
+        "label": "Ruins of beautiful details",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "Standing on the surface of the sea",
+        "label": "Standing on the surface of the sea",
+        "weight": 1.331,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "学院法",
+    "raw": "blonde wavy hair, (shiny long hair), ((Gothic Lolita)), blue white skirt, ((short skirt)), black Headdress, bowknot, (((hair ornament))), (hair flower), Lace, cross-laced footwear, ribbon-trimmed sleeves, building architecture, ((gothic architecture)), starry sky, outdoors, church, (castle)",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-56614b414774f7361b38",
+    "tokens": [
+      {
+        "text": "blonde wavy hair",
+        "label": "blonde wavy hair",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "shiny long hair",
+        "label": "shiny long hair",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "Gothic Lolita",
+        "label": "哥特洛丽塔风格",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "blue white skirt",
+        "label": "blue white skirt",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "short skirt",
+        "label": "short skirt",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "black Headdress",
+        "label": "black Headdress",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "bowknot",
+        "label": "bowknot",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "hair ornament",
+        "label": "发饰",
+        "weight": 1.331,
+        "enabled": true
+      },
+      {
+        "text": "hair flower",
+        "label": "头发上别着花",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "Lace",
+        "label": "蕾丝",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "cross-laced footwear",
+        "label": "交叉系带鞋",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "ribbon-trimmed sleeves",
+        "label": "ribbon-trimmed sleeves",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "building architecture",
+        "label": "building architecture",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "gothic architecture",
+        "label": "哥特式建筑",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "starry sky",
+        "label": "星空",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "outdoors",
+        "label": "室外",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "church",
+        "label": "教堂",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "castle",
+        "label": "城堡",
+        "weight": 1.1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "星霞海",
+    "raw": "walking, waves, wind,(((glistening light of waves))),(detailed sunset glow),(floating flow),((coral)),(Luminous),coast,(floating colorful bubbles),beautiful detailed sky,(fluorescence),detailed shadow,(conch),beautiful detailed water, starfish, meteor, rainbow,(seabirds),(glinting stars), (glowworm),(splash),detailed cloud, shell,(fireworks)",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-1d85fba116736f383981",
+    "tokens": [
+      {
+        "text": "walking",
+        "label": "走路",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "waves",
+        "label": "波浪",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "wind",
+        "label": "wind",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "glistening light of waves",
+        "label": "glistening light of waves",
+        "weight": 1.331,
+        "enabled": true
+      },
+      {
+        "text": "detailed sunset glow",
+        "label": "detailed sunset glow",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "floating flow",
+        "label": "floating flow",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "coral",
+        "label": "珊瑚色",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "Luminous",
+        "label": "Luminous",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "coast",
+        "label": "coast",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "floating colorful bubbles",
+        "label": "floating colorful bubbles",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "beautiful detailed sky",
+        "label": "beautiful detailed sky",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "fluorescence",
+        "label": "fluorescence",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "detailed shadow",
+        "label": "detailed shadow",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "conch",
+        "label": "conch",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "beautiful detailed water",
+        "label": "beautiful detailed water",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "starfish",
+        "label": "starfish",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "meteor",
+        "label": "meteor",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "rainbow",
+        "label": "彩虹",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "seabirds",
+        "label": "seabirds",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "glinting stars",
+        "label": "glinting stars",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "glowworm",
+        "label": "glowworm",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "splash",
+        "label": "splash",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "detailed cloud",
+        "label": "detailed cloud",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "shell",
+        "label": "贝壳",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "fireworks",
+        "label": "焰火",
+        "weight": 1.1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "冬雪法",
+    "raw": "beautiful detailed sky, night, stars, (red plum blossom),((winter)),(((snowflakes))), ((red and white flowers))，(starry sky),(sitting),((colorful)),scenery, lantern,(starfall)",
+    "category": "魔法系 / 魔法1.0",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-bd79fcb2ea8f051ac925",
+    "tokens": [
+      {
+        "text": "beautiful detailed sky",
+        "label": "beautiful detailed sky",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "night",
+        "label": "夜晚",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "stars",
+        "label": "星星",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "red plum blossom",
+        "label": "red plum blossom",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "winter",
+        "label": "winter",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "snowflakes",
+        "label": "雪花",
+        "weight": 1.331,
+        "enabled": true
+      },
+      {
+        "text": "red and white flowers",
+        "label": "red and white flowers",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "starry sky",
+        "label": "星空",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "sitting",
+        "label": "坐",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "colorful",
+        "label": "色彩斑斓的",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "scenery",
+        "label": "风景",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "lantern",
+        "label": "lantern",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "starfall",
+        "label": "starfall",
+        "weight": 1.1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "万物熔炉",
+    "raw": "((((melt)))),(((((black and white melt))))),(((wear Black and white Taoist robes))),((((gold and silver lace)))),(((gold and silver lace lace))),(((flowing ((black)) and white background))),extremely detailed gorgeous tiara",
+    "category": "魔法系 / 魔法1.5",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-23575fa366b2c1e47500",
+    "tokens": [
+      {
+        "text": "melt",
+        "label": "melt",
+        "weight": 1.4641,
+        "enabled": true
+      },
+      {
+        "text": "black and white melt",
+        "label": "black and white melt",
+        "weight": 1.61051,
+        "enabled": true
+      },
+      {
+        "text": "wear Black and white Taoist robes",
+        "label": "wear Black and white Taoist robes",
+        "weight": 1.331,
+        "enabled": true
+      },
+      {
+        "text": "gold and silver lace",
+        "label": "gold and silver lace",
+        "weight": 1.4641,
+        "enabled": true
+      },
+      {
+        "text": "gold and silver lace lace",
+        "label": "gold and silver lace lace",
+        "weight": 1.331,
+        "enabled": true
+      },
+      {
+        "text": "flowing ((black)) and white background",
+        "label": "flowing ((black)) and white background",
+        "weight": 1.331,
+        "enabled": true
+      },
+      {
+        "text": "extremely detailed gorgeous tiara",
+        "label": "extremely detailed gorgeous tiara",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "暗鸦法",
+    "raw": "Floating black ashes, Beautiful and detailed black, red moon, ((The black clouds)), (black Wings) , a black cloudy sky, burning, black dress, ((Black fog)), Red eyes, (black smoke), ((Black feathers floating in the air)),bat, (floating black cloud:1.5),",
+    "category": "魔法系 / 魔法1.5",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-174268f480da6fe667f4",
+    "tokens": [
+      {
+        "text": "Floating black ashes",
+        "label": "Floating black ashes",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Beautiful and detailed black",
+        "label": "Beautiful and detailed black",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "red moon",
+        "label": "red moon",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "The black clouds",
+        "label": "The black clouds",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "black Wings",
+        "label": "黑色之翼",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "a black cloudy sky",
+        "label": "a black cloudy sky",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "burning",
+        "label": "燃烧",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "black dress",
+        "label": "black dress",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Black fog",
+        "label": "Black fog",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "Red eyes",
+        "label": "红色眼睛",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "black smoke",
+        "label": "black smoke",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "Black feathers floating in the air",
+        "label": "Black feathers floating in the air",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "bat",
+        "label": "蝙蝠",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "floating black cloud",
+        "label": "floating black cloud",
+        "weight": 1.5,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "花火基础",
+    "raw": "dynamic angle, finely detail, (bloom), (shine), glinting stars, ((((best detailed fireworks)))), ((((depth of field)))), (((hanabi))),(((backlight))),",
+    "category": "魔法系 / 魔法1.5",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-26061097dc0653d7af3d",
+    "tokens": [
+      {
+        "text": "dynamic angle",
+        "label": "动态角度",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "finely detail",
+        "label": "finely detail",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "bloom",
+        "label": "bloom",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "shine",
+        "label": "shine",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "glinting stars",
+        "label": "glinting stars",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "best detailed fireworks",
+        "label": "best detailed fireworks",
+        "weight": 1.4641,
+        "enabled": true
+      },
+      {
+        "text": "depth of field",
+        "label": "景深(画法)",
+        "weight": 1.4641,
+        "enabled": true
+      },
+      {
+        "text": "hanabi",
+        "label": "hanabi",
+        "weight": 1.331,
+        "enabled": true
+      },
+      {
+        "text": "backlight",
+        "label": "backlight",
+        "weight": 1.331,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "星之彩",
+    "raw": "stars in the eyes, messy floating hair, colored inner hair, Starry sky adorns hair, (lots of big colorful Bubble), (pearl), (Galaxy), depth of field",
+    "category": "魔法系 / 魔法1.5",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-38a9dc3fed42b424177d",
+    "tokens": [
+      {
+        "text": "stars in the eyes",
+        "label": "stars in the eyes",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "messy floating hair",
+        "label": "messy floating hair",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "colored inner hair",
+        "label": "colored inner hair",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Starry sky adorns hair",
+        "label": "Starry sky adorns hair",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "lots of big colorful Bubble",
+        "label": "lots of big colorful Bubble",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "pearl",
+        "label": "pearl",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "Galaxy",
+        "label": "Galaxy",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "depth of field",
+        "label": "景深(画法)",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "沉入星海",
+    "raw": "stars in the eyes, messy floating hair, colored inner hair, Starry sky adorns hair, depth of field",
+    "category": "魔法系 / 魔法1.5",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-11889914037d336165d1",
+    "tokens": [
+      {
+        "text": "stars in the eyes",
+        "label": "stars in the eyes",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "messy floating hair",
+        "label": "messy floating hair",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "colored inner hair",
+        "label": "colored inner hair",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Starry sky adorns hair",
+        "label": "Starry sky adorns hair",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "depth of field",
+        "label": "景深(画法)",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "百溺法",
+    "raw": "dynamic angle, detailed wet clothes, blank stare, overexplosure, floating, black long straight, red eyes, aqua eyes, gradient eyes, ((blood)), white dress, frills, ((expressionless)), extremely beautiful detailed water, ((lying on the lake)), (bloodred water:1.5), (red background:1.3)",
+    "category": "魔法系 / 魔法1.5",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-d0cc191f233e44aaa9e3",
+    "tokens": [
+      {
+        "text": "dynamic angle",
+        "label": "动态角度",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "detailed wet clothes",
+        "label": "detailed wet clothes",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "blank stare",
+        "label": "blank stare",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "overexplosure",
+        "label": "overexplosure",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "floating",
+        "label": "floating",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "black long straight",
+        "label": "black long straight",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "red eyes",
+        "label": "红色眼睛",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "aqua eyes",
+        "label": "水蓝色眼睛",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "gradient eyes",
+        "label": "渐变眼睛",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "blood",
+        "label": "blood",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "white dress",
+        "label": "white dress",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "frills",
+        "label": "frills",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "expressionless",
+        "label": "面无表情",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "extremely beautiful detailed water",
+        "label": "extremely beautiful detailed water",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "lying on the lake",
+        "label": "躺在湖面上",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "bloodred water",
+        "label": "bloodred water",
+        "weight": 1.5,
+        "enabled": true
+      },
+      {
+        "text": "red background",
+        "label": "red background",
+        "weight": 1.3,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "辉煌阳光法",
+    "raw": "((messy hair)),(grassland),(yellow eyes),incredibly absurdres,(gold hair),floating hair,Large number of environments,the medieval ,grace,prospect,water eyes,wind,breeze,god ray,lawn,Mountains and lakes in the distance,The sun shines through the trees,A vast expanse of grassland",
+    "category": "魔法系 / 魔法1.5",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-77496e7c6f9cfeeebf80",
+    "tokens": [
+      {
+        "text": "messy hair",
+        "label": "凌乱发型",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "grassland",
+        "label": "grassland",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "yellow eyes",
+        "label": "黄色眼睛",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "incredibly absurdres",
+        "label": "极高分辨率",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "gold hair",
+        "label": "gold hair",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "floating hair",
+        "label": "floating hair",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Large number of environments",
+        "label": "Large number of environments",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "the medieval",
+        "label": "the medieval",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "grace",
+        "label": "grace",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "prospect",
+        "label": "prospect",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "water eyes",
+        "label": "水汪汪",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "wind",
+        "label": "wind",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "breeze",
+        "label": "breeze",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "god ray",
+        "label": "god ray",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "lawn",
+        "label": "草坪",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Mountains and lakes in the distance",
+        "label": "Mountains and lakes in the distance",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "The sun shines through the trees",
+        "label": "The sun shines through the trees",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "A vast expanse of grassland",
+        "label": "A vast expanse of grassland",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "星鬓法",
+    "raw": "Starry sky adorns hair, sparkling anime eyes,beautiful detailed stars,blighting stars,emerging dark purple across with white hair,multicolored hair,beautiful detailed sky, beautiful detailed water, cinematic lighting, dramatic angle,",
+    "category": "魔法系 / 魔法1.5",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-114a39cae2cdc6a91dbf",
+    "tokens": [
+      {
+        "text": "Starry sky adorns hair",
+        "label": "Starry sky adorns hair",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "sparkling anime eyes",
+        "label": "闪光动画眼",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "beautiful detailed stars",
+        "label": "beautiful detailed stars",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "blighting stars",
+        "label": "blighting stars",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "emerging dark purple across with white hair",
+        "label": "emerging dark purple across with white hair",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "multicolored hair",
+        "label": "五颜六色",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "beautiful detailed sky",
+        "label": "beautiful detailed sky",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "beautiful detailed water",
+        "label": "beautiful detailed water",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "cinematic lighting",
+        "label": "电影级光照",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "dramatic angle",
+        "label": "dramatic angle",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "森罗法",
+    "raw": "There are many scattered luminous petals,Hidden in the light yellow flowers,Depth of field,Many flying drops of water,Many scattered leaves,branch ,angle ,contour deepening,cinematic angle",
+    "category": "魔法系 / 魔法1.5",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-a798b4ed5e13dcad725d",
+    "tokens": [
+      {
+        "text": "There are many scattered luminous petals",
+        "label": "There are many scattered luminous petals",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Hidden in the light yellow flowers",
+        "label": "Hidden in the light yellow flowers",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Depth of field",
+        "label": "景深(画法)",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Many flying drops of water",
+        "label": "Many flying drops of water",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Many scattered leaves",
+        "label": "Many scattered leaves",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "branch",
+        "label": "树枝",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "angle",
+        "label": "angle",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "contour deepening",
+        "label": "轮廓加深",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "cinematic angle",
+        "label": "电影角度",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "星天使",
+    "raw": "sunlight, extremely light, extremely clothes, Holy Light, dynamic angle, Light particle, very long hair, white hair, yellow eyes, glowing eyes, expressionless, ((light smile)), ((((white Tulle skirt)))), white silk, looking at viewer, angel wings, large wings, multiple wings, angel halo, (((starry sky))), dusk sky, Floating light spot, Lots of feathers",
+    "category": "魔法系 / 魔法1.5",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-0bc1cbceb98e8c9be1df",
+    "tokens": [
+      {
+        "text": "sunlight",
+        "label": "sunlight",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "extremely light",
+        "label": "extremely light",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "extremely clothes",
+        "label": "extremely clothes",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Holy Light",
+        "label": "Holy Light",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "dynamic angle",
+        "label": "动态角度",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Light particle",
+        "label": "Light particle",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "very long hair",
+        "label": "超长发",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "white hair",
+        "label": "白色头发",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "yellow eyes",
+        "label": "黄色眼睛",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "glowing eyes",
+        "label": "发光的眼睛",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "expressionless",
+        "label": "面无表情",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "light smile",
+        "label": "light smile",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "white Tulle skirt",
+        "label": "white Tulle skirt",
+        "weight": 1.4641,
+        "enabled": true
+      },
+      {
+        "text": "white silk",
+        "label": "white silk",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "looking at viewer",
+        "label": "看向观众",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "angel wings",
+        "label": "angel wings",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "large wings",
+        "label": "大翅膀",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "multiple wings",
+        "label": "多对翅膀",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "angel halo",
+        "label": "angel halo",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "starry sky",
+        "label": "星空",
+        "weight": 1.331,
+        "enabled": true
+      },
+      {
+        "text": "dusk sky",
+        "label": "dusk sky",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Floating light spot",
+        "label": "Floating light spot",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Lots of feathers",
+        "label": "Lots of feathers",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "黄金律",
+    "raw": "blonde hair, yellow eyes, white skin, mature female, sunrise, golden sky, magnificent architecture, beautiful detailed sky, overexposure, delicate gold metal decorations",
+    "category": "魔法系 / 魔法1.5",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-cc272a895119f944d24c",
+    "tokens": [
+      {
+        "text": "blonde hair",
+        "label": "金色头发",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "yellow eyes",
+        "label": "黄色眼睛",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "white skin",
+        "label": "白皮肤",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "mature female",
+        "label": "成熟女性",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "sunrise",
+        "label": "sunrise",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "golden sky",
+        "label": "golden sky",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "magnificent architecture",
+        "label": "建筑",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "beautiful detailed sky",
+        "label": "beautiful detailed sky",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "overexposure",
+        "label": "过曝",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "delicate gold metal decorations",
+        "label": "delicate gold metal decorations",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "机械姬",
+    "raw": "mechanical prosthesis,mecha coverage,emerging dark purple across with white hair,fluorescent purple,cool movement,rose red eyes,beatiful detailed cyberpunk city, hd semirealistic anime cg concept art digital painting",
+    "category": "魔法系 / 魔法1.5",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-a4072e189bac213b2c66",
+    "tokens": [
+      {
+        "text": "mechanical prosthesis",
+        "label": "mechanical prosthesis",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "mecha coverage",
+        "label": "mecha coverage",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "emerging dark purple across with white hair",
+        "label": "emerging dark purple across with white hair",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "fluorescent purple",
+        "label": "fluorescent purple",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "cool movement",
+        "label": "cool movement",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "rose red eyes",
+        "label": "rose red eyes",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "beatiful detailed cyberpunk city",
+        "label": "beatiful detailed cyberpunk city",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "hd semirealistic anime cg concept art digital painting",
+        "label": "hd semirealistic anime cg concept art digital painting",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "人鱼法",
+    "raw": "(incredibly absurdres), (highly detailed beautiful fishtail:1.6), (((human hands))), (the lower body is a fish:1.9)AND(no human thigh:1.2), seaweed, (full body), (white seashell), (curved and slender fish tail), (the lower body is bare:1.1), {beautiful tailfin}, ((underwater)), (illustration), detailed water, ((fishes)), (floating), watercolor (medium), (small whirlpool), ((The sensation of water flowing)), (detailed scales on a mermaid)",
+    "category": "魔法系 / 魔法1.5",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-c43275483dfb68eab051",
+    "tokens": [
+      {
+        "text": "(incredibly absurdres), (highly detailed beautiful fishtail:1.6), (((human hands))), (the lower body is a fish:1.9)AND(no human thigh:1.2), seaweed, (full body), (white seashell), (curved and slender fish tail), (the lower body is bare:1.1), {beautiful tailfin}, ((underwater)), (illustration), detailed water, ((fishes)), (floating), watercolor (medium), (small whirlpool), ((The sensation of water flowing)), (detailed scales on a mermaid)",
+        "label": "人鱼法",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": "原样保留：括号不配对，请检查粘贴内容"
+  },
+  {
+    "source": "现有词库",
+    "name": "末日",
+    "raw": "Blood Mist, background Urban rooftop,despair,Blood Cherry Blossom,torn clothes,crying with eyes open,solo,Blood Rain,bandages,Gunpowder smoke,beautiful deatailed shadow, Splashing blood,dust,tyndall effect",
+    "category": "魔法系 / 魔法1.5",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-bd2c46f842fba8e6f406",
+    "tokens": [
+      {
+        "text": "Blood Mist",
+        "label": "Blood Mist",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "background Urban rooftop",
+        "label": "background Urban rooftop",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "despair",
+        "label": "绝望",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Blood Cherry Blossom",
+        "label": "Blood Cherry Blossom",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "torn clothes",
+        "label": "撕裂的衣服",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "crying with eyes open",
+        "label": "睁着眼睛哭",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "solo",
+        "label": "单人",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Blood Rain",
+        "label": "Blood Rain",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "bandages",
+        "label": "bandages",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Gunpowder smoke",
+        "label": "Gunpowder smoke",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "beautiful deatailed shadow",
+        "label": "beautiful deatailed shadow",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Splashing blood",
+        "label": "Splashing blood",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "dust",
+        "label": "dust",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "tyndall effect",
+        "label": "丁达尔效应",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "碎梦",
+    "raw": "Space opera,Space port,robot arm,elbow gloves,night,glisten,stare,cyberpunk,((((citylight)))),science fiction,bodysuit,Mechanical armor headdress,(bare shoulders)",
+    "category": "魔法系 / 魔法1.5",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-c7cbc0cd012a6e868f64",
+    "tokens": [
+      {
+        "text": "Space opera",
+        "label": "Space opera",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Space port",
+        "label": "Space port",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "robot arm",
+        "label": "robot arm",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "elbow gloves",
+        "label": "长袖手套（肘部手套）",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "night",
+        "label": "夜晚",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "glisten",
+        "label": "glisten",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "stare",
+        "label": "凝视",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "cyberpunk",
+        "label": "赛博朋克",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "citylight",
+        "label": "citylight",
+        "weight": 1.4641,
+        "enabled": true
+      },
+      {
+        "text": "science fiction",
+        "label": "科技幻想",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "bodysuit",
+        "label": "bodysuit",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Mechanical armor headdress",
+        "label": "Mechanical armor headdress",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "bare shoulders",
+        "label": "赤肩",
+        "weight": 1.1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "幻碎梦",
+    "raw": "dynamic angle,rainbow hair,detailed cute anime face,((loli)),flower,cry,water,corrugated,flowers tire,broken glass,(broken screen),atlantis,transparent glass",
+    "category": "魔法系 / 魔法1.5",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-3becb38ac899fec0ae01",
+    "tokens": [
+      {
+        "text": "dynamic angle",
+        "label": "动态角度",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "rainbow hair",
+        "label": "rainbow hair",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "detailed cute anime face",
+        "label": "detailed cute anime face",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "loli",
+        "label": "萝莉",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "flower",
+        "label": "花",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "cry",
+        "label": "cry",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "water",
+        "label": "water",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "corrugated",
+        "label": "corrugated",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "flowers tire",
+        "label": "flowers tire",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "broken glass",
+        "label": "broken glass",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "broken screen",
+        "label": "broken screen",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "atlantis",
+        "label": "atlantis",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "transparent glass",
+        "label": "transparent glass",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "血改法",
+    "raw": "(white hair),(((red streaked hair))), red eyes, (((full body))),(red hair), (((((Hold a red sword))))), (angry face),((Blood drop)),((Blood fog)),light shafts, soft focus, ((Splashing blood))),Long hair,((Bloodstain)),Fighting stance,{{{{{watercolor (medium)}}}},(((masterpiece))),((white clock)),((ultradetailed)),((Covered in blood)),flowing hair,Exquisite Flame,dynamic angle, floating, (shine), extremely delicate and beautiful girls, bright skin, lying red petals,Holy lighting",
+    "category": "魔法系 / 魔法1.5",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-59e521ad94ed9d49cf3e",
+    "tokens": [
+      {
+        "text": "(white hair),(((red streaked hair))), red eyes, (((full body))),(red hair), (((((Hold a red sword))))), (angry face),((Blood drop)),((Blood fog)),light shafts, soft focus, ((Splashing blood))),Long hair,((Bloodstain)),Fighting stance,{{{{{watercolor (medium)}}}},(((masterpiece))),((white clock)),((ultradetailed)),((Covered in blood)),flowing hair,Exquisite Flame,dynamic angle, floating, (shine), extremely delicate and beautiful girls, bright skin, lying red petals,Holy lighting",
+        "label": "血改法",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": "原样保留：括号不配对，请检查粘贴内容"
+  },
+  {
+    "source": "现有词库",
+    "name": "留影术",
+    "raw": "dramatic shadows,black and white,monochrome,{{comic}},cross necklace,Cassock",
+    "category": "魔法系 / 魔法1.5",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-de3169659b4712e7c73e",
+    "tokens": [
+      {
+        "text": "dramatic shadows",
+        "label": "dramatic shadows",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "black and white",
+        "label": "black and white",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "monochrome",
+        "label": "单色图片",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "comic",
+        "label": "漫画",
+        "weight": 1.1025,
+        "enabled": true
+      },
+      {
+        "text": "cross necklace",
+        "label": "十字架项链",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "Cassock",
+        "label": "Cassock",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "飘花法",
+    "raw": "((ink)),(water color),bloom effect,detailed beautiful grassland with petal,flower,butterfly,necklace,smile,petal,(((surrounded by heavy floating petal flow)))",
+    "category": "魔法系 / 魔法1.5",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-2a27faa24fd4868760ab",
+    "tokens": [
+      {
+        "text": "ink",
+        "label": "ink",
+        "weight": 1.21,
+        "enabled": true
+      },
+      {
+        "text": "water color",
+        "label": "water color",
+        "weight": 1.1,
+        "enabled": true
+      },
+      {
+        "text": "bloom effect",
+        "label": "bloom effect",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "detailed beautiful grassland with petal",
+        "label": "detailed beautiful grassland with petal",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "flower",
+        "label": "花",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "butterfly",
+        "label": "butterfly",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "necklace",
+        "label": "项链",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "smile",
+        "label": "微笑",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "petal",
+        "label": "petal",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "surrounded by heavy floating petal flow",
+        "label": "surrounded by heavy floating petal flow",
+        "weight": 1.331,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "移除成年人",
+    "raw": "(AS-YoungV2-Neg:1.3)",
+    "category": "反向提示词 / 人",
+    "file": "library.json",
+    "negative": true,
+    "id": "bundle-7b102f13adbccaafeeab",
+    "tokens": [
+      {
+        "text": "AS-YoungV2-Neg",
+        "label": "AS-YoungV2-neg",
+        "weight": 1.3,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "移除年轻人",
+    "raw": "(AS-Adult-Neg:1.3)",
+    "category": "反向提示词 / 人",
+    "file": "library.json",
+    "negative": true,
+    "id": "bundle-8117f40c68c2b6a61a5a",
+    "tokens": [
+      {
+        "text": "AS-Adult-Neg",
+        "label": "AS-Adult-Neg",
+        "weight": 1.3,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "肥胖",
+    "raw": "(fat:1.2)",
+    "category": "反向提示词 / 人",
+    "file": "library.json",
+    "negative": true,
+    "id": "bundle-f6eb6cf025e9e336f59e",
+    "tokens": [
+      {
+        "text": "fat",
+        "label": "肥胖",
+        "weight": 1.2,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "单人",
+    "raw": "1girl, solo",
+    "category": "本地常用搭配 / 人物",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-a04e765d8aa22ee78c38",
+    "tokens": [
+      {
+        "text": "1girl",
+        "label": "1女孩",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "solo",
+        "label": "单人",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "双人互动",
+    "raw": "2girls, interacting",
+    "category": "本地常用搭配 / 人物",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-cc8755671ea2fb73819b",
+    "tokens": [
+      {
+        "text": "2girls",
+        "label": "2女孩",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "interacting",
+        "label": "interacting",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "精致插画",
+    "raw": "polished anime illustration, clean lineart, delicate shading",
+    "category": "本地常用搭配 / 画风",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-842a2249c914991a0162",
+    "tokens": [
+      {
+        "text": "polished anime illustration",
+        "label": "polished anime illustration",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "clean lineart",
+        "label": "clean lineart",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "delicate shading",
+        "label": "delicate shading",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "柔和水彩",
+    "raw": "watercolor painting, soft washes, textured paper",
+    "category": "本地常用搭配 / 画风",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-ec4b401daf01becd7187",
+    "tokens": [
+      {
+        "text": "watercolor painting",
+        "label": "watercolor painting",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "soft washes",
+        "label": "soft washes",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "textured paper",
+        "label": "textured paper",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "温和微笑",
+    "raw": "gentle smile, relaxed eyebrows",
+    "category": "本地常用搭配 / 表情",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-62e9c08cec6bd275f575",
+    "tokens": [
+      {
+        "text": "gentle smile",
+        "label": "gentle smile",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "relaxed eyebrows",
+        "label": "relaxed eyebrows",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "害羞别扭",
+    "raw": "blushing, averted gaze, slight pout",
+    "category": "本地常用搭配 / 表情",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-472f05d38664d52bf731",
+    "tokens": [
+      {
+        "text": "blushing",
+        "label": "blushing",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "averted gaze",
+        "label": "averted gaze",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "slight pout",
+        "label": "slight pout",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "狡黠微笑",
+    "raw": "mischievous smile, raised eyebrow",
+    "category": "本地常用搭配 / 表情",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-36f29b1158cfcc35d5e7",
+    "tokens": [
+      {
+        "text": "mischievous smile",
+        "label": "mischievous smile",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "raised eyebrow",
+        "label": "raised eyebrow",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "斜俯视",
+    "raw": "high angle, three-quarter overhead view",
+    "category": "本地常用搭配 / 镜头",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-3b3bacae085e4f28adf4",
+    "tokens": [
+      {
+        "text": "high angle",
+        "label": "high angle",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "three-quarter overhead view",
+        "label": "three-quarter overhead view",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "平视全身",
+    "raw": "eye-level camera, full body, feet in frame",
+    "category": "本地常用搭配 / 镜头",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-577c89b976d9beb68925",
+    "tokens": [
+      {
+        "text": "eye-level camera",
+        "label": "eye-level camera",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "full body",
+        "label": "full body",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "feet in frame",
+        "label": "feet in frame",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "面部近景",
+    "raw": "face close-up, portrait composition",
+    "category": "本地常用搭配 / 镜头",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-0bb9ec8843852a40ca9c",
+    "tokens": [
+      {
+        "text": "face close-up",
+        "label": "face close-up",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "portrait composition",
+        "label": "portrait composition",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "日光",
+    "raw": "natural daylight, soft shadows",
+    "category": "本地常用搭配 / 光照",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-3d0125eb6b6f0005ae67",
+    "tokens": [
+      {
+        "text": "natural daylight",
+        "label": "natural daylight",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "soft shadows",
+        "label": "soft shadows",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "逆光轮廓",
+    "raw": "backlighting, rim light",
+    "category": "本地常用搭配 / 光照",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-ec490bf84cf21fc17b5e",
+    "tokens": [
+      {
+        "text": "backlighting",
+        "label": "backlighting",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "rim light",
+        "label": "轮廓光",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "泳池",
+    "raw": "outdoor swimming pool, clear turquoise water, gentle ripples",
+    "category": "本地常用搭配 / 场景",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-9486554e7d0ef2d9a92a",
+    "tokens": [
+      {
+        "text": "outdoor swimming pool",
+        "label": "outdoor swimming pool",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "clear turquoise water",
+        "label": "clear turquoise water",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "gentle ripples",
+        "label": "gentle ripples",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "庭院",
+    "raw": "quiet garden courtyard, flowers, stone path",
+    "category": "本地常用搭配 / 场景",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-e9263115bd4ca0cff6af",
+    "tokens": [
+      {
+        "text": "quiet garden courtyard",
+        "label": "quiet garden courtyard",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "flowers",
+        "label": "flowers",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "stone path",
+        "label": "stone path",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
+  },
+  {
+    "source": "现有词库",
+    "name": "休闲衬衫",
+    "raw": "casual shirt, neat collar, fabric folds",
+    "category": "本地常用搭配 / 服装",
+    "file": "library.json",
+    "negative": false,
+    "id": "bundle-2281743c58f3e5f95097",
+    "tokens": [
+      {
+        "text": "casual shirt",
+        "label": "casual shirt",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "neat collar",
+        "label": "neat collar",
+        "weight": 1,
+        "enabled": true
+      },
+      {
+        "text": "fabric folds",
+        "label": "fabric folds",
+        "weight": 1,
+        "enabled": true
+      }
+    ],
+    "parseNote": ""
   }
 ]

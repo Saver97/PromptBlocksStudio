@@ -151,7 +151,7 @@ function editCharacters(){let list,auto,autoIdentity;const rows=[];
    const groups=new Set(['MyGO!!!!!','Ave Mujica',...knownCharacters.map(p=>p.group)]);
    for(const label of groups){
      const group=document.createElement('optgroup');group.label=label;
-     knownCharacters.forEach((p,i)=>{if(p.group===label)group.append(new Option(p.label,String(i)));});
+     knownCharacters.forEach((p,i)=>{if(p.group===label)group.append(new Option(p.review ? p.label+' · '+p.review : p.label,String(i)));});
      preset.append(group);
    }
    const identity=field(card,'固定身份标签（英文，逗号分隔）',c.identityTags||'');identity.placeholder='例如 nagasaki soyo, bang dream!';

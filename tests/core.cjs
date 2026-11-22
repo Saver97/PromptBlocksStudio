@@ -47,6 +47,14 @@ run('var bad=Blocks.copy(starter);bad.schemes[0].blocks[0].weight=Infinity');
 assert.throws(() => run('Blocks.validate(bad)'));
 
 const library = JSON.parse(fs.readFileSync(path.join(root, 'ui/library.json'), 'utf8'));
-assert.equal(library.length, 3982);
-assert(!library.some(r => r.category === '本地常用搭配'));
+assert.equal(library.length, 5572);
+assert.equal(library.filter(r => r.category === '本地常用搭配').length, 15);
+const imported = library.filter(r => r.category === 'NSFW 对照表');
+assert.equal(imported.length, 1575);
+assert.equal(new Set(imported.map(r => r.group)).size, 23);
+const snapshot = JSON.parse(fs.readFileSync(path.join(root, 'examples/工作区_方案与组合块.json'), 'utf8'));
+context.shared = snapshot;
+run('Blocks.validate(shared)');
+assert.equal(snapshot.schemes.length, 43);
+assert.equal(snapshot.templates.length, 110);
 console.log('PASS: clean defaults, dictionary, weights, dedup, independent schemes, custom tokens, role expansion and stale translation validation');

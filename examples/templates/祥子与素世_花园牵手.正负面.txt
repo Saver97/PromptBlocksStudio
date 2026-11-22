@@ -1,0 +1,11 @@
+正面提示词：
+masterpiece, best quality, very aesthetic, 2girls, cowboy shot, standing, school uniform, blazer, pleated skirt, outdoors, garden, trees, bench, soft lighting, dappled sunlight, togawa sakiko, bang dream!, nagasaki soyo
+
+Togawa Sakiko: long straight light blue hair, golden eyes, and black hair ribbons.
+
+Nagasaki Soyo: long light brown wavy hair and light blue eyes.
+
+Togawa Sakiko stands on the left side of the image, and Nagasaki Soyo stands on the right, with both bodies angled slightly inward. Togawa Sakiko extends the left hand toward the center, and Nagasaki Soyo gently holds Togawa Sakiko's left hand with the right hand. The joined hands rest naturally below waist level. Togawa Sakiko's free right hand rests at the outer side of the body, and Nagasaki Soyo's free left hand also rests at the outer side. Togawa Sakiko looks at Nagasaki Soyo with a faint blush and pressed lips, trying to hide a shy expression behind a stubborn look. Nagasaki Soyo looks at Togawa Sakiko with a gentle, slightly pleased smile. The camera faces both girls from the front at eye level, framing the composition from the tops of the heads to mid-thigh. A small gap separates the two bodies, and the joined hands are fully visible. A garden path, green trees, and a white bench are in the background.
+
+负面提示词：
+worst quality, low quality, lowres, blurry, bad anatomy, bad hands, extra arms, missing arms, extra hands, extra fingers, missing fingers, fused fingers, disconnected limbs, merged bodies, duplicate, extra person, cropped head, cropped hands, watermark, text

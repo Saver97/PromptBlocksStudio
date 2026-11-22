@@ -1,0 +1,282 @@
+{
+  "format": "prompt-blocks-template",
+  "version": 1,
+  "name": "娃娃机里的意外 · 同款角色玩偶",
+  "autoIdentity": false,
+  "autoIntroduce": false,
+  "characters": [],
+  "blocks": [
+    {
+      "type": "tags",
+      "name": "主体角色 · 可整块替换",
+      "role": "角色",
+      "positive": [
+        {
+          "text": "1girl",
+          "label": "一名少女"
+        },
+        {
+          "text": "solo",
+          "label": "单人"
+        },
+        {
+          "text": "togawa sakiko",
+          "label": "丰川祥子"
+        },
+        {
+          "text": "bang dream!",
+          "label": "BanG Dream!"
+        },
+        {
+          "text": "ave mujica",
+          "label": "Ave Mujica"
+        },
+        {
+          "text": "long hair",
+          "label": "长发"
+        },
+        {
+          "text": "light blue hair",
+          "label": "浅蓝发"
+        },
+        {
+          "text": "twintails",
+          "label": "双马尾"
+        },
+        {
+          "text": "black hair ribbon",
+          "label": "黑色发带"
+        },
+        {
+          "text": "yellow eyes",
+          "label": "金色眼睛"
+        },
+        {
+          "text": "ivory blouse",
+          "label": "米白衬衫"
+        },
+        {
+          "text": "grey plaid skirt",
+          "label": "灰色格裙"
+        },
+        {
+          "text": "dark pantyhose",
+          "label": "深色连裤袜"
+        },
+        {
+          "text": "loafers",
+          "label": "便鞋"
+        }
+      ]
+    },
+    {
+      "type": "tags",
+      "name": "机柜正前 · 抬高30厘米",
+      "role": "光照",
+      "positive": [
+        {
+          "text": "legs up the wall pose",
+          "label": "仰卧靠墙抬脚姿势",
+          "weight": 1.2
+        },
+        {
+          "text": "lying flat on back",
+          "label": "平躺在柜底",
+          "weight": 1.33
+        },
+        {
+          "text": "supine, face tilted upward",
+          "label": "仰面朝上"
+        },
+        {
+          "text": "straight-on view of the claw machine",
+          "label": "机柜正面入镜",
+          "weight": 1.22
+        },
+        {
+          "text": "gently looking down through the front glass",
+          "label": "从正面向下看约11度"
+        },
+        {
+          "text": "full body",
+          "label": "全身构图"
+        },
+        {
+          "text": "centered subject",
+          "label": "主体居中"
+        },
+        {
+          "text": "feet toward viewer",
+          "label": "从脚端看向正脸",
+          "weight": 1.17
+        },
+        {
+          "text": "foreshortening",
+          "label": "脚近头远的透视"
+        }
+      ]
+    },
+    {
+      "type": "tags",
+      "name": "主体表情 · 困惑与窘迫",
+      "role": "角色",
+      "positive": [
+        {
+          "text": "embarrassed",
+          "label": "窘迫"
+        },
+        {
+          "text": "confused",
+          "label": "困惑"
+        },
+        {
+          "text": "one eyebrow raised",
+          "label": "轻轻挑眉"
+        },
+        {
+          "text": "sideways glance",
+          "label": "目光游移"
+        },
+        {
+          "text": "light blush",
+          "label": "脸颊微红"
+        },
+        {
+          "text": "closed mouth",
+          "label": "抿嘴"
+        }
+      ]
+    },
+    {
+      "type": "tags",
+      "name": "娃娃机 · 密闭奖品舱",
+      "role": "场景",
+      "positive": [
+        {
+          "text": "claw machine",
+          "label": "抓娃娃机"
+        },
+        {
+          "text": "closed glass prize compartment",
+          "label": "封闭的玻璃奖品舱"
+        },
+        {
+          "text": "joystick below the glass",
+          "label": "操作杆位于前窗下方"
+        },
+        {
+          "text": "empty arcade claw parked in a top corner of the cabinet",
+          "label": "空吊爪停在机柜上角"
+        }
+      ]
+    },
+    {
+      "type": "tags",
+      "name": "奖品 · 主体角色的 Q 版分身",
+      "role": "场景",
+      "positive": [
+        {
+          "text": "plushie of self",
+          "label": "主体同款布偶"
+        },
+        {
+          "text": "piles of chibi plush replicas of the main character",
+          "label": "成堆的主角Q版布偶"
+        },
+        {
+          "text": "toys banked along the far glass",
+          "label": "玩偶堆积在远侧柜壁"
+        },
+        {
+          "text": "single layer of toys in foreground",
+          "label": "近侧仅铺一层"
+        }
+      ]
+    },
+    {
+      "type": "prose",
+      "name": "主体动作 · 近乎平躺与高抬双脚",
+      "role": "角色",
+      "positive": {
+        "zh": "她仰躺成一个L形：臀部贴住柜底和前玻璃相交的内角，背部平贴柜底，后脑枕在柜子深处的玩偶上。她把两只脚抬到前窗的上半部，双脚后跟靠着前玻璃，明显高于肩膀，双膝略弯。她把手搭在腹部。",
+        "en": "She lies on her back in an L shape, her bottom touching the inside corner where the glass front meets the cabinet floor. Her back rests flat on the floor, her head on the toys at the far end. She lifts both feet into the upper half of the window, resting both heels against the front glass well above shoulder height, knees slightly bent. Her hands rest on her belly."
+      }
+    },
+    {
+      "type": "tags",
+      "name": "避免抓错与空间错位",
+      "role": "负面约束",
+      "negative": [
+        "lowres",
+        "worst quality",
+        "low quality",
+        "bad anatomy",
+        "bad hands",
+        "extra fingers",
+        "missing fingers",
+        "extra limbs",
+        "cropped head",
+        "watermark",
+        "signature",
+        "text",
+        "jpeg artifacts",
+        "lingerie",
+        "bra",
+        "revealing clothes",
+        "transparent clothing",
+        "topless",
+        "bare_legs",
+        "from behind",
+        "back to viewer",
+        "lying on stomach",
+        "on all fours",
+        "bent over",
+        "faceless",
+        "standing",
+        "sitting upright",
+        "straight legs",
+        "feet outside cabinet",
+        "feet on control panel",
+        "claw holding doll",
+        "vertical straight legs",
+        "face between legs",
+        "torso hidden behind knees",
+        "plush doll covering torso",
+        "overhead flat lay",
+        "high angle",
+        "top-down view",
+        "bird's-eye view",
+        "side profile",
+        "dutch angle",
+        "steep high angle",
+        "diagonal cabinet",
+        "profile face",
+        "oversized feet",
+        "knees framing face",
+        "extreme foreshortening",
+        "rail across torso",
+        "upside down face",
+        "head in foreground",
+        "feet on shelf",
+        "feet on floor",
+        "dangling legs"
+      ]
+    }
+  ],
+  "parameters": {
+    "width": 1024,
+    "height": 1152,
+    "steps": 30,
+    "cfg": 4,
+    "seed": 516693008484518,
+    "denoise": 1,
+    "sampler_name": "euler",
+    "scheduler": "simple"
+  },
+  "models": {
+    "unet_name": "REED_Anima_XXX_v1.4.safetensors",
+    "clip_name": "qwen_3_06b_base.safetensors",
+    "vae_name": "qwen_image_vae.safetensors"
+  },
+  "notes": "臀部抵住前窗内侧下沿，头肩贴近柜底并朝向柜内深处，双脚沿玻璃抬起。主体居中，正面略微俯视。"
+}

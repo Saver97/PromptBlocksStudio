@@ -1,0 +1,17 @@
+正面提示词：
+masterpiece, best quality, very aesthetic, 1girl, solo, anime illustration, cyberpunk, full body, standing, yahata umiri, bang dream!, ave mujica
+
+Yahata Umiri: medium-length dark grey hair with violet tips and violet underlayers, side-swept bangs, a calm reserved face. Her right eye retains its natural blue iris; her left eye alone is a cyan-blue cybernetic eye.
+
+Yahata Umiri has precise concentric mechanical iris rings in her left eye. Narrow implant seams trace the outer brow, temple and upper cheek around this eye, inset with silver titanium edges. Her right eye and the right side of her face remain natural. A small flush implant interface with silver-edged seams is visible on the exposed skin at the base of her neck, between her collarbones. The interfaces are clean and healed, preserving her recognizable face.
+
+Yahata Umiri wears a fitted black cropped top with one snug full-length sleeve on her left arm; her right shoulder and right arm are sleeveless. The hem ends above her navel, leaving it visible. A shallow square neckline exposes the implant interface below her neck between her collarbones. Black dominates the outfit, with muted dark petrol-blue #335566 piping, side seams and small fabric panels.
+
+Yahata Umiri wears black cropped cargo pants with structured side pockets. Both hems stop above her ankles, leaving the ankles exposed. Her low-top sneakers are predominantly black with clearly defined green accent lines. Black fingerless gloves leave her fingertips exposed.
+
+Yahata Umiri carries an electric bass on a shoulder strap, with its body hanging low across the front of her hips, clear of her navel. Its neck extends toward her anatomical right, the viewer's left in this frontal view, in a left-handed playing orientation. Her left hand is strumming the strings directly above the pickups on the bass body. Her right arm is raised overhead. Her raised right hand forms a fist: the middle, ring and little fingers are curled, the thumb rests against the curled fingers, and ONLY the index finger extends straight upward toward the sky. The strap supports the bass; her right hand is not holding its neck. All left and right instructions refer to the character's own anatomy.
+
+Yahata Umiri stands firmly, facing almost directly toward the camera with a calm, confident and slightly aloof stage presence. A vertical full-body composition includes everything from the raised index fingertip to the sneaker soles, with breathing room above and below. A restrained dark futuristic stage forms the background, with subtle blue-teal rim light and clear frontal illumination. The single cybernetic eye, collarbone interface, both hand actions, navel, trouser hems and sneakers remain readable.
+
+负面提示词：
+lowres, worst quality, low quality, blurry, bad anatomy, bad hands, extra arms, missing arms, extra fingers, missing fingers, fused fingers, duplicate instrument, acoustic guitar, two cybernetic eyes, eyepatch, full face mask, blood, open wounds, two long sleeves, jacket, long coat, shorts, skirt, boots, covered ankles, cropped feet, cropped hand, out of frame, peace sign, horns gesture, text, watermark, signature

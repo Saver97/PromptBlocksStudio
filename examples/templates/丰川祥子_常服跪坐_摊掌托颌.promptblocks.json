@@ -1,0 +1,227 @@
+{
+  "format": "prompt-blocks-template",
+  "version": 1,
+  "name": "丰川祥子 · 常服跪坐 · 摊掌托颌",
+  "autoIdentity": false,
+  "autoIntroduce": false,
+  "characters": [
+    {
+      "alias": "A",
+      "name": "Sakiko",
+      "gender": "female",
+      "identityTags": [
+        "togawa sakiko",
+        "bang dream!",
+        "ave mujica"
+      ],
+      "description": {
+        "zh": "浅蓝长发、金眼、细辫和黑蝴蝶结。",
+        "en": "Long powder-blue hair, golden eyes, thin side braids and black ribbon bows."
+      }
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tags",
+      "name": "祥子与作品",
+      "role": "角色",
+      "positive": [
+        {
+          "text": "1girl",
+          "label": "一位女孩"
+        },
+        {
+          "text": "solo",
+          "label": "单人"
+        },
+        {
+          "text": "togawa sakiko",
+          "label": "丰川祥子"
+        },
+        {
+          "text": "bang dream!",
+          "label": "BanG Dream!"
+        },
+        {
+          "text": "ave mujica",
+          "label": "Ave Mujica"
+        }
+      ]
+    },
+    {
+      "type": "tags",
+      "name": "跪坐、对视与掌心权重",
+      "role": "自由补充",
+      "positive": [
+        {
+          "text": "seiza",
+          "label": "跪坐"
+        },
+        {
+          "text": "looking at viewer",
+          "label": "看向镜头"
+        },
+        {
+          "text": "flower pose",
+          "label": "花托脸姿势",
+          "weight": 1.15
+        },
+        {
+          "text": "palms facing viewer",
+          "label": "双掌朝向镜头",
+          "weight": 1.2
+        },
+        {
+          "text": "open hands framing face.",
+          "label": "摊开双手托住脸部轮廓"
+        }
+      ]
+    },
+    {
+      "type": "prose",
+      "name": "画风",
+      "role": "公共基础",
+      "positive": {
+        "en": "Anime character illustration in the understated BanG Dream! character-sheet style.",
+        "zh": "采用 BanG Dream! 角色立绘那样克制的动画画风。"
+      }
+    },
+    {
+      "type": "prose",
+      "name": "发型、五官与神态",
+      "role": "角色",
+      "positive": {
+        "en": "{{A}} has long powder-blue hair, a narrow fringe in the center with longer parted locks at the temples, a thin braid on each side and black ribbon bows. Warm golden eyes with gently rounded lower lids, small chin, tiny closed-mouth smile. Her expression is quiet and composed.",
+        "zh": "{{A}}留着浅蓝长发，中间一束窄刘海，鬓边的长发向两侧分开；两侧各有细辫和黑蝴蝶结。金色眼睛，下眼睑略圆，下巴小，闭口浅笑，神态安静从容。"
+      }
+    },
+    {
+      "type": "prose",
+      "name": "常服",
+      "role": "服装",
+      "positive": {
+        "en": "Ivory blouse, thin black ribbon tie, grey plaid skirt.",
+        "zh": "象牙白衬衫、细黑领结、灰色格裙。"
+      }
+    },
+    {
+      "type": "prose",
+      "name": "双手高度与托颌位置",
+      "role": "自由补充",
+      "positive": {
+        "en": "She frames her chin with both open palms in a flower pose. The bases of her palms meet immediately under the point of her chin, the chin lightly touches the joined wrists.",
+        "zh": "两只手在下巴两侧摊开，像花瓣托脸；掌根在下巴尖正下方相接，下巴轻轻碰着靠拢的手腕。"
+      }
+    },
+    {
+      "type": "prose",
+      "name": "掌心朝向与手指展开",
+      "role": "自由补充",
+      "positive": {
+        "en": "Both palms face the lens like two open pages. Her left fingers stretch diagonally up beside her left cheek and her right fingers stretch up beside her right cheek. Her fingers are softly spread and both thumbs are visible.",
+        "zh": "双掌像摊开的两页书，掌心朝向镜头。左手手指向左脸颊旁斜上方伸展，右手同样向右展开。手指自然分开，两根拇指都能看见。"
+      }
+    },
+    {
+      "type": "prose",
+      "name": "跪坐、视线与表情",
+      "role": "场景",
+      "positive": {
+        "en": "She kneels on the wooden floor, gazing up with a small reserved smile.",
+        "zh": "跪坐在木地板上，带着含蓄的浅笑抬眼看向镜头。"
+      }
+    },
+    {
+      "type": "prose",
+      "name": "镜位、光线与对焦",
+      "role": "场景",
+      "positive": {
+        "en": "A gently elevated front view, a natural portrait lens, a little space above her hair. Softly lit anime still, her face and hands in focus.",
+        "zh": "正面略俯拍，人像镜头的透视自然，头顶留少许空间。动画画面柔光照明，脸和双手清晰。"
+      }
+    },
+    {
+      "type": "tags",
+      "name": "手部、镜头与面部负面约束",
+      "role": "负面约束",
+      "negative": [
+        {
+          "text": "backs of hands facing viewer",
+          "label": "手背朝镜头"
+        },
+        {
+          "text": "knuckles facing camera",
+          "label": "指关节朝镜头"
+        },
+        {
+          "text": "prayer hands",
+          "label": "合十"
+        },
+        {
+          "text": "covering mouth",
+          "label": "捂嘴"
+        },
+        {
+          "text": "fingertips on lips",
+          "label": "指尖碰嘴唇"
+        },
+        {
+          "text": "clenched hands",
+          "label": "握拳"
+        },
+        {
+          "text": "extra digits",
+          "label": "多余手指"
+        },
+        {
+          "text": "oversized head",
+          "label": "头过大"
+        },
+        {
+          "text": "wide-angle lens",
+          "label": "广角"
+        },
+        {
+          "text": "fisheye",
+          "label": "鱼眼"
+        },
+        {
+          "text": "extreme close-up",
+          "label": "极端特写"
+        },
+        {
+          "text": "heavy blush",
+          "label": "过重红晕"
+        },
+        {
+          "text": "parted lips",
+          "label": "双唇张开"
+        },
+        {
+          "text": "text",
+          "label": "文字"
+        },
+        {
+          "text": "watermark",
+          "label": "水印"
+        }
+      ]
+    }
+  ],
+  "parameters": {
+    "width": 896,
+    "height": 1152,
+    "steps": 30,
+    "cfg": 4.0,
+    "seed": 17853219,
+    "denoise": 1.0,
+    "sampler_name": "euler",
+    "scheduler": "simple"
+  },
+  "models": {
+    "unet_name": "REED_Anima_XXX_v1.4.safetensors",
+    "clip_name": "qwen_3_06b_base.safetensors",
+    "vae_name": "qwen_image_vae.safetensors"
+  },
+  "notes": "主图 cheek_palms02_00001_.png。角色 A 为丰川祥子。"
+}

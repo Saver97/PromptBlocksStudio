@@ -1,0 +1,126 @@
+{
+  "format": "prompt-blocks-template",
+  "version": 1,
+  "name": "祥子与素世 · 花园牵手",
+  "characters": [
+    {
+      "alias": "A",
+      "name": "Togawa Sakiko",
+      "gender": "female",
+      "identityTags": [
+        "togawa sakiko",
+        "bang dream!"
+      ],
+      "description": {
+        "zh": "浅蓝色长直发，金色眼睛，黑色发带。",
+        "en": "long straight light blue hair, golden eyes, and black hair ribbons."
+      }
+    },
+    {
+      "alias": "B",
+      "name": "Nagasaki Soyo",
+      "gender": "female",
+      "identityTags": [
+        "nagasaki soyo",
+        "bang dream!"
+      ],
+      "description": {
+        "zh": "浅棕色波浪长发，浅蓝色眼睛。",
+        "en": "long light brown wavy hair and light blue eyes."
+      }
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tags",
+      "name": "公共画质与构图",
+      "role": "公共基础",
+      "positive": [
+        "masterpiece",
+        "best quality",
+        "very aesthetic",
+        "2girls",
+        "cowboy shot",
+        "standing"
+      ],
+      "negative": []
+    },
+    {
+      "type": "tags",
+      "name": "共同服装",
+      "role": "服装",
+      "positive": [
+        "school uniform",
+        "blazer",
+        "pleated skirt"
+      ],
+      "negative": []
+    },
+    {
+      "type": "tags",
+      "name": "花园背景",
+      "role": "场景",
+      "positive": [
+        "outdoors",
+        "garden",
+        "trees",
+        "bench"
+      ],
+      "negative": []
+    },
+    {
+      "type": "tags",
+      "name": "柔和日光",
+      "role": "光照",
+      "positive": [
+        "soft lighting",
+        "dappled sunlight"
+      ],
+      "negative": []
+    },
+    {
+      "type": "prose",
+      "name": "左右站位、牵手与表情",
+      "role": "自由补充",
+      "positive": {
+        "zh": "{{A}} 站在画面左侧，{{B}} 站在画面右侧，两人身体微微转向彼此。{{A}} 将左手伸向两人之间，{{B}} 用右手轻轻握住 {{A}} 的左手，牵着的两只手自然放在腰部下方。{{A}} 的右手放松地垂在身体外侧，{{B}} 的左手也放松地垂在身体外侧。{{A}} 看着 {{B}}，脸颊微红，抿起嘴唇，露出努力掩饰害羞的倔强表情。{{B}} 看着 {{A}}，露出温柔而略带得意的微笑。镜头位于两人正前方、与眼睛齐平，画面从头顶取景到大腿中部，两人之间留出空隙，牵手处完整可见。身后是一条花园小径、绿树和一张白色长椅。",
+        "en": "{{A}} stands on the left side of the image, and {{B}} stands on the right, with both bodies angled slightly inward. {{A}} extends the left hand toward the center, and {{B}} gently holds {{A}}'s left hand with the right hand. The joined hands rest naturally below waist level. {{A}}'s free right hand rests at the outer side of the body, and {{B}}'s free left hand also rests at the outer side. {{A}} looks at {{B}} with a faint blush and pressed lips, trying to hide a shy expression behind a stubborn look. {{B}} looks at {{A}} with a gentle, slightly pleased smile. The camera faces both girls from the front at eye level, framing the composition from the tops of the heads to mid-thigh. A small gap separates the two bodies, and the joined hands are fully visible. A garden path, green trees, and a white bench are in the background."
+      },
+      "negative": {
+        "zh": "",
+        "en": ""
+      }
+    },
+    {
+      "type": "tags",
+      "name": "画质、手部与双人结构约束",
+      "role": "负面约束",
+      "positive": [],
+      "negative": [
+        "worst quality",
+        "low quality",
+        "lowres",
+        "blurry",
+        "bad anatomy",
+        "bad hands",
+        "extra arms",
+        "missing arms",
+        "extra hands",
+        "extra fingers",
+        "missing fingers",
+        "fused fingers",
+        "disconnected limbs",
+        "merged bodies",
+        "duplicate",
+        "extra person",
+        "cropped head",
+        "cropped hands",
+        "watermark",
+        "text"
+      ]
+    }
+  ],
+  "parameters": {},
+  "models": {},
+  "notes": "先使用现有 Anima 工作流的模型与参数进行对比。角色定义保存身份和外貌；标签保持简短，动作段明确左右站位和四只手的位置。该配方仅完成结构校验，尚未实际出图；文本分块不等于区域控制。"
+}

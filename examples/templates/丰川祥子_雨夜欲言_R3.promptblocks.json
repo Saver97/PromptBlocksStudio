@@ -1,0 +1,136 @@
+{
+  "format": "prompt-blocks-template",
+  "version": 1,
+  "name": "丰川祥子 · 雨夜欲言 · R3",
+  "autoIdentity": false,
+  "autoIntroduce": false,
+  "characters": [
+    {
+      "alias": "A",
+      "name": "Sakiko",
+      "gender": "female",
+      "identityTags": [
+        "togawa sakiko",
+        "bang dream!",
+        "ave mujica"
+      ],
+      "description": {
+        "zh": "浅蓝长发、金眼、细辫和黑蝴蝶结。",
+        "en": "Long powder-blue hair, golden eyes, thin side braids and black ribbon bows."
+      }
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tags",
+      "name": "人物与姿态",
+      "role": "角色",
+      "positive": [
+        {
+          "text": "1girl"
+        },
+        {
+          "text": "solo"
+        },
+        {
+          "text": "togawa sakiko"
+        },
+        {
+          "text": "bang dream!"
+        },
+        {
+          "text": "ave mujica"
+        },
+        {
+          "text": "seiza"
+        },
+        {
+          "text": "looking at viewer"
+        },
+        {
+          "text": "flower pose",
+          "weight": 1.15
+        },
+        {
+          "text": "palms facing viewer",
+          "weight": 1.2
+        },
+        {
+          "text": "open hands framing face."
+        }
+      ]
+    },
+    {
+      "type": "prose",
+      "name": "脸与神态",
+      "role": "角色",
+      "positive": {
+        "en": "Anime character illustration in the understated BanG Dream! character-sheet style. {{A}} has long powder-blue hair, a narrow central fringe, slim braids tied in black bows, and subdued golden eyes. Her brow lifts a little at the center. She holds the gaze for an instant with her lips pressed thin, struggling to find her words.",
+        "zh": "按角色立绘画{{A}}，浅蓝发、细辫、黑发带，金色眼睛，眉心微抬、抿唇对视片刻。"
+      }
+    },
+    {
+      "type": "prose",
+      "name": "人物动作",
+      "role": "自由补充",
+      "positive": {
+        "en": "She frames her chin with both open palms in a flower pose. Her elbows are tucked together above her lap. Both of her ivory sleeves run upward from those elbows to her wrists beneath her chin. Her palms turn toward the lens, fingers softly spread, one hand slightly lower. She sits on her heels, with her grey checked skirt smoothed over her knees.",
+        "zh": "肘部并拢在膝前，双袖向上连到下巴下的手腕，两掌托着下巴轮廓、朝向镜头，一手稍低，跪坐于脚跟上，灰格裙铺在膝盖上。"
+      }
+    },
+    {
+      "type": "prose",
+      "name": "常服与处境",
+      "role": "场景",
+      "positive": {
+        "en": "She has carefully retied the black ribbon on her washed ivory blouse. One cuff button is a pale replacement and a few threads have come loose. A packaged bento sits on an overturned box beside the folded bedding at the edge of the small room.",
+        "zh": "洗旧的米白上衣，领结仍系得整齐。袖口有一颗替换纽扣和松线，暗处纸箱上放盒饭。"
+      }
+    },
+    {
+      "type": "prose",
+      "name": "机位与光",
+      "role": "光照",
+      "positive": {
+        "en": "A gently elevated frontal portrait, natural proportions. Her whole head, both elbows and the top of her knees fit in the frame. Dull blue evening light from a rain-streaked window, one small patch of muted amber on her cheek; soft linework, quiet shadows.",
+        "zh": "镜头正面微俯拍，头、肘和膝头入镜，雨窗透来冷蓝暮光，脸颊上一小块暗金光。"
+      }
+    },
+    {
+      "type": "tags",
+      "name": "手部、神态与环境约束",
+      "role": "负面约束",
+      "negative": [
+        "second person",
+        "first-person arms",
+        "arms entering from the sides of the image",
+        "disembodied hands",
+        "extra arms",
+        "extra fingers",
+        "clenched fists",
+        "smile",
+        "crying",
+        "fisheye",
+        "rain indoors",
+        "watermark",
+        "text"
+      ]
+    }
+  ],
+  "parameters": {
+    "width": 896,
+    "height": 1152,
+    "steps": 30,
+    "cfg": 4,
+    "seed": 17853219,
+    "denoise": 1,
+    "sampler_name": "euler",
+    "scheduler": "simple"
+  },
+  "models": {
+    "unet_name": "REED_Anima_XXX_v1.4.safetensors",
+    "clip_name": "qwen_3_06b_base.safetensors",
+    "vae_name": "qwen_image_vae.safetensors"
+  },
+  "notes": "第三轮 · 无声的请求"
+}

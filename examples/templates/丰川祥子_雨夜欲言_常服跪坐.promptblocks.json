@@ -1,0 +1,185 @@
+{
+  "format": "prompt-blocks-template",
+  "version": 1,
+  "name": "丰川祥子 · 雨夜欲言",
+  "autoIdentity": false,
+  "autoIntroduce": false,
+  "characters": [
+    {
+      "alias": "A",
+      "name": "Sakiko",
+      "gender": "female",
+      "identityTags": [
+        "togawa sakiko",
+        "bang dream!",
+        "ave mujica"
+      ],
+      "description": {
+        "zh": "浅蓝长发、金眼、细辫和黑蝴蝶结。",
+        "en": "Long powder-blue hair, golden eyes, thin side braids and black ribbon bows."
+      }
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tags",
+      "name": "角色与构图",
+      "role": "角色",
+      "positive": [
+        {
+          "text": "togawa sakiko",
+          "label": "丰川祥子"
+        },
+        {
+          "text": "bang dream!",
+          "label": "BanG Dream!"
+        },
+        {
+          "text": "ave mujica",
+          "label": "Ave Mujica"
+        },
+        {
+          "text": "solo",
+          "label": "单人"
+        },
+        {
+          "text": "seiza",
+          "label": "跪坐"
+        },
+        {
+          "text": "open palms",
+          "label": "摊开双掌"
+        },
+        {
+          "text": "looking at viewer",
+          "label": "看向镜头"
+        },
+        {
+          "text": "anime still",
+          "label": "动画剧照"
+        }
+      ]
+    },
+    {
+      "type": "prose",
+      "name": "脸与发型",
+      "role": "角色",
+      "positive": {
+        "zh": "{{A}}浅蓝长发垂在肩侧，两条细辫系着小黑蝴蝶结。她抬起金色的眼睛，下眼睑留着一层淡淡的疲色。",
+        "en": "{{A}} has long powder-blue hair, fine side braids tied with small black bows, and amber eyes. Faint shadows sit under her lower lids as she looks up."
+      }
+    },
+    {
+      "type": "prose",
+      "name": "开不了口的那一刻",
+      "role": "角色",
+      "positive": {
+        "zh": "她在磨旧的木地板上跪坐，双膝并拢，背脊仍挺直。眉心微微收紧。她吸了口气，嘴唇才刚张开，就这样停住了。",
+        "en": "She kneels on the worn floorboards, knees together, back still straight. Her brows draw together slightly. She draws breath to speak; her lips part, then she hesitates."
+      }
+    },
+    {
+      "type": "prose",
+      "name": "双掌与袖口",
+      "role": "自由补充",
+      "positive": {
+        "zh": "她在下巴正下方摊开空手，两只掌心朝上、略向镜头倾斜。靠近镜头的一只手稍低，指尖微微回弯。抬手带起袖口，露出一排颜色稍深的补线。",
+        "en": "She holds her empty hands just below her chin, both palms open to the lens. The nearer hand sits a little lower, its fingertips curling back. Her raised wrist reveals a line of darker mending stitches across one cuff."
+      }
+    },
+    {
+      "type": "prose",
+      "name": "仍然穿戴整齐的常服",
+      "role": "服装",
+      "positive": {
+        "zh": "米白衬衫已经洗软，细黑领结依然系得平整。灰格裙在并拢的膝盖上铺得整整齐齐。",
+        "en": "Her ivory blouse is worn soft from washing. The narrow black ribbon at her throat is tied neatly. Her grey plaid skirt lies smooth across her knees."
+      }
+    },
+    {
+      "type": "prose",
+      "name": "住处与晚饭",
+      "role": "场景",
+      "positive": {
+        "zh": "她身后靠墙放着折起的薄被，一个倒扣的纸箱充作小桌。上面搁着一盒还没拆封的便当，盒盖上贴着折扣签。",
+        "en": "Behind her, a thin folded futon rests against the wall. An upturned cardboard box serves as a table for one unopened bento with a discount sticker."
+      }
+    },
+    {
+      "type": "prose",
+      "name": "雨夜机位与光线",
+      "role": "光照",
+      "positive": {
+        "zh": "镜头贴近、正面略俯视。雨水挂在身后的窗玻璃上，窗光冷蓝；从门缝漏进来的一线暖光只擦亮了她的脸颊和补过的袖口。",
+        "en": "Close frontal view from slightly above her eyes. Cold blue light filters through the rain-streaked window. A sliver of warm hallway light catches her cheek and the mended cuff."
+      }
+    },
+    {
+      "type": "tags",
+      "name": "表情、手势与环境约束",
+      "role": "负面约束",
+      "negative": [
+        {
+          "text": "cheerful smile",
+          "label": "开朗笑脸"
+        },
+        {
+          "text": "streaming tears",
+          "label": "泪流满面"
+        },
+        {
+          "text": "glamour lighting",
+          "label": "华丽棚拍光"
+        },
+        {
+          "text": "luxurious room",
+          "label": "豪华房间"
+        },
+        {
+          "text": "tattered costume",
+          "label": "破布装扮"
+        },
+        {
+          "text": "dirt on face",
+          "label": "脸上抹污"
+        },
+        {
+          "text": "prayer hands",
+          "label": "双手合十"
+        },
+        {
+          "text": "knuckles facing viewer",
+          "label": "手背对镜头"
+        },
+        {
+          "text": "extra fingers",
+          "label": "多指"
+        },
+        {
+          "text": "fisheye",
+          "label": "鱼眼"
+        },
+        {
+          "text": "watermark",
+          "label": "水印"
+        }
+      ]
+    }
+  ],
+  "parameters": {
+    "width": 896,
+    "height": 1152,
+    "steps": 30,
+    "cfg": 4,
+    "seed": 17853219,
+    "denoise": 1,
+    "sampler_name": "euler",
+    "scheduler": "simple"
+  },
+  "models": {
+    "unet_name": "REED_Anima_XXX_v1.4.safetensors",
+    "clip_name": "qwen_3_06b_base.safetensors",
+    "vae_name": "qwen_image_vae.safetensors"
+  },
+  "notes": "根据雨夜版画面重新编写。正面略俯视，双掌抬至下巴，保留祥子的日常衣着与礼貌坐姿。"
+}

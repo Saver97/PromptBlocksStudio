@@ -1,0 +1,161 @@
+{
+  "format": "prompt-blocks-template",
+  "version": 1,
+  "name": "海玲 · 返场前一拍",
+  "autoIdentity": false,
+  "autoIntroduce": false,
+  "characters": [
+    {
+      "alias": "A",
+      "name": "Umiri",
+      "gender": "female",
+      "identityTags": [
+        "yahata umiri",
+        "bang dream!",
+        "ave mujica"
+      ],
+      "description": {
+        "zh": "深灰色头发，紫色内层和发梢，蓝眼，沉静表情。",
+        "en": "dark grey hair, purple inner hair, violet hair tips, blue eyes, calm expression"
+      }
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tags",
+      "name": "人物",
+      "role": "角色",
+      "positive": [
+        "yahata umiri",
+        "bang dream!",
+        "ave mujica",
+        "dark grey hair",
+        "violet inner hair",
+        "blue eyes",
+        "composed expression",
+        "solo focus"
+      ],
+      "negative": []
+    },
+    {
+      "type": "tags",
+      "name": "服装与贝斯",
+      "role": "服装",
+      "positive": [
+        "black asymmetrical crop top",
+        "single long sleeve",
+        "fingerless gloves",
+        "cropped black cargo pants",
+        "black sneakers with green trim",
+        "bass guitar",
+        "guitar strap"
+      ],
+      "negative": []
+    },
+    {
+      "type": "tags",
+      "name": "画面",
+      "role": "自由补充",
+      "positive": [
+        "wide shot",
+        "low angle",
+        "three-quarter view",
+        "underground rock concert",
+        "packed audience",
+        "raised hands",
+        "limited palette",
+        "vermilion",
+        "charcoal black",
+        "silver",
+        "anime illustration",
+        "screen print texture",
+        "cinematic composition",
+        "best quality"
+      ],
+      "negative": []
+    },
+    {
+      "type": "prose",
+      "name": "返场前的停拍",
+      "role": "自由补充",
+      "positive": {
+        "zh": "鼓声突然停了半拍。海玲站在舞台边沿右侧，左手托琴颈，举起黑长袖的右臂，以一根食指给全场数拍。身体还朝观众，脸转向台侧。",
+        "en": "The drums cut out for one beat. {{A}} stands near the right edge of a low plywood stage, one sneaker braced on a wedge monitor. Her bare left arm cradles the neck of a four-string bass. Her black-sleeved right arm lifts a single index finger to count the band back in. She turns her head toward the drummer offscreen. Her lips are closed. A silver ring inside her left iris and a tiny silver seam between her collarbones catch the flash."
+      },
+      "negative": {
+        "zh": "",
+        "en": ""
+      }
+    },
+    {
+      "type": "prose",
+      "name": "横构图与人群",
+      "role": "自由补充",
+      "positive": {
+        "zh": "从台下前排侧面拍，琴颈斜指左侧人海，前景的举手应和她。近处一只手被闪光灯照白，远处人群沉入红烟。",
+        "en": "Seen across the stage from the front row, the long bass neck points diagonally into the left half of the picture. A sea of heads and uplifted fists echoes her signal. One hand close to the lens catches a white flash; the farthest rows dissolve into red smoke beneath a low concrete ceiling."
+      },
+      "negative": {
+        "zh": "",
+        "en": ""
+      }
+    },
+    {
+      "type": "prose",
+      "name": "材质与灯光",
+      "role": "自由补充",
+      "positive": {
+        "zh": "像地下乐队现场专辑的跨页插画。音箱后钉着皱银箔，车间红灯穿过背后的烟，白闪光擦过脸侧。画面把细线留给眼睛、琴弦和手。",
+        "en": "A crumpled sheet of silver foil is tacked crookedly behind the amplifier. A red work lamp burns through the haze behind it. White camera flash cuts across one cheek, knuckles and bass strings. The foil breaks that light into ragged slivers. Deep charcoal shadows, dry ink grain in the smoke, precise fine lines on her eyes and fingers. The image fills both pages of an underground live album sleeve, edge to edge."
+      },
+      "negative": {
+        "zh": "",
+        "en": ""
+      }
+    },
+    {
+      "type": "tags",
+      "name": "负面",
+      "role": "负面约束",
+      "positive": [],
+      "negative": [
+        "low quality",
+        "bad anatomy",
+        "fused hands",
+        "extra fingers",
+        "extra arms",
+        "duplicate performer",
+        "guitar on back",
+        "missing bass",
+        "robot arms",
+        "full armor",
+        "empty venue",
+        "flat background",
+        "rainbow gradient",
+        "symmetrical stage lights",
+        "typography",
+        "album lettering",
+        "watermark",
+        "border",
+        "book mockup",
+        "page crease"
+      ]
+    }
+  ],
+  "parameters": {
+    "width": 1344,
+    "height": 768,
+    "steps": 30,
+    "cfg": 4.0,
+    "seed": 84723965,
+    "denoise": 1.0,
+    "sampler_name": "euler",
+    "scheduler": "simple"
+  },
+  "models": {
+    "unet_name": "REED_Anima_XXX_v1.4.safetensors",
+    "clip_name": "qwen_3_06b_base.safetensors",
+    "vae_name": "qwen_image_vae.safetensors"
+  },
+  "notes": "独立美术方案。横幅，炭黑、朱红与碎银，观众席侧面视角。"
+}

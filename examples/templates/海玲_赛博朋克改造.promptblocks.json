@@ -1,0 +1,70 @@
+{
+  "format": "prompt-blocks-template",
+  "version": 1,
+  "name": "海玲 · 赛博朋克贝斯手",
+  "characters": [{
+    "alias": "A",
+    "name": "Yahata Umiri",
+    "gender": "female",
+    "identityTags": ["yahata umiri", "bang dream!", "ave mujica"],
+    "description": {
+      "zh": "深灰色中长发，紫色发梢与内层挑染，侧分刘海，清冷沉静的面容。右眼保留自然蓝色虹膜，左眼为单只蓝青色机械义眼。",
+      "en": "medium-length dark grey hair with violet tips and violet underlayers, side-swept bangs, a calm reserved face. Her right eye retains its natural blue iris; her left eye alone is a cyan-blue cybernetic eye."
+    }
+  }],
+  "blocks": [
+    {
+      "type": "tags", "name": "画质与主体", "role": "公共基础",
+      "positive": ["masterpiece", "best quality", "very aesthetic", "1girl", "solo", "anime illustration", "cyberpunk", "full body", "standing"],
+      "negative": []
+    },
+    {
+      "type": "prose", "name": "单眼与锁骨改造", "role": "角色",
+      "positive": {
+        "zh": "{{A}} 的左眼具有精密的同心机械虹膜，眼周沿眉骨外侧、太阳穴和上颧骨分布细窄的改造接缝，接缝嵌有银色钛金属边缘。右眼和右侧面部保持自然。颈根下方、左右锁骨之间的裸露皮肤上，有一小片银色金属边缘的嵌入式改造接缝。改造接口整洁、已经愈合，保留原本面容。",
+        "en": "{{A}} has precise concentric mechanical iris rings in her left eye. Narrow implant seams trace the outer brow, temple and upper cheek around this eye, inset with silver titanium edges. Her right eye and the right side of her face remain natural. A small flush implant interface with silver-edged seams is visible on the exposed skin at the base of her neck, between her collarbones. The interfaces are clean and healed, preserving her recognizable face."
+      },
+      "negative": {"zh": "", "en": ""}
+    },
+    {
+      "type": "prose", "name": "不对称上衣与配色", "role": "服装",
+      "positive": {
+        "zh": "{{A}} 穿黑色紧身短款内搭，左臂是贴身长袖，右肩和右臂完全无袖。衣摆止于肚脐上方，肚脐清晰可见。浅方形领口露出颈根下方、左右锁骨中间的改造接口。服装以黑色为主，在包边、侧缝和小面积布料拼接处加入深蓝青色 #335566。",
+        "en": "{{A}} wears a fitted black cropped top with one snug full-length sleeve on her left arm; her right shoulder and right arm are sleeveless. The hem ends above her navel, leaving it visible. A shallow square neckline exposes the implant interface below her neck between her collarbones. Black dominates the outfit, with muted dark petrol-blue #335566 piping, side seams and small fabric panels."
+      },
+      "negative": {"zh": "", "en": ""}
+    },
+    {
+      "type": "prose", "name": "工装裤鞋与手套", "role": "服装",
+      "positive": {
+        "zh": "{{A}} 穿黑色九分工装裤，裤腿有立体侧袋，裤脚停在脚踝上方，露出双侧脚踝。脚上是黑色低帮运动鞋，鞋面带清晰的绿色点缀线条。双手戴黑色半指手套，手指末端露出。",
+        "en": "{{A}} wears black cropped cargo pants with structured side pockets. Both hems stop above her ankles, leaving the ankles exposed. Her low-top sneakers are predominantly black with clearly defined green accent lines. Black fingerless gloves leave her fingertips exposed."
+      },
+      "negative": {"zh": "", "en": ""}
+    },
+    {
+      "type": "prose", "name": "贝斯方向与双手动作", "role": "自由补充",
+      "positive": {
+        "zh": "{{A}} 身上用肩带斜挂一把电贝斯，琴身位于腰胯前方偏低处，避开肚脐，琴颈朝她自己的右侧伸出，即正面视角的画面左侧，采用左手演奏的挂置方向。她的左手落在琴身拾音器上方的琴弦处，正在扫弦。她的右臂向上举起，右手握拳，中指、无名指和小指收拢，拇指压住蜷曲的手指，只有食指伸直指向天空。贝斯由肩带承重，右手没有握住琴颈。所有左右均以角色自身为准。",
+        "en": "{{A}} carries an electric bass on a shoulder strap, with its body hanging low across the front of her hips, clear of her navel. Its neck extends toward her anatomical right, the viewer's left in this frontal view, in a left-handed playing orientation. Her left hand is strumming the strings directly above the pickups on the bass body. Her right arm is raised overhead. Her raised right hand forms a fist: the middle, ring and little fingers are curled, the thumb rests against the curled fingers, and ONLY the index finger extends straight upward toward the sky. The strap supports the bass; her right hand is not holding its neck. All left and right instructions refer to the character's own anatomy."
+      },
+      "negative": {"zh": "", "en": ""}
+    },
+    {
+      "type": "prose", "name": "镜头与背景", "role": "场景",
+      "positive": {
+        "zh": "{{A}} 站姿稳健，身体基本朝向镜头，神情平静而自信，带一点冷淡的舞台气场。竖幅全身构图，从举起的食指尖一直完整拍到鞋底，上下留出余量。简洁的深色未来舞台背景，柔和蓝青色轮廓光，面部和衣服正面保持清楚。单只义眼、锁骨接口、左右手动作、肚脐、裤脚和鞋子均清晰可见。",
+        "en": "{{A}} stands firmly, facing almost directly toward the camera with a calm, confident and slightly aloof stage presence. A vertical full-body composition includes everything from the raised index fingertip to the sneaker soles, with breathing room above and below. A restrained dark futuristic stage forms the background, with subtle blue-teal rim light and clear frontal illumination. The single cybernetic eye, collarbone interface, both hand actions, navel, trouser hems and sneakers remain readable."
+      },
+      "negative": {"zh": "", "en": ""}
+    },
+    {
+      "type": "tags", "name": "负面约束", "role": "负面约束",
+      "positive": [],
+      "negative": ["lowres", "worst quality", "low quality", "blurry", "bad anatomy", "bad hands", "extra arms", "missing arms", "extra fingers", "missing fingers", "fused fingers", "duplicate instrument", "acoustic guitar", "two cybernetic eyes", "eyepatch", "full face mask", "blood", "open wounds", "two long sleeves", "jacket", "long coat", "shorts", "skirt", "boots", "covered ankles", "cropped feet", "cropped hand", "out of frame", "peace sign", "horns gesture", "text", "watermark", "signature"]
+    }
+  ],
+  "parameters": {},
+  "models": {},
+  "notes": "设计默认：左眼义眼；左长袖、右无袖；左手扫弦、右食指指天。左右按角色自身判断。主色黑色，深蓝青 #335566 辅色，运动鞋绿色线条。参数和模型留空，不改动现有 ComfyUI 工作流。"
+}

@@ -1,0 +1,5 @@
+{
+  "engine": "local-opus",
+  "endpoint": "https://cn.aiapi.bot/responses",
+  "model": "deepseek-v4.1-flash"
+}

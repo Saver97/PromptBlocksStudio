@@ -4,6 +4,8 @@
 
 应用独立运行，不需要启动 ComfyUI。标签组装、方案管理和导入导出可以离线使用；中文翻译可选本地模型，中文润色使用自行配置的 LLM 接口。
 
+Windows 用户可在 [GitHub Releases](https://github.com/Saver97/PromptBlocksStudio/releases/latest) 下载便携包，完整解压后运行 `PromptBlocksStudio.exe`。包内 `examples/` 提供可导入的工作区、提示词模板和 ComfyUI 工作流。
+
 ## 能做什么
 
 - **分块组装**：角色、服装、场景、光照、画师串、负面约束等分类；整块启停、调权重、复制和排序。点块内「搜索」可高亮匹配文字并查看命中数。
@@ -169,7 +171,25 @@ models/opus-mt-zh-en-int8/
 
 这些目录已被 Git 忽略。更新或重新打包前备份 `data/`，不要用空目录覆盖它。退出前请先保存编辑弹窗中的草稿；工作区保存不等于弹窗草稿保存。
 
-公开版本从独立发布副本制作，包含代码、通用示例、内置角色预设与模板，以及第三方词库；不包含开发者使用时保存的方案、内容块、API 配置、迁移快照、测试截图或模型文件。
+[示例工作区](examples/工作区_方案与组合块.json) 包含发布时保存的 43 个方案和 110 个组合块，可用「导入备份」打开。导入时可选择合并，也可用「替换」完整载入快照。组合块可同时按用途和 IP 筛选。部分词条、方案和组合块含成人内容。
+
+[独立提示词模板](examples/templates)可逐个导入。[角色极简词与实测](docs/角色极简提示词_20261122.md)包含 29 位角色的词表、出图及镜流双版本对照。[ComfyUI 示例](examples/ComfyUI)另含两份批量 UI 工作流及单框顺序图册使用的自定义节点。多组工作流使用 Impact Pack 的列表节点。
+
+## 提示词组的 REED 测试基准
+
+本项目所有提示词组的测试均以 **REED Anima XXX v1.4** 和这份[基础 UI 工作流](examples/ComfyUI/workflows/REED_Anima_v1.4_Basic_UI.json)为准。工作流取自青衣实测原图，使用 9 个 ComfyUI 原生节点。已有逐图结果可在[角色实测图册](examples/角色实测/角色极简词实测.html)查阅，席德在图册中标记为复核跳过。
+
+| 模型用途 | 工作流中选择的文件 | 放入目录（相对于 ComfyUI） | 下载 |
+| --- | --- | --- | --- |
+| 主模型 | `REED_Anima_XXX_v1.4.safetensors` | `models/diffusion_models/` | [Civitai · 选择 v1.4](https://civitai.com/models/2671685/reedanimaxxx) |
+| 文本编码器 | `qwen_3_06b_base.safetensors` | `models/text_encoders/` | [CircleStone Labs · Qwen 3 0.6B](https://huggingface.co/circlestone-labs/Anima/blob/main/split_files/text_encoders/qwen_3_06b_base.safetensors) |
+| VAE | `qwen_image_vae.safetensors` | `models/vae/` | [CircleStone Labs · Qwen Image VAE](https://huggingface.co/circlestone-labs/Anima/blob/main/split_files/vae/qwen_image_vae.safetensors) |
+
+1. 将三个模型放到表中目录，打开支持 Anima 的 ComfyUI，并刷新模型列表。
+2. 将 `REED_Anima_v1.4_Basic_UI.json` 拖入画布，确认三个加载节点选中了对应文件。直接运行可生成青衣示例。
+3. 测自己的方案时，从提示词积木复制正向、负向提示词，分别粘到工作流对应节点，再点「运行」。
+
+角色首轮对照统一使用 **832 × 1216、单张、30 步、CFG 4、Euler、simple、降噪 1.0、固定种子 20261118114**。图册中另有两张复核图使用种子 `20261118115`。工作流已保存这些首轮参数，复现时只需替换提示词。
 
 ## 词库来源与许可
 
@@ -181,7 +201,7 @@ models/opus-mt-zh-en-int8/
 | [thisjam/sd-webui-oldsix-prompt](https://github.com/thisjam/sd-webui-oldsix-prompt) | `ui/bundles.json` 中标为“老六词库”的 273 组配方 | MIT | [oldsix-LICENSE.txt](ui/catalog-licenses/oldsix-LICENSE.txt) |
 | [n714/stable-diffusion-prompt-library-zh_CN](https://github.com/n714/stable-diffusion-prompt-library-zh_CN) | `ui/bundles.json` 中标为“n714 中文词库”的 105 组配方 | MIT | [n714-LICENSE.txt](ui/catalog-licenses/n714-LICENSE.txt) |
 
-共 **378 组来源配方**。整理保留原始配方 `raw`、来源、分类和可追溯文件名；将兼容的文本解析为可编辑标签，不兼容的语法保留为原文整体词条。来源词库内容未按题材删改；公开副本移除了本地个人补充内容。
+共 **483 组配方**，其中第三方来源 378 组，本地词库 105 组。整理保留原始配方 `raw`、来源、分类和可追溯文件名；将兼容的文本解析为可编辑标签，不兼容的语法保留为原文整体词条。另收录本地常用搭配 15 项及 NSFW 中英文对照 1,575 项，词条合计 5,572 项。
 
 Physton 分类词条来自其 `group_tags/zh_CN.yaml`，空中文释义以英文标签代替。该上游文件另鸣谢“路过银河（知乎）、未知作者（Google Drive）、互联网”等整合来源，此处一并保留致谢。老六与 n714 的本地来源快照信息见 [sources.json](ui/catalog-licenses/sources.json)。
 

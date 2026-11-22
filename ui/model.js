@@ -52,6 +52,46 @@ const Blocks = (() => {
       {label:"蕾姆", name:"Rem", features:[["short blue bob", "蓝色短波波头"], ["bangs covering the right eye", "刘海遮住本人右眼"], ["blue eyes", "蓝色眼睛"], ["gentle attentive gaze", "温柔专注的眼神"]]},
       {label:"拉姆", name:"Ram", features:[["short pink bob", "粉色短波波头"], ["bangs covering the left eye", "刘海遮住本人左眼"], ["red eyes", "红色眼睛"], ["cool self-possessed gaze", "冷静自持的目光"]]},
     ]},
+    {group:"绝区零", tag:"zenless zone zero", migration:"franchisePresets20261122", members:[
+      {"label":"青衣","name":"Qingyi","features":[["long green twintails","绿色长双马尾"],["green eyes","绿瞳"],["mechanical joints","机械关节"]]},
+      {"label":"安比","name":"Anby Demara","features":[["short silver hair","银色短发"],["single side braid","单侧细辫"],["black headphones","黑色耳机"]]},
+      {"label":"扳机","name":"Trigger","features":[["long blonde ponytail","金色长马尾"],["luminous eye visor","发光护目镜"]]},
+      {"label":"奥菲斯","name":"Orphie Magnusson","features":[["long orange twintails","橙色长双马尾"],["black mechanical horns","黑色机械角"],["green eyes","绿瞳"]]},
+      {"label":"席德","name":"Seed","review":"复核跳过 · REED Anima v1.4","features":[["long mint-blue braids","薄荷蓝长辫"],["ahoge","翘起的呆毛"],["blue eyes","蓝瞳"]]},
+    ]},
+    {group:"崩坏3", tag:"honkai impact 3rd", migration:"franchisePresets20261122", members:[
+      {"label":"幽兰黛尔","name":"Durandal","features":[["long wavy blonde hair","波浪金长发"],["blue eyes","蓝瞳"],["swept bangs","斜分刘海"]]},
+      {"label":"丽塔","name":"Rita Rossweisse","features":[["short ash-blonde hair","灰金色短发"],["bangs covering one eye","长刘海遮住一眼"],["reddish pink eyes","玫红眼睛"]]},
+      {"label":"薇塔","name":"Vita","features":[["long grey hair with dark green streaks","灰色长发配深绿发束"],["red eyes","红瞳"],["peacock motif","孔雀纹样"]]},
+      {"label":"赫丽雅","name":"Erdos Helia","features":[["long silver-grey hair","银灰长发"],["hair intakes","两侧向上拱起的前发"],["beauty mark under left eye","本人左眼下泪痣"]]},
+      {"label":"科拉莉","name":"Coralie 6626 Planck","features":[["long black and grey hair","黑灰双色长发"],["black dog ears","黑色犬耳"],["black beret","黑色贝雷帽"]]},
+      {"label":"爱莉希雅","name":"Elysia","features":[["long pink hair","粉色长发"],["pointed elf ears","尖精灵耳"],["blue eyes","蓝瞳"]]},
+      {"label":"梅比乌斯","name":"Mobius","features":[["long wavy mint-green hair","薄荷绿波浪长发"],["slit pupils","竖瞳"],["single gold earring","单侧金耳坠"]]},
+      {"label":"伊甸","name":"Eden","features":[["long wine-red hair","酒红长发"],["amber eyes","琥珀瞳"],["gold hair ornament","金色发饰"]]},
+      {"label":"帕朵菲利斯","name":"Pardofelis","features":[["sandy brown hair","沙棕色头发"],["cat ears","猫耳"],["one blue eye and one green eye","一蓝一绿异色瞳"]]},
+    ]},
+    {group:"崩坏·星穹铁道", tag:"honkai: star rail", migration:"franchisePresets20261122", members:[
+      {"label":"镜流 · 眼罩版","migration":"jingliuVariants20261122","name":"Jingliu","features":[["long silver hair","银色长发"],["black blindfold","黑色眼罩"],["crescent moon motif","弯月纹样"]]},
+      {"label":"镜流 · 露眼版","migration":"jingliuVariants20261122","name":"Jingliu","features":[["long silver hair","银色长发"],["both crimson eyes visible","露出双眼，绯红瞳色"],["crescent moon motif","弯月纹样"]]},
+      {"label":"大黑塔","name":"The Herta","features":[["very long ash-brown hair","灰棕色长发"],["wide-brimmed witch hat","宽檐魔女帽"],["purple eyes","紫瞳"]]},
+      {"label":"小黑塔","name":"Herta","features":[["long brown hair","棕色长发"],["purple flower on beret","贝雷帽上的紫花"],["ball-jointed doll","球关节人偶"]]},
+      {"label":"飞霄","name":"Feixiao","features":[["high white ponytail","白色高马尾"],["white fox ears","白色狐耳"],["turquoise eyes","青碧眼睛"]]},
+    ]},
+    {group:"原神", tag:"genshin impact", migration:"franchisePresets20261122", members:[
+      {"label":"申鹤","name":"Shenhe","features":[["long silver braid","银白长辫"],["red hair cords","红色系绳"],["pale iridescent eyes","浅色虹彩眼睛"]]},
+      {"label":"夜兰","name":"Yelan","features":[["asymmetrical dark blue bob","不对称深蓝短发"],["blue hair tips","蓝色发梢"],["green eyes","绿瞳"]]},
+      {"label":"凝光","name":"Ningguang","features":[["long white hair","白色长发"],["red eyes","红瞳"],["golden hairpins","金色发簪"]]},
+      {"label":"心海","name":"Sangonomiya Kokomi","features":[["long pale pink hair","浅粉色长发"],["blue-violet eyes","蓝紫瞳"],["large blue hair bow","蓝色大蝴蝶结"]]},
+      {"label":"妮露","name":"Nilou","features":[["long red hair","红色长发"],["turquoise eyes","青碧眼睛"],["golden horned headdress","金色角形头冠"]]},
+      {"label":"芙宁娜","name":"Furina","features":[["short white hair with blue streaks","带蓝色挑染的白色短发"],["blue heterochromia","深浅蓝异色瞳"],["tilted top hat","歪戴的小礼帽"]]},
+      {"label":"艾梅莉埃","name":"Emilie","features":[["blonde bob with pink tips","发梢泛粉的金色短发"],["pink eyes","粉瞳"],["glasses","眼镜"]]},
+    ]},
+    {group:"刀剑神域", tag:"sword art online", migration:"franchisePresets20261122", members:[
+      {"label":"亚丝娜","name":"Yuuki Asuna","features":[["long chestnut hair","栗色长发"],["half-up braid","半束编发"],["hazel eyes","榛色眼睛"]]},
+      {"label":"桐谷直叶","name":"Kirigaya Suguha","features":[["short black hair","黑色短发"],["dark grey eyes","深灰眼睛"],["hair clip","发夹"]]},
+      {"label":"莉法","name":"Leafa","features":[["high blonde ponytail","金色高马尾"],["pointed elf ears","尖精灵耳"],["green eyes","绿瞳"]]},
+      {"label":"爱丽丝","name":"Alice Zuberg","features":[["long golden hair","金色长发"],["blue eyes","蓝瞳"],["white headband","白色发带"]]},
+    ]},
   ];
   const characterPresets = [
     {label:'示例角色 Alice',group:'通用示例',shortName:'Alice',name:'Alice',identityTags:'',gender:'female',sourceDescription:'成年女性，黑色短发、棕色眼睛',description:'an adult woman with short black hair and brown eyes'},
@@ -66,6 +106,7 @@ const Blocks = (() => {
       identityTags:identity.map(([text])=>text).join(', '),
       sourceDescription:c.features.map(([,zh])=>zh).join('、'),
       description:c.features.map(([en])=>en).join(', ')};
+    if (c.review) preset.review = c.review;
     if(shortName)preset.shortName=shortName;
     characterPresets.push(preset);
     return {label:c.label, entries:[...identity,...c.features]};
@@ -86,11 +127,11 @@ const Blocks = (() => {
     return addPreset(c,group,[[c.name.toLowerCase(),c.label],['bang dream!','BanG Dream!'],[c.band,group]],c.name.split(' ')[1]);
   });
   const franchiseTemplateBatches=new Map();
-  for(const {group,tag,members} of franchiseGroups){
+  for(const {group,tag,members,migration:groupMigration} of franchiseGroups){
     for(const c of members){
       const identity=[[c.name.toLowerCase(),c.label],[tag,group]];
       if(c.form)identity.push([c.form,c.label.split(' · ')[1]]);
-      const migration=c.migration || 'franchisePresets20261119';
+      const migration=c.migration || groupMigration || 'franchisePresets20261119';
       if(!franchiseTemplateBatches.has(migration))franchiseTemplateBatches.set(migration,[]);
       franchiseTemplateBatches.get(migration).push(addPreset(c,group,identity));
     }
@@ -109,6 +150,18 @@ const Blocks = (() => {
   }
   function installCharacterTemplates(state){
     installPresets(state,'originalBandCharacterTemplates',originalBandTemplates);
+    // Keep the original template ID when upgrading an unmodified blindfold preset.
+    if (state.migrations?.franchisePresets20261122 && !state.migrations.jingliuVariants20261122) {
+      const variants = franchiseTemplateBatches.get('jingliuVariants20261122');
+      const masked = variants.find(t => t.label === '镜流 · 眼罩版');
+      const original = state.templates.find(t => t.name === '镜流' && t.role === '角色' &&
+        t.weight === 1 && t.negative.length === 0 && t.positive.length === masked.entries.length &&
+        t.positive.every((token,i) => token.text === masked.entries[i][0] &&
+          token.label === (i === 0 ? '镜流' : masked.entries[i][1]) && token.enabled && token.weight === 1));
+      if (original && !state.templates.some(t => t.name === masked.label && t.role === '角色')) {
+        original.name = masked.label;
+      }
+    }
     installBandTemplates(state);
     for(const [key,templates] of franchiseTemplateBatches)installPresets(state,key,templates);
   }

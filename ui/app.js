@@ -64,12 +64,14 @@ function renderLibrary(){
   }
   if(!matches.length)frag.append(el('div','empty','没有匹配的词条，试试更短的中文或英文。'));
  }else{
-  const matches=state.templates.filter(t=>!q||norm([t.name,t.role,t.positiveText||'',t.negativeText||'',t.positiveSource||'',t.negativeSource||'',...t.positive.map(x=>x.text),...t.negative.map(x=>x.text)].join(' ')).includes(q));
+  const matches=TemplateFilters.list(state.templates,q);
   $('resultCount').textContent=matches.length+' 个组合块';$('more').hidden=true;
-  for(const t of matches){const row=el('div','template');row.append(el('h3','',t.name),el('p','',`${t.kind==='prose'?'自然语言 · '+t.role:t.role+' · 正 '+t.positive.length+' / 负 '+t.negative.length}${t.kind!=='prose'&&t.weight&&t.weight!==1?' · 整块 ×'+t.weight:''}`));
+  for(const {t,purpose,ips} of matches){const row=el('div','template');row.append(el('h3','',t.name),el('small','muted',[purpose,...ips].join(' · ')),el('p','',`${t.kind==='prose'?'自然语言 · '+t.role:t.role+' · 正 '+t.positive.length+' / 负 '+t.negative.length}${t.kind!=='prose'&&t.weight&&t.weight!==1?' · 整块 ×'+t.weight:''}`));
+   const reviewed = Blocks.characterPresets.find(p => p.review && p.label === t.name);
+   if (reviewed && t.positive.filter(v=>v.enabled !== false).map(v=>v.text).join(', ') === reviewed.identityTags + ', ' + reviewed.description) row.append(el('small','warning',reviewed.review));
    const actions=el('div','actions');const replace=btn('替换选中','用 '+t.name+' 替换选中块',()=>useTemplate(t,true));replace.disabled=!selected();
    if(t.kind!=='prose'){const append=btn('加入当前块','并入当前块 '+t.name,()=>appendTemplate(t));append.disabled=!selected()||selected().kind==='prose';actions.append(append);}
-   actions.append(btn('＋ 加入','加入组合 '+t.name,()=>useTemplate(t,false)),replace,btn('编辑','编辑组合 '+t.name,()=>editTemplate(t)),btn('×','删除组合 '+t.name,()=>modal('删除组合',b=>b.append(el('p','',`删除“${t.name}”？已经放入各方案的副本会保留。`)),()=>commit(()=>{state.templates=state.templates.filter(x=>x.id!==t.id);}), '删除')));
+   actions.append(btn('＋ 加入','加入组合 '+t.name,()=>useTemplate(t,false)),replace,btn('分类','设置组合分类 '+t.name,()=>TemplateFilters.edit(t)),btn('编辑','编辑组合 '+t.name,()=>editTemplate(t)),btn('×','删除组合 '+t.name,()=>modal('删除组合',b=>b.append(el('p','',`删除“${t.name}”？已经放入各方案的副本会保留。`)),()=>commit(()=>{state.templates=state.templates.filter(x=>x.id!==t.id);}), '删除')));
    if(t.parameters&&Object.keys(t.parameters).length)actions.append(btn('新建配方','以 '+t.name+' 新建配方',()=>commit(()=>{const p=Blocks.scheme(t.name);p.blocks=[Blocks.fromTemplate(t)];p.parameters=copy(t.parameters);p.models=copy(t.models||{});p.characters=copy(t.characters||[]);p.notes=t.recipe||'';state.schemes.push(p);state.activeSchemeId=p.id;})));
    row.append(actions);frag.append(row);
   }
@@ -308,6 +310,7 @@ function bind(){
  const saveTagScheme=()=>nameDialog('整套存为组合',scheme().name,name=>{const positive=[],negative=[];for(const b of scheme().blocks.filter(b=>b.enabled))for(const side of ['positive','negative'])for(const t of b[side]){if(t.enabled)(side==='positive'?positive:negative).push({...copy(t),weight:Number((t.weight*b.weight).toFixed(6))});}if([...positive,...negative].some(t=>Math.abs(t.weight)>20))throw Error('合并后存在超过 ±20 的词权重，请降低整块倍率，或直接导出当前配方保存完整结构');commit(()=>{state.templates.push({id:Blocks.id(),name,role:'完整组合',positive,negative,parameters:copy(scheme().parameters),models:copy(scheme().models)});});});
  $('importTemplate').onclick=()=>promptDialog('导入组合块',{name:'新组合',role:'自由补充'},p=>commit(()=>{state.templates.push({id:Blocks.id(),...p});}));
  $('libraryTab').onclick=()=>{libraryView='words';renderLibrary();};$('templateTab').onclick=()=>{libraryView='templates';renderLibrary();};
+ $('templatePurpose').onchange=$('templateIP').onchange=()=>renderLibrary();
  $('bundleTab').onclick=()=>{libraryView='bundles';shown=100;renderLibrary();};$('bundleSource').onchange=()=>{shown=100;renderLibrary();};
  $('search').oninput=()=>{shown=100;renderLibrary();};$('clearSearch').onclick=()=>{$('search').value='';renderLibrary();};
  $('category').onchange=()=>{shown=100;setGroups();renderLibrary();};$('group').onchange=()=>{shown=100;renderLibrary();};$('more').onclick=()=>{shown+=100;renderLibrary();};

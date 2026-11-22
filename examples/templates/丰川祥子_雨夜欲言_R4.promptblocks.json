@@ -1,0 +1,131 @@
+{
+  "format": "prompt-blocks-template",
+  "version": 1,
+  "name": "丰川祥子 · 雨夜欲言 · R4",
+  "autoIdentity": false,
+  "autoIntroduce": false,
+  "characters": [
+    {
+      "alias": "A",
+      "name": "Sakiko",
+      "gender": "female",
+      "identityTags": [
+        "togawa sakiko",
+        "bang dream!",
+        "ave mujica"
+      ],
+      "description": {
+        "zh": "浅蓝长发、金眼、细辫和黑蝴蝶结。",
+        "en": "Long powder-blue hair, golden eyes, thin side braids and black ribbon bows."
+      }
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tags",
+      "name": "人物与姿态",
+      "role": "角色",
+      "positive": [
+        {
+          "text": "1girl"
+        },
+        {
+          "text": "solo"
+        },
+        {
+          "text": "togawa sakiko"
+        },
+        {
+          "text": "bang dream!"
+        },
+        {
+          "text": "ave mujica"
+        },
+        {
+          "text": "seiza"
+        },
+        {
+          "text": "looking up"
+        },
+        {
+          "text": "open palms beneath chin"
+        },
+        {
+          "text": "three-quarter front view."
+        }
+      ]
+    },
+    {
+      "type": "prose",
+      "name": "人物与常服",
+      "role": "角色",
+      "positive": {
+        "en": "{{A}} kneels on old wooden floorboards in her everyday ivory blouse and grey plaid skirt. Long powder-blue hair, black ribbon bows at her temples, amber eyes. Her narrow collar ribbon is tied straight. One ivory cuff has been sewn back on with tiny uneven grey stitches.",
+        "zh": "{{A}}跪在旧木地板上，穿米白上衣和灰格裙。浅蓝长发、黑色发带、金眼。领结端正，一边袖口用灰线细细补过。"
+      }
+    },
+    {
+      "type": "prose",
+      "name": "肘腕与掌心",
+      "role": "自由补充",
+      "positive": {
+        "en": "Her elbows rest lightly on her knees. Her own forearms rise from her lap side by side. She holds both empty palms immediately below her chin, turned upward and a little toward the camera. The little-finger edges almost touch. Her relaxed fingers lie close together and curve gently; the nearer hand is a little lower. Leave her mouth visible.",
+        "zh": "两肘轻靠膝头，两条前臂从膝前向上伸；双掌抬到下巴正下方，掌心向上略朝镜头，小指侧几乎相接，手指松松靠拢微弯，近处的手稍低，露出嘴。"
+      }
+    },
+    {
+      "type": "prose",
+      "name": "眼神与处境",
+      "role": "场景",
+      "positive": {
+        "en": "Her lower lids are heavy. Her brows tilt up faintly at their inner ends and her lips part as though she has started to ask a question, then lost her nerve. She still sits very straight. Her unopened discounted supper rests on an old carton beside a neatly rolled futon.",
+        "zh": "下眼睑透着倦意，眉头内侧微抬，嘴唇张开又犹豫，背仍挺直。旧纸箱上放着未拆的打折便当，旁边是卷好的薄被。"
+      }
+    },
+    {
+      "type": "prose",
+      "name": "近景与雨夜",
+      "role": "光照",
+      "positive": {
+        "en": "The camera looks slightly down from just off center, close enough to see her face and both palms, with her two sleeves visible down to the elbows. Rain beads on the outside of a dark window. A weak lamp warms her cheek; the rest of the cramped room falls into cool blue-grey shadow. Restrained anime linework and natural proportions.",
+        "zh": "近景偏离正中少许，轻轻俯拍，脸、两掌、袖口和肘部都可见。窗外有雨，弱灯照暖脸颊，狭小房间沉在冷蓝灰色阴影里。"
+      }
+    },
+    {
+      "type": "tags",
+      "name": "手部、神态与环境约束",
+      "role": "负面约束",
+      "negative": [
+        "second person",
+        "first-person hands",
+        "arms entering from frame edge",
+        "extra arms",
+        "extra fingers",
+        "fingers splayed wide",
+        "forced smile",
+        "angry eyebrows",
+        "tears",
+        "fisheye",
+        "wet floor",
+        "text",
+        "watermark"
+      ]
+    }
+  ],
+  "parameters": {
+    "width": 896,
+    "height": 1152,
+    "steps": 30,
+    "cfg": 4,
+    "seed": 17853219,
+    "denoise": 1,
+    "sampler_name": "euler",
+    "scheduler": "simple"
+  },
+  "models": {
+    "unet_name": "REED_Anima_XXX_v1.4.safetensors",
+    "clip_name": "qwen_3_06b_base.safetensors",
+    "vae_name": "qwen_image_vae.safetensors"
+  },
+  "notes": "第四轮 · 雨夜未开口"
+}

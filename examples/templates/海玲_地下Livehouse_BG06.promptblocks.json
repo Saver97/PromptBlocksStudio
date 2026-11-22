@@ -1,0 +1,280 @@
+{
+  "format": "prompt-blocks-template",
+  "version": 1,
+  "name": "海玲 · 台下仰拍与琥珀侧光 BG06",
+  "autoIdentity": false,
+  "autoIntroduce": false,
+  "characters": [
+    {
+      "alias": "A",
+      "name": "Umiri",
+      "gender": "female",
+      "identityTags": [
+        "yahata umiri",
+        "bang dream!",
+        "ave mujica"
+      ],
+      "description": {
+        "zh": "深灰色头发，紫色内层和发梢，蓝眼，沉静表情。",
+        "en": "dark grey hair, purple inner hair, violet hair tips, blue eyes, calm expression"
+      }
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tags",
+      "name": "画质与身份",
+      "role": "公共基础",
+      "positive": [
+        "masterpiece",
+        "best quality",
+        "very aesthetic",
+        "1girl",
+        "solo focus",
+        "yahata umiri",
+        "bang dream!",
+        "ave mujica"
+      ],
+      "negative": []
+    },
+    {
+      "type": "tags",
+      "name": "海玲外貌",
+      "role": "角色",
+      "positive": [
+        "dark grey hair",
+        "purple inner hair",
+        "violet hair tips",
+        "blue eyes",
+        "calm expression"
+      ],
+      "negative": []
+    },
+    {
+      "type": "tags",
+      "name": "义眼与改造标签",
+      "role": "角色",
+      "positive": [
+        {
+          "text": "mechanical eye",
+          "weight": 1.25
+        },
+        {
+          "text": "facial mark",
+          "weight": 1.2
+        },
+        "scar across eye",
+        {
+          "text": "scar on chest",
+          "weight": 1.15
+        }
+      ],
+      "negative": []
+    },
+    {
+      "type": "tags",
+      "name": "构图与持琴指天",
+      "role": "自由补充",
+      "positive": [
+        "full body",
+        "standing",
+        {
+          "text": "bass guitar",
+          "weight": 1.25
+        },
+        "guitar strap",
+        {
+          "text": "pointing up",
+          "weight": 1.25
+        },
+        "index finger raised",
+        "right arm up"
+      ],
+      "negative": []
+    },
+    {
+      "type": "tags",
+      "name": "不对称服装与鞋",
+      "role": "服装",
+      "positive": [
+        {
+          "text": "single long sleeve",
+          "weight": 1.25
+        },
+        "asymmetrical clothing",
+        "black crop top",
+        "midriff",
+        "navel",
+        "collarbone",
+        "black cargo pants",
+        "cropped pants",
+        "bare ankles",
+        "black sneakers",
+        "green trim",
+        {
+          "text": "black fingerless gloves",
+          "weight": 1.2
+        },
+        "dark teal accents"
+      ],
+      "negative": []
+    },
+    {
+      "type": "tags",
+      "name": "拥挤地下Livehouse与混色灯光",
+      "role": "场景",
+      "positive": [
+        "audience pov",
+        "low angle",
+        "underground livehouse",
+        "packed cheering crowd",
+        "foreground silhouettes",
+        "stage haze",
+        "violet rim light",
+        "warm sidelight"
+      ],
+      "negative": []
+    },
+    {
+      "type": "prose",
+      "name": "双手动作与袖侧",
+      "role": "自由补充",
+      "positive": {
+        "zh": "{{A}} 站在矮台边沿，四弦贝斯斜挂在腰前。裸露的左臂顺着琴颈，戴手套的左手托琴。黑色长袖包住高举的右臂，右手只伸食指。指尖和双鞋都入画。方领露锁骨，短上衣露脐，工装裤露踝，黑鞋各有一道绿线。",
+        "en": "{{A}} stands at the lip of a low stage, her four-string bass slung across her hips. Her bare LEFT arm follows the neck of the bass; her gloved left hand supports it. Her RIGHT arm in a fitted black cloth sleeve reaches straight overhead, one gloved index finger raised. Keep the fingertip and both shoes inside the frame. Her square-neck crop top leaves the collarbones and navel visible. Black cargo trousers end above her ankles; a thin green stripe runs along each black sneaker."
+      },
+      "negative": {
+        "zh": "",
+        "en": ""
+      }
+    },
+    {
+      "type": "prose",
+      "name": "局部改造位置",
+      "role": "角色",
+      "positive": {
+        "zh": "左眼虹膜是同心圆蓝色玻璃义眼，眼侧一道细银色植入缝反光。锁骨下胸口中央有一道相似短缝，右眼是天然蓝眼。",
+        "en": "Her LEFT iris is a small concentric blue glass lens. A fine silver implant seam beside that eye catches the light. A matching short silver seam sits at the center of her upper chest just below the collarbones. Her right eye is naturally blue."
+      },
+      "negative": {
+        "zh": "",
+        "en": ""
+      }
+    },
+    {
+      "type": "tags",
+      "name": "负面约束",
+      "role": "负面约束",
+      "positive": [],
+      "negative": [
+        "lowres",
+        "worst quality",
+        "low quality",
+        "blurry",
+        "bad anatomy",
+        "bad hands",
+        "extra fingers",
+        "missing fingers",
+        "extra arms",
+        "fused fingers",
+        "extra eyes",
+        "eye on body",
+        "cropped",
+        "out of frame",
+        "weapon",
+        "gun",
+        "rifle",
+        "ammunition",
+        "backpack",
+        "instrument on back",
+        "eyepatch",
+        "mask",
+        "red facial markings",
+        "blood",
+        "open wound",
+        "necklace",
+        "choker",
+        "high collar",
+        "abdominal tattoo",
+        "abdominal circuitry",
+        "mechanical arms",
+        "robotic arm",
+        "arm armor",
+        "metallic sleeve",
+        "mechanical legs",
+        "jacket",
+        "coat",
+        "shorts",
+        "skirt",
+        "boots",
+        "white sleeve",
+        "silver sleeve",
+        "green eyes",
+        "teal eyes",
+        "text",
+        "watermark",
+        "signature",
+        "deserted venue",
+        "sparse audience",
+        "empty room",
+        "abandoned building",
+        "ruin",
+        "rubble",
+        "crumbling ceiling",
+        "garbage heap",
+        "trash mountain",
+        "ripped pants",
+        "torn clothes",
+        "concert hall",
+        "grand stage",
+        "symmetrical spotlights",
+        "centered spotlight",
+        "monochromatic lighting",
+        "yellow color cast",
+        "polished studio",
+        "showroom",
+        "daylight",
+        "audience behind performer",
+        "crowd on stage",
+        "obscured face",
+        "short sleeves",
+        "rolled sleeves",
+        "elbow-length sleeves",
+        "bare hands",
+        "passive audience",
+        "bored spectators",
+        "seated audience",
+        "empty dance floor"
+      ]
+    },
+    {
+      "type": "prose",
+      "name": "观众视角与热烈现场",
+      "role": "场景",
+      "positive": {
+        "zh": "从两名乐迷之间的空隙仰拍。近处肩膀与举手压住画角，后排拳头与指天的动作同拍扬起。旧音箱上方贴着翘角的演出海报。琥珀色侧灯照亮脸颊与琴弦，后方紫灯勾出灰发内层，墙面沉入深蓝。指尖后留一块暗烟。海玲闭唇平静俯看欢呼的人群，脸和贝斯线条清楚，镜头旁的手略虚。",
+        "en": "The camera looks up from a gap between two fans. In the near corners, dark shoulders and cropped hands overlap; beyond them a roomful of fists rises on the same beat as her finger. A strip of torn gig posters peels above a dented amp. One bare amber side lamp picks out her cheek and the strings. A violet tube behind her catches the underside of her grey hair; the back wall recedes into petrol blue. Leave a patch of dark haze behind the pointing hand. Umiri looks calmly down into the roar, lips closed. Crisp ink edges on her face and bass, softer moving hands near the lens."
+      },
+      "negative": {
+        "zh": "",
+        "en": ""
+      }
+    }
+  ],
+  "parameters": {
+    "width": 832,
+    "height": 1216,
+    "steps": 30,
+    "cfg": 4.0,
+    "seed": 202611180103,
+    "denoise": 1.0,
+    "sampler_name": "euler",
+    "scheduler": "simple"
+  },
+  "models": {
+    "unet_name": "REED_Anima_XXX_v1.4.safetensors",
+    "clip_name": "qwen_3_06b_base.safetensors",
+    "vae_name": "qwen_image_vae.safetensors"
+  },
+  "notes": "从 BG05 修订，保留负面、种子及全部采样参数。"
+}

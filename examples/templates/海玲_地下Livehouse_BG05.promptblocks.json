@@ -1,0 +1,300 @@
+{
+  "format": "prompt-blocks-template",
+  "version": 1,
+  "name": "海玲 · 地下Livehouse · 热烈观众视角 BG05",
+  "autoIdentity": false,
+  "autoIntroduce": false,
+  "characters": [
+    {
+      "alias": "A",
+      "name": "Umiri",
+      "gender": "female",
+      "identityTags": [
+        "yahata umiri",
+        "bang dream!",
+        "ave mujica"
+      ],
+      "description": {
+        "zh": "深灰色头发，紫色内层和发梢，蓝眼，沉静表情。",
+        "en": "dark grey hair, purple inner hair, violet hair tips, blue eyes, calm expression"
+      }
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tags",
+      "name": "画质与身份",
+      "role": "公共基础",
+      "positive": [
+        "masterpiece",
+        "best quality",
+        "very aesthetic",
+        "1girl",
+        "solo focus",
+        "yahata umiri",
+        "bang dream!",
+        "ave mujica"
+      ],
+      "negative": []
+    },
+    {
+      "type": "tags",
+      "name": "海玲外貌",
+      "role": "角色",
+      "positive": [
+        "dark grey hair",
+        "purple inner hair",
+        "violet hair tips",
+        "blue eyes",
+        "calm expression"
+      ],
+      "negative": []
+    },
+    {
+      "type": "tags",
+      "name": "义眼与改造标签",
+      "role": "角色",
+      "positive": [
+        {
+          "text": "mechanical eye",
+          "weight": 1.25
+        },
+        {
+          "text": "facial mark",
+          "weight": 1.2
+        },
+        "scar across eye",
+        {
+          "text": "scar on chest",
+          "weight": 1.15
+        }
+      ],
+      "negative": []
+    },
+    {
+      "type": "tags",
+      "name": "构图与持琴指天",
+      "role": "自由补充",
+      "positive": [
+        "full body",
+        "standing",
+        {
+          "text": "bass guitar",
+          "weight": 1.25
+        },
+        "guitar strap",
+        {
+          "text": "pointing up",
+          "weight": 1.25
+        },
+        "index finger raised",
+        "right arm up"
+      ],
+      "negative": []
+    },
+    {
+      "type": "tags",
+      "name": "不对称服装与鞋",
+      "role": "服装",
+      "positive": [
+        {
+          "text": "single long sleeve",
+          "weight": 1.25
+        },
+        "asymmetrical clothing",
+        "black crop top",
+        "midriff",
+        "navel",
+        "collarbone",
+        "black cargo pants",
+        "cropped pants",
+        "bare ankles",
+        "black sneakers",
+        "green trim",
+        {
+          "text": "black fingerless gloves",
+          "weight": 1.2
+        },
+        "dark teal accents"
+      ],
+      "negative": []
+    },
+    {
+      "type": "tags",
+      "name": "拥挤地下Livehouse与混色灯光",
+      "role": "场景",
+      "positive": [
+        "audience pov",
+        "from below",
+        "underground livehouse",
+        {
+          "text": "cheering crowd",
+          "weight": 1.25
+        },
+        "packed audience",
+        "foreground crowd",
+        "raised hands",
+        "clapping",
+        "fists in the air",
+        "energetic concert atmosphere",
+        "low stage",
+        "graffiti",
+        "gig posters",
+        "exposed pipes",
+        "stacked amplifiers",
+        "cables",
+        "haze",
+        {
+          "text": "multicolored lighting",
+          "weight": 1.25
+        },
+        "red light",
+        "green light",
+        "violet light",
+        "uneven lighting"
+      ],
+      "negative": []
+    },
+    {
+      "type": "prose",
+      "name": "双手动作与袖侧",
+      "role": "自由补充",
+      "positive": {
+        "zh": "{{A}} 用肩带将贝斯挂在腰胯前方。左手扶住略向上倾斜的琴颈。右臂笔直举过头顶，只有食指指向天空。抬起的右臂从肩膀到手腕完全包裹在贴身黑色布料长袖中，肘部和前臂均被覆盖，黑色半指手套包住举起的手掌和指节。扶琴颈的左臂从肩膀到手套之间裸露，左手也戴黑色半指手套。短款上衣采用方领，黑色工装裤保持完整、没有破洞。双侧脚踝露在带绿色线条的黑色运动鞋上方。完整保留举起的手和双脚。",
+        "en": "{{A}} carries her bass across the front of her hips. Her LEFT hand supports its neck, angled slightly upward. Her RIGHT arm extends straight overhead, with only the index finger pointing at the sky. The raised RIGHT arm is fully covered by a tight black FABRIC sleeve reaching her wrist. Its elbow and forearm remain covered. A black fingerless glove covers her raised palm and knuckles. The lowered LEFT arm holding the neck is bare from shoulder to glove. A second black fingerless glove covers her left hand on the bass neck. Her cropped top has a square neckline. Her black cargo pants are intact, without tears. Both ankles are bare above black sneakers with green lines. Include the entire raised hand and shoes."
+      },
+      "negative": {
+        "zh": "",
+        "en": ""
+      }
+    },
+    {
+      "type": "prose",
+      "name": "局部改造位置",
+      "role": "角色",
+      "positive": {
+        "zh": "仅左眼为蓝色机械镜片，周围带纤细的银色金属边框。右眼是普通的蓝色人眼。机械眼旁的短切口有银色金属边缘，齐平嵌入皮肤。裸露上胸的锁骨下方中央有一条短横切口，边缘同样为银色金属。这些是小范围、已经愈合的植入接口。手臂、腹部和颈部其他位置保持自然、未经改造的皮肤。",
+        "en": "Only her LEFT eye is a blue mechanical lens, with a narrow silver-metal rim. Her right eye is an ordinary blue human eye. A short incision beside the mechanical eye has SILVER METAL edges embedded flush in the skin. One short horizontal incision lies on the exposed upper chest, centered below the collarbones; its edges are also SILVER METAL. These are small healed implant seams. Her arms, abdomen and neck otherwise have natural unmodified skin."
+      },
+      "negative": {
+        "zh": "",
+        "en": ""
+      }
+    },
+    {
+      "type": "tags",
+      "name": "负面约束",
+      "role": "负面约束",
+      "positive": [],
+      "negative": [
+        "lowres",
+        "worst quality",
+        "low quality",
+        "blurry",
+        "bad anatomy",
+        "bad hands",
+        "extra fingers",
+        "missing fingers",
+        "extra arms",
+        "fused fingers",
+        "extra eyes",
+        "eye on body",
+        "cropped",
+        "out of frame",
+        "weapon",
+        "gun",
+        "rifle",
+        "ammunition",
+        "backpack",
+        "instrument on back",
+        "eyepatch",
+        "mask",
+        "red facial markings",
+        "blood",
+        "open wound",
+        "necklace",
+        "choker",
+        "high collar",
+        "abdominal tattoo",
+        "abdominal circuitry",
+        "mechanical arms",
+        "robotic arm",
+        "arm armor",
+        "metallic sleeve",
+        "mechanical legs",
+        "jacket",
+        "coat",
+        "shorts",
+        "skirt",
+        "boots",
+        "white sleeve",
+        "silver sleeve",
+        "green eyes",
+        "teal eyes",
+        "text",
+        "watermark",
+        "signature",
+        "deserted venue",
+        "sparse audience",
+        "empty room",
+        "abandoned building",
+        "ruin",
+        "rubble",
+        "crumbling ceiling",
+        "garbage heap",
+        "trash mountain",
+        "ripped pants",
+        "torn clothes",
+        "concert hall",
+        "grand stage",
+        "symmetrical spotlights",
+        "centered spotlight",
+        "monochromatic lighting",
+        "yellow color cast",
+        "polished studio",
+        "showroom",
+        "daylight",
+        "audience behind performer",
+        "crowd on stage",
+        "obscured face",
+        "short sleeves",
+        "rolled sleeves",
+        "elbow-length sleeves",
+        "bare hands",
+        "passive audience",
+        "bored spectators",
+        "seated audience",
+        "empty dance floor"
+      ]
+    },
+    {
+      "type": "prose",
+      "name": "观众视角与热烈现场",
+      "role": "场景",
+      "positive": {
+        "zh": "镜头位于正在营业的赛博朋克地下摇滚俱乐部里，挤在热情观众中的前几排，略微仰视小型抬高平台上的 {{A}}。大量重叠观众占据下方前景和两侧边缘，密集人群横向延伸。观众明显跟随音乐互动：许多手臂向上挥动，有人做摇滚手势、举手拍掌、跟着节奏跳动；侧面可见张嘴欢呼的表情，少数手机屏幕在手臂间闪亮。捕捉人群运动中的瞬间，轻微动态模糊仅用于观众的手。保持到 {{A}} 的脸、贝斯和指天手势之间的视线通道，她依然表情沉静、姿势清楚。观众在台前。场地有磨损但正常使用，完整深色墙面覆盖层叠演出海报与涂鸦，天花板有外露管道，还有吸音板和旧音箱；线缆、少量杯子和空罐构成适度杂乱。红、绿、紫色小灯从不同方向穿过烟雾，形成不规则重叠光斑、彩色阴影和欢呼面孔上的亮面反光。灯光不排成整齐对称图案，人物面部仍能在混合反光中辨认。整个空间喧闹、闷热、紧密，充满现场摇滚的热情。",
+        "en": "The camera is several rows INSIDE A PACKED, ECSTATIC AUDIENCE at an operating underground cyberpunk rock club, looking slightly upward toward {{A}} on a modest raised platform. MANY overlapping spectators fill the lower foreground and side edges, with dense rows extending across the room. The crowd is visibly responding to the music: numerous arms pump upward, hands form rock horns, people clap overhead and jump to the beat. Faces glimpsed in profile have open mouths cheering toward the performer. A few raised phone screens glimmer between hands. Catch the crowd mid-motion, with slight motion blur on audience hands only. Leave a sightline to {{A}}'s face, bass and upward-pointing hand; she keeps her composed expression and clear pose. The audience is in front of the stage. The worn but functioning venue has intact dark walls covered in layered gig posters and scuffed graffiti, exposed ceiling pipes, acoustic panels and battered speaker stacks. Cable bundles, a few cups and empty cans provide moderate clutter. Mismatched small RED, GREEN and VIOLET lamps throw irregular overlapping patches through smoky air, with colored shadows and bright reflections on cheering faces. Avoid an orderly spotlight pattern; keep her face readable in mixed reflected light. The atmosphere feels loud, hot, intimate and overflowing with live-rock energy."
+      },
+      "negative": {
+        "zh": "",
+        "en": ""
+      }
+    }
+  ],
+  "parameters": {
+    "width": 832,
+    "height": 1216,
+    "steps": 30,
+    "cfg": 4.0,
+    "seed": 202611180103,
+    "denoise": 1.0,
+    "sampler_name": "euler",
+    "scheduler": "simple"
+  },
+  "models": {
+    "unet_name": "REED_Anima_XXX_v1.4.safetensors",
+    "clip_name": "qwen_3_06b_base.safetensors",
+    "vae_name": "qwen_image_vae.safetensors"
+  },
+  "notes": "BG05：按用户修正加入适度旧乱的正常营业地下livehouse、密集热情观众、台下人群视角和不规则红绿紫灯光。保留R05-04种子202611180103和原采样参数，强化右长袖与双手半指手套。纯文生图，因此人物构图仍有变化；机械义眼及银色切口并未精确落实。"
+}

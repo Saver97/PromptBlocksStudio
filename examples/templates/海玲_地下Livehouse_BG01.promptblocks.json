@@ -1,0 +1,256 @@
+{
+  "format": "prompt-blocks-template",
+  "version": 1,
+  "name": "海玲 · 地下Livehouse · BG01",
+  "autoIdentity": false,
+  "autoIntroduce": false,
+  "characters": [
+    {
+      "alias": "A",
+      "name": "Umiri",
+      "gender": "female",
+      "identityTags": [
+        "yahata umiri",
+        "bang dream!",
+        "ave mujica"
+      ],
+      "description": {
+        "zh": "深灰色头发，紫色内层和发梢，蓝眼，沉静表情。",
+        "en": "dark grey hair, purple inner hair, violet hair tips, blue eyes, calm expression"
+      }
+    }
+  ],
+  "blocks": [
+    {
+      "type": "tags",
+      "name": "画质与身份",
+      "role": "公共基础",
+      "positive": [
+        "masterpiece",
+        "best quality",
+        "very aesthetic",
+        "1girl",
+        "solo focus",
+        "yahata umiri",
+        "bang dream!",
+        "ave mujica"
+      ],
+      "negative": []
+    },
+    {
+      "type": "tags",
+      "name": "海玲外貌",
+      "role": "角色",
+      "positive": [
+        "dark grey hair",
+        "purple inner hair",
+        "violet hair tips",
+        "blue eyes",
+        "calm expression"
+      ],
+      "negative": []
+    },
+    {
+      "type": "tags",
+      "name": "义眼与改造标签",
+      "role": "角色",
+      "positive": [
+        {
+          "text": "mechanical eye",
+          "weight": 1.25
+        },
+        {
+          "text": "facial mark",
+          "weight": 1.2
+        },
+        "scar across eye",
+        {
+          "text": "scar on chest",
+          "weight": 1.15
+        }
+      ],
+      "negative": []
+    },
+    {
+      "type": "tags",
+      "name": "构图与持琴指天",
+      "role": "自由补充",
+      "positive": [
+        "full body",
+        "standing",
+        {
+          "text": "bass guitar",
+          "weight": 1.25
+        },
+        "guitar strap",
+        {
+          "text": "pointing up",
+          "weight": 1.25
+        },
+        "index finger raised",
+        "right arm up"
+      ],
+      "negative": []
+    },
+    {
+      "type": "tags",
+      "name": "不对称服装与鞋",
+      "role": "服装",
+      "positive": [
+        "single sleeve",
+        "asymmetrical clothing",
+        "black crop top",
+        "midriff",
+        "navel",
+        "collarbone",
+        "black cargo pants",
+        "cropped pants",
+        "bare ankles",
+        "black sneakers",
+        "green trim",
+        "fingerless gloves",
+        "dark teal accents"
+      ],
+      "negative": []
+    },
+    {
+      "type": "tags",
+      "name": "地下演出场地",
+      "role": "场景",
+      "positive": [
+        "underground livehouse",
+        "cyberpunk",
+        "crowded basement venue",
+        "small concert stage",
+        "background crowd",
+        "graffiti",
+        "exposed pipes",
+        "amplifiers",
+        "tangled cables",
+        "concert lighting",
+        "colored spotlights",
+        "haze"
+      ],
+      "negative": []
+    },
+    {
+      "type": "prose",
+      "name": "双手动作与袖侧",
+      "role": "自由补充",
+      "positive": {
+        "zh": "{{A}} 用肩带将贝斯挂在腰胯前方。左手扶住略向上倾斜的琴颈，右手食指笔直指向天空。抬起的手臂从肩膀到手腕都包裹在贴身黑色布料长袖中。扶琴颈的另一条手臂从肩膀到手套之间完全裸露。短款上衣采用方领。双侧脚踝露在带绿色线条的黑色运动鞋上方。完整保留举起的手和双脚。",
+        "en": "{{A}} carries her bass across the front of her hips. Her LEFT hand supports its neck, angled slightly upward. Her RIGHT index finger points straight at the sky. The raised arm wears a fitted black FABRIC sleeve from shoulder to wrist. The lowered arm holding the neck is bare from shoulder to glove. Her cropped top has a square neckline. Both ankles are bare above black sneakers with green lines. Include the entire raised hand and shoes."
+      },
+      "negative": {
+        "zh": "",
+        "en": ""
+      }
+    },
+    {
+      "type": "prose",
+      "name": "局部改造位置",
+      "role": "角色",
+      "positive": {
+        "zh": "仅左眼为蓝色机械镜片，周围带纤细的银色金属边框。右眼是普通的蓝色人眼。机械眼旁的短切口有银色金属边缘，齐平嵌入皮肤。裸露上胸的锁骨下方中央有一条短横切口，边缘同样为银色金属。这些是小范围、已经愈合的植入接口。手臂、腹部和颈部其他位置保持自然、未经改造的皮肤。",
+        "en": "Only her LEFT eye is a blue mechanical lens, with a narrow silver-metal rim. Her right eye is an ordinary blue human eye. A short incision beside the mechanical eye has SILVER METAL edges embedded flush in the skin. One short horizontal incision lies on the exposed upper chest, centered below the collarbones; its edges are also SILVER METAL. These are small healed implant seams. Her arms, abdomen and neck otherwise have natural unmodified skin."
+      },
+      "negative": {
+        "zh": "",
+        "en": ""
+      }
+    },
+    {
+      "type": "tags",
+      "name": "负面约束",
+      "role": "负面约束",
+      "positive": [],
+      "negative": [
+        "lowres",
+        "worst quality",
+        "low quality",
+        "blurry",
+        "bad anatomy",
+        "bad hands",
+        "extra fingers",
+        "missing fingers",
+        "extra arms",
+        "fused fingers",
+        "extra eyes",
+        "eye on body",
+        "cropped",
+        "out of frame",
+        "weapon",
+        "gun",
+        "rifle",
+        "ammunition",
+        "backpack",
+        "instrument on back",
+        "eyepatch",
+        "mask",
+        "red facial markings",
+        "blood",
+        "open wound",
+        "necklace",
+        "choker",
+        "high collar",
+        "abdominal tattoo",
+        "abdominal circuitry",
+        "mechanical arms",
+        "robotic arm",
+        "arm armor",
+        "metallic sleeve",
+        "mechanical legs",
+        "jacket",
+        "coat",
+        "shorts",
+        "skirt",
+        "boots",
+        "white sleeve",
+        "silver sleeve",
+        "green eyes",
+        "teal eyes",
+        "text",
+        "watermark",
+        "signature",
+        "empty background",
+        "white background",
+        "clean showroom",
+        "polished studio",
+        "outdoor street",
+        "daylight",
+        "symmetrical lighting",
+        "foreground crowd",
+        "obscured face"
+      ]
+    },
+    {
+      "type": "prose",
+      "name": "嘈杂地下Livehouse与混色灯光",
+      "role": "场景",
+      "positive": {
+        "zh": "{{A}} 在脏乱的赛博朋克地下livehouse里、狭窄低矮的舞台上演出。身后是烟雾中举手的人群剪影。低矮的混凝土天花板铺满外露管道和廉价吊挂灯架。污渍墙面贴着撕破的演出海报，覆盖粗糙涂鸦；磨损音箱和设备箱挤在舞台边缘。运动鞋周围的旧地板上散着纠缠的音频线、踩瘪的饮料罐和少量丢弃的杯子。品红、青蓝与暗黄灯光从不同角度穿过烟雾，破碎光斑与深阴影交错。场地显得吵闹、闷热、临时拼凑且拥挤。柔和正面补光保持脸、贝斯和举起的食指清楚；人群和场地留在身后，不遮住身体。",
+        "en": "{{A}} performs on a cramped low stage inside a dirty underground cyberpunk livehouse. Behind her, a dense crowd of dark silhouettes raises hands amid smoke. Low concrete ceilings carry exposed pipes and cheap dangling light rigs. Torn gig posters and rough graffiti cover stained walls; battered speaker stacks and road cases crowd the stage edges. Tangled audio cables, crushed drink cans and a few discarded cups litter the scuffed floor around her sneakers. Clashing magenta, cyan and sickly amber spotlights cut through smoky air at different angles, with broken patches of light and deep shadow. The space feels loud, sweaty, improvised and overcrowded. Keep her face, bass and raised index finger clearly readable with a soft frontal fill; the crowd and venue remain behind her, with no figure covering her body."
+      },
+      "negative": {
+        "zh": "",
+        "en": ""
+      }
+    }
+  ],
+  "parameters": {
+    "width": 832,
+    "height": 1216,
+    "steps": 30,
+    "cfg": 4.0,
+    "seed": 202611180103,
+    "denoise": 1.0,
+    "sampler_name": "euler",
+    "scheduler": "simple"
+  },
+  "models": {
+    "unet_name": "REED_Anima_XXX_v1.4.safetensors",
+    "clip_name": "qwen_3_06b_base.safetensors",
+    "vae_name": "qwen_image_vae.safetensors"
+  },
+  "notes": "基于用户选中的R05-04，保持seed202611180103及原采样设置，纯文生图增加地下Livehouse背景。solo改为solo focus允许背景观众。场景是新增块，关闭该块并将背景标签恢复simple dark background可回到原提示词。当前是首张场景试图，不代表义眼及银色切口已完善。"
+}
