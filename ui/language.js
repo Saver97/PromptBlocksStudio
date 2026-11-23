@@ -195,6 +195,19 @@ function editCharacters(){let list,auto,autoIdentity;const rows=[];
    const gender=selectField(card,'性别（用于译文检查）',[['unknown','未指定'],['female','女性'],['male','男性'],['other','其他']],c.gender||'unknown');
    const pair=translatorPair(card,'外貌描述',c.sourceDescription||'',c.description||'',c.translatedFrom||'',false);
    const note=el('p','muted','常用角色会一次填入完整姓名、身份标签和已校对的英文外貌。外貌只有主动点击翻译时才会重译；原创角色可不填身份标签。文字组装不等于区域绑定或锁脸。');card.append(note);
+   // 从本方案的“角色”标签块填入：身份标签取块内已启用的正面词；能对上常用角色时，一并填入英文姓名、性别和外貌。
+   const roleBlocks=scheme().blocks.filter(x=>x.role==='角色'&&x.kind!=='prose'&&x.positive.some(t=>t.enabled));
+   const fromBlock=selectField(card,'从本方案角色块填入',[['',roleBlocks.length?'选择角色块…':'本方案没有角色标签块'],...roleBlocks.map(x=>[x.id,x.name+' · '+x.positive.filter(t=>t.enabled).length+' 个词'])],'');fromBlock.disabled=!roleBlocks.length;
+   const blockNote=el('p','muted');blockNote.hidden=true;preset.closest('label').after(fromBlock.closest('label'),blockNote);
+   fromBlock.onchange=()=>{const src=roleBlocks.find(x=>x.id===fromBlock.value);if(!src)return;
+    const tags=[...new Set(src.positive.filter(t=>t.enabled).map(t=>t.text.replace(/_/g,' ').trim()).filter(Boolean))];
+    // 内置角色块的约定：第 1 个词是英文角色名，第 2 个词是作品名，其余是外貌和服装（角色块自己会输出，不再复制）。
+    const hit=knownCharacters.find(k=>{const own=Blocks.identityTokens(k)[0];return own&&tags.some(t=>t.toLowerCase()===own.toLowerCase());});
+    identity.value=hit?hit.identityTags:tags.slice(0,2).join(', ');
+    name.value=hit?hit.name:tags[0].replace(/[a-z]/g,c=>c.toUpperCase());
+    if(hit){gender.value=hit.gender;pair.source.value=hit.sourceDescription;pair.english.value=hit.description;pair.english.dispatchEvent(new Event('input'));}
+    blockNote.textContent='已从角色块“'+src.name+'”填入：姓名 '+name.value+'，身份标签 '+identity.value+'。'+(hit?'已识别为常用角色'+hit.label+'，外貌一并填入。':'外貌和服装由角色块本身输出，这里不重复填写；姓名如不准确可直接修改。');
+    blockNote.hidden=false;};
    preset.onchange=()=>{if(preset.value==='')return;const p=knownCharacters[Number(preset.value)];name.value=p.name;identity.value=p.identityTags;gender.value=p.gender;pair.source.value=p.sourceDescription;pair.english.value=p.description;pair.english.dispatchEvent(new Event('input'));};
    const syncChoice=()=>{const i=knownCharacters.findIndex(p=>p.name===name.value&&p.identityTags===identity.value&&p.gender===gender.value&&p.sourceDescription===pair.source.value&&p.description===pair.english.value);preset.value=i<0?'':String(i);};
    for(const input of [name,identity,gender,pair.source,pair.english])input.addEventListener('input',syncChoice);
