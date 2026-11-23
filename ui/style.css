@@ -178,8 +178,15 @@ details.menu>summary:hover,details.menu[open]>summary{background:var(--soft-hove
 .block{transition:border-color .15s,background-color .15s,box-shadow .15s}
 html:root .block:not(.selected):hover{border-color:var(--line-strong)}
 
-/* 搜索高亮跟随配色，不再是刺眼的亮黄 */
-.block-find-hit{background:color-mix(in srgb,var(--gold) 42%,transparent);color:inherit;border-radius:3px}
+/* 块内搜索高亮：荧光笔黄底 + 深色字（对比度约 14:1），在十套配色上都清楚；浅色配色的描边用更深的金色 */
+:root{--hit-bg:#ffd84d;--hit-ink:#1a1400;--hit-ring:#ffd84d}
+:root:is([data-theme="paper"],[data-theme="mist"],[data-theme="sakura"],[data-theme="xuanzhi"]){--hit-ring:#8f6600}
+.block-find-hit{background:var(--hit-bg);color:var(--hit-ink);font-weight:700;border-radius:3px;padding:0 1px;box-shadow:0 0 0 1px var(--hit-ring)}
+/* 标签里有命中：整个标签加一圈描边；同一块里没命中的标签变淡，长列表里一眼找到 */
+.token:has(.block-find-hit){box-shadow:0 0 0 2px var(--hit-ring);opacity:1}
+.block:has(.token .block-find-hit) .token:not(:has(.block-find-hit)){opacity:.38}
+/* 输入框里的命中：高亮层盖在文字上面，只用淡黄填充 + 清晰描边，不遮住文字 */
+.block-find-paint .block-find-hit{background:color-mix(in srgb,var(--hit-bg) 30%,transparent);color:transparent;font-weight:inherit;padding:0;box-shadow:0 0 0 1.5px var(--hit-ring)}
 
 /* 过渡动画 */
 #toast{transform:translate(-50%,10px);transition:opacity .18s,transform .18s}
