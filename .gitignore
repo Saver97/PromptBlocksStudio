@@ -24,6 +24,7 @@ dist/
 dist-*/
 artifacts/
 models/
+hunyuan/
 model-source/
 runtime-wheels/
 pip-*/

@@ -363,3 +363,18 @@ dialog.tutorial-dialog[open]{display:flex}
 /* 霓虹夜：主按钮带一点霓虹光晕 */
 :root[data-theme="neon"] :is(button.primary,.segmented .active){box-shadow:0 0 14px -2px color-mix(in srgb,var(--accent) 60%,transparent)}
 :root[data-theme="neon"] .mark{box-shadow:0 0 16px -4px var(--accent)}
+
+/* 自然语言翻译：引擎选择 */
+#modalBody .engine-picker{flex-direction:row;align-items:center;gap:6px;font-weight:400;font-size:12px;color:var(--muted)}
+#modalBody .engine-picker select{width:auto;padding:5px 8px;font-size:12px}
+
+/* 混元安装指引 */
+#modalBody .engine-install{padding:4px 8px;font-size:12px;background:transparent;color:var(--accent);text-decoration:underline;text-underline-offset:3px}
+dialog.hunyuan-guide{width:min(620px,92vw)}
+.hunyuan-guide-body{display:flex;flex-direction:column;gap:14px;padding:18px 22px;max-height:calc(88vh - 140px);overflow:auto;font-size:13px;line-height:1.75}
+.guide-step{display:flex;gap:12px;padding:14px;border-radius:12px;background:var(--soft)}
+.guide-num{flex:0 0 26px;height:26px;border-radius:50%;background:var(--accent);color:var(--accent-ink);font-weight:700;display:flex;align-items:center;justify-content:center}
+.guide-text{display:flex;flex-direction:column;gap:6px;min-width:0}
+.guide-text p{margin:0}
+.guide-folder{font:12px Consolas,monospace;background:var(--input-bg);padding:6px 8px;border-radius:6px;overflow-wrap:anywhere;user-select:all}
+.guide-status{margin:0}

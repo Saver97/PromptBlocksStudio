@@ -37,6 +37,8 @@ function render(){
  $('targetName').textContent=selected()?'加入：'+selected().name:'先新建或选择一个块';
  $('positiveTarget').classList.toggle('active',targetSide==='positive');$('negativeTarget').classList.toggle('active',targetSide==='negative');
  renderLanguage();renderLibrary();renderBlocks();renderOutput();
+ // 按钮文字跟随实际状态：有任一块展开时显示“全部折叠”，全部折叠后显示“全部展开”。
+ const canFold=scheme().blocks.some(b=>!b.collapsed||BlockSearch.isOpen(b));$('foldAll').textContent=canFold||!scheme().blocks.length?'全部折叠':'全部展开';$('foldAll').disabled=!scheme().blocks.length;
 }
 function setGroups(){const cat=$('category').value;const names=[...new Set(library.filter(e=>!cat||e.category===cat).map(e=>e.group))];$('group').replaceChildren(new Option('全部子分类',''),...names.map(n=>new Option(n,n)));}
 function syncLibrary(){
@@ -202,11 +204,13 @@ function dropOnBlock(event, target) {
   commit(() => { blocks.splice(to, 0, blocks.splice(from, 1)[0]); });
  }
 }
+// 焦点进入某个块里的输入框/按钮时，只切换选中高亮和左侧“加入”目标，不重绘积木区，避免打断正在输入的内容。
+function selectBlockQuietly(id){if(id===selectedId||!scheme().blocks.some(b=>b.id===id))return;selectedId=id;document.querySelectorAll('#blocks .block').forEach(c=>c.classList.toggle('selected',c.dataset.blockId===id));$('targetName').textContent=selected()?'加入：'+selected().name:'先新建或选择一个块';renderLibrary();}
 function renderBlocks(){
  const frag=document.createDocumentFragment();
  for(const b of scheme().blocks){
   const card=el('article','block'+(selectedId===b.id?' selected':'')+(!b.enabled?' disabled':''));card.dataset.blockId=b.id;card.dataset.role=b.role;
-  card.onclick=e=>{if(e.target.closest('button,input,select,textarea,label'))return;selectedId=b.id;render();};
+  card.onclick=e=>{if(e.target.closest('button,input,select,textarea,label'))return;selectedId=b.id;render();};card.addEventListener('focusin',()=>selectBlockQuietly(b.id));
   const collapsed=b.collapsed&&!BlockSearch.isOpen(b);
   const head=el('div','block-head'),handle=btn('⋮⋮','拖动排序 '+b.name,()=>{selectedId=b.id;render();},'drag');handle.draggable=true;
   handle.ondragstart = event => startBlockDrag(event, b);

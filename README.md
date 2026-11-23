@@ -184,6 +184,24 @@ models/opus-mt-zh-en-int8/
 
 请保留原模型说明和许可，并注明 INT8 转换。仅下载 Hugging Face 原始权重后改名不等于完成转换。源码运行时该目录位于项目根目录；打包后由 PyInstaller 放在 `_internal/models/opus-mt-zh-en-int8/`。没有模型时仍可使用词库及 API 功能。
 
+### 可选：混元 HY-MT1.5 中译英（自然语言块）
+
+自然语言编辑框的「中文 → 英文」旁有「引擎」选项，可选 **混元（本地，更准）**。它使用腾讯 [HY-MT1.5-1.8B](https://huggingface.co/tencent/HY-MT1.5-1.8B-GGUF) 翻译模型，通过 [llama.cpp](https://github.com/ggml-org/llama.cpp) 的 `llama-server` 只用 CPU 运行，不占生图显存。首次翻译时自动在后台启动（约数秒），空闲 10 分钟或关闭程序时自动退出。标签词翻译仍使用 OPUS-MT。
+
+实测中，混元翻译动作描述的左右手、主客关系与完整度明显好于 OPUS-MT，但速度较慢（短句约 1～2 秒）；翻译前同样会把 `{{A}}`、`{{B}}` 临时替换为英文名，译文角色代号对不上时不会自动采用。
+
+组件不随仓库或安装包提供，按以下结构放在 EXE 同级（源码运行时为项目根目录）的 `hunyuan/` 文件夹：
+
+```text
+hunyuan/
+  HY-MT1.5-1.8B-Q4_K_M.gguf      从 tencent/HY-MT1.5-1.8B-GGUF 下载（约 1.13 GB）
+  llama/
+    llama-server.exe             llama.cpp 发布页中的 llama-b*-bin-win-cpu-x64.zip 解压内容
+    *.dll
+```
+
+未放置组件时，该选项显示为「混元（未安装）」，旁边会出现「如何安装？」：点开后可一键打开模型和 llama.cpp 的下载页、自动创建并打开 `hunyuan/` 文件夹，放好文件后点「重新检测」即可启用，无需重启程序。llama.cpp 最新的正式版页面有时只有源码，请在[发布列表](https://github.com/ggml-org/llama.cpp/releases)里选一个带 Assets 文件列表的版本。其他功能不受影响。重新打包时请和 `data/` 一样保留 `hunyuan/`。
+
 ## 数据与升级
 
 源码运行时数据在项目下 `data/`；打包版在 EXE 同级的 `data/`：
@@ -195,7 +213,7 @@ models/opus-mt-zh-en-int8/
 | `translation.json` | 翻译设置与 DPAPI 加密的 Key |
 | `desktop.log`、`webview/` | 日志与桌面 WebView 状态 |
 
-这些目录已被 Git 忽略。更新或重新打包前备份 `data/`，不要用空目录覆盖它。退出前请先保存编辑弹窗中的草稿；工作区保存不等于弹窗草稿保存。
+这些目录已被 Git 忽略。更新或重新打包前备份 `data/`（以及可选的 `hunyuan/`），不要用空目录覆盖它。退出前请先保存编辑弹窗中的草稿；工作区保存不等于弹窗草稿保存。
 
 2026.11.22 归档版的示例工作区包含 43 个方案和 110 个组合块，可用「导入备份」打开。导入时可选择合并，也可用「替换」完整载入快照。组合块可同时按用途和 IP 筛选。部分词条、方案和组合块含成人内容。
 

@@ -60,9 +60,9 @@ class Api:
     def cancel_request(self, request_id):
         return self._translator.requests.cancel(request_id)
 
-    def translate(self, text, request_id=None):
+    def translate(self, text, request_id=None, engine=None):
         try:
-            return self._translator.requests.run(request_id, self._translator.translate, text)
+            return self._translator.requests.run(request_id, self._translator.translate, text, engine)
         except RequestCancelled:
             return {'cancelled': True}
         except ReturnedContentError as exc:
@@ -70,7 +70,8 @@ class Api:
         except ValueError as exc:
             return {'error': str(exc)}
         except Exception:
-            return {'error': '翻译失败，请检查接口设置。'}
+            logging.exception('Translation failed')
+            return {'error': '翻译失败，请检查接口设置或混元组件。'}
 
     def translate_to_chinese(self, items, kind, request_id=None):
         try:
@@ -124,6 +125,29 @@ class Api:
                 shutil.copy2(target, DATA_DIR / 'workspace.previous.json')
             os.replace(pending, target)
         return True
+
+    def hunyuan_status(self):
+        try:
+            return self._translator.hunyuan.status()
+        except Exception:
+            logging.exception('Could not read Hunyuan status')
+            return {'available': False, 'error': '无法读取混元组件状态。'}
+
+    def open_hunyuan_folder(self):
+        try:
+            return self._translator.hunyuan.open_folder()
+        except OSError:
+            logging.exception('Could not open Hunyuan folder')
+            return {'error': '无法打开安装文件夹。'}
+
+    def open_download(self, key):
+        from hunyuan_translation import DOWNLOADS
+        import webbrowser
+        url = DOWNLOADS.get(key) if isinstance(key, str) else None
+        if not url:
+            return {'error': '未知下载地址。'}
+        webbrowser.open(url)
+        return {'opened': True}
 
     def copy(self, text):
         pyperclip.copy(str(text))
@@ -183,6 +207,10 @@ def main():
                 api.save(state)
         except Exception:
             logging.exception('Could not save workspace on close')
+        try:
+            api._translator.hunyuan.stop()
+        except Exception:
+            logging.exception('Could not stop Hunyuan translator')
         allow_close = True
         window.destroy()
 
@@ -218,6 +246,13 @@ def main():
                         if cancelled:
                             result['cancelledRequest'] = cancelled
                             break
+                if '--hunyuan-smoke-test' in sys.argv:
+                    try:
+                        result['hunyuan'] = api._translator.hunyuan.translate('{{B}} 用右手握住 {{A}} 的左手。')
+                    except Exception as exc:
+                        result['hunyuan'] = {'error': str(exc)}
+                    finally:
+                        api._translator.hunyuan.stop()
                 if '--offline-smoke-test' in sys.argv:
                     result['offline'] = api._translator.offline.translate('{{B}} 用右手握住 {{A}} 的左手。')
                     result['offlineDevice'] = api._translator.offline.translator.device

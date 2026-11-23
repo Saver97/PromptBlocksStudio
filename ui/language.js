@@ -97,17 +97,53 @@ async function translateBlockLabels(block, button) {
  } catch (error) { if (button.isConnected) toast(error.message); }
  finally { button.disabled = false; button.textContent = '翻译词条'; }
 }
+// 自然语言“中文 → 英文”可选引擎：按翻译设置，或本地混元 HY-MT（更准、稍慢）。选择记在本机。
+let hunyuanCheck=null;
+function hunyuanReady(){if(!hunyuanCheck)hunyuanCheck=(native&&window.pywebview.api.translation_settings?window.pywebview.api.translation_settings().then(s=>!!(s&&s.hunyuan_available)).catch(()=>false):Promise.resolve(false));return hunyuanCheck;}
+function proseEngineSelect(label){
+ const wrap=el('label','engine-picker'),select=el('select','engine-select');wrap.append(el('span','','引擎'),select);
+ select.setAttribute('aria-label','翻译引擎 '+label);select.title='“按翻译设置”使用翻译设置里选的引擎；混元只用电脑处理器，不占显卡，首次使用需启动约 10 秒。';
+ const def=new Option('按翻译设置','default'),hy=new Option('混元（本地，更准）','local-hunyuan');select.append(def,hy);
+ select.value=localStorage.getItem('pb-prose-engine')||'default';
+ select.onchange=()=>{localStorage.setItem('pb-prose-engine',select.value);document.querySelectorAll('.engine-select').forEach(s=>{if(s!==select&&!s.querySelector('option[value=local-hunyuan]').disabled)s.value=select.value;});};
+ const install=btn('如何安装？','查看混元翻译的安装方法',()=>hunyuanInstallGuide(),'engine-install');install.hidden=true;wrap.append(install);
+ hunyuanReady().then(ok=>{if(ok)return;hy.disabled=true;hy.textContent='混元（未安装）';install.hidden=false;if(select.value==='local-hunyuan')select.value='default';});
+ return {wrap,select};
+}
+// 混元未安装时的安装指引：组件不随程序提供，引导用户自行下载并放进 hunyuan 文件夹，放好后可直接重新检测。
+function hunyuanInstallGuide(){
+ const api=native?window.pywebview.api:null,dialog=el('dialog','hunyuan-guide'),form=el('div','hunyuan-guide-body');
+ const head=el('div','dialog-heading');head.append(el('h2','','安装混元翻译（可选）'),btn('×','关闭安装指引',()=>dialog.close()));
+ const status=el('p','muted guide-status'),folderText=el('code','guide-folder','（请在桌面程序中查看）');
+ const open=key=>async()=>{if(!api||!api.open_download){toast('请在桌面程序中打开下载地址');return;}const r=await api.open_download(key);if(r&&r.error)toast(r.error);};
+ const step=(n,title,detail,actions)=>{const box=el('div','guide-step');box.append(el('span','guide-num',String(n)));const text=el('div','guide-text');text.append(el('strong','',title));for(const d of detail)text.append(typeof d==='string'?el('p','muted',d):d);const row=el('div','language-actions');row.append(...actions);text.append(row);box.append(text);return box;};
+ form.append(el('p','','混元只用电脑处理器运行，不占显卡显存，翻译动作描述比默认的本地翻译更准。组件约 1.2GB，不随程序提供，需要自己下载后放进安装文件夹。'),
+  step(1,'下载翻译模型',['文件名 HY-MT1.5-1.8B-Q4_K_M.gguf，约 1.13GB。'],[btn('打开下载地址','打开混元模型下载地址',open('model')),btn('模型主页','打开混元模型主页',open('model_page'))]),
+  step(2,'下载运行工具 llama.cpp',['在发布页里找一个带文件列表（Assets）的版本，下载名字里同时有 win、cpu、x64 的 zip，约 25MB。','不要选带 cuda、vulkan 的显卡版，那会占用出图显存。'],[btn('打开发布页','打开 llama.cpp 发布页',open('llama'))]),
+  step(3,'放进安装文件夹',[folderText,'模型文件直接放进这个文件夹；zip 解压到里面的 llama 文件夹，让 llama-server.exe 位于 llama 文件夹里。'],[btn('打开安装文件夹','打开混元安装文件夹',async()=>{if(!api||!api.open_hunyuan_folder){toast('请在桌面程序中打开');return;}const r=await api.open_hunyuan_folder();if(r&&r.error)toast(r.error);})]),
+  status);
+ const actions=el('div','dialog-actions'),recheck=btn('重新检测','重新检测混元组件',()=>refresh(true),'primary');actions.append(btn('关闭','关闭安装指引',()=>dialog.close()),recheck);
+ async function refresh(announce){
+  if(!api||!api.hunyuan_status){status.textContent='网页预览无法检测，请在桌面程序中使用。';return;}
+  const s=await api.hunyuan_status();if(s.folder)folderText.textContent=s.folder;
+  status.textContent=s.error||('模型：'+(s.has_model?'✓ 已找到 '+s.model:'✗ 未找到')+'　　运行工具：'+(s.has_server?'✓ 已找到':'✗ 未找到 llama\llama-server.exe'));
+  if(s.available){hunyuanCheck=Promise.resolve(true);document.querySelectorAll('.engine-select option[value=local-hunyuan]').forEach(o=>{o.disabled=false;o.textContent='混元（本地，更准）';});document.querySelectorAll('.engine-install').forEach(b=>{b.hidden=true;});if(announce){toast('混元已就绪，可以在“引擎”里选择');dialog.close();}}
+  else if(announce)toast('还没找到完整的混元组件，请按步骤放好后再检测');
+ }
+ dialog.append(head,form,actions);dialog.addEventListener('close',()=>dialog.remove());document.body.append(dialog);dialog.showModal();refresh(false);
+}
 function translatorPair(body,label,sourceValue,textValue,translatedFrom='',placeholders=true,side='positive'){
  const wrap=el('div','translation-pair'),row=el('div','form-row');const source=field(row,label+' · 中文',sourceValue,'textarea'),english=field(row,label+' · 英文输出',textValue,'textarea');wrap.append(row);
  source.placeholder=placeholders?'例如：{{B}} 用右手握住 {{A}} 的左手。':'例如：浅蓝色长发，金色眼睛';english.placeholder='点击翻译，或粘贴助手返回的英文';
  const controls=el('div','language-actions'),status=el('span','muted'),diagnostics=el('div','translation-checks'),pair={source,english,translatedFrom};
  const returned=el('div','translation-return polish-panel');returned.hidden=true;const returnedStatus=el('p','muted'),returnedText=field(returned,label+' · 翻译返回内容','','textarea');returned.prepend(returnedStatus);let returnedSource='',returnedEnglish='';
  const returnedActions=el('div','language-actions');returnedActions.append(btn('采用返回内容','采用翻译返回 '+label,()=>{if(!returnedText.value.trim()){status.textContent='返回内容不能为空。';return;}if(source.value!==returnedSource){status.textContent='中文原文已变动，返回内容可复制，请重新翻译后再采用。';return;}english.value=returnedText.value;english.dispatchEvent(new Event('input'));status.textContent='已手动采用返回内容，请核对角色引用。';}),btn('复制返回内容','复制翻译返回 '+label,()=>copyReturnedText(returnedText.value)));returned.append(returnedActions);
+ const engineChoice=placeholders?proseEngineSelect(label):null;
  const translate=btn('中文 → 英文','翻译 '+label,async()=>{
   const original=source.value,previousEnglish=english.value;if(!original.trim()){toast('请先填写中文');return;}if(!native||!window.pywebview.api.translate){status.textContent='先设置翻译接口，或复制翻译请求给助手。';return;}
-  const task=pair.requests.start();if(!task)return;status.textContent='正在翻译…';
+  const engine=engineChoice&&engineChoice.select.value!=='default'?engineChoice.select.value:null;const task=pair.requests.start();if(!task)return;status.textContent=engine==='local-hunyuan'?'混元翻译中…（首次使用需先启动，约 10 秒）':'正在翻译…';
   try{
-   const result=await window.pywebview.api.translate(original,task.id);if(!source.isConnected||!pair.requests.accepts(task))return;if(result.cancelled){status.textContent='已停止请求。';return;}if(result.error)throw Error(result.error);
+   const result=await window.pywebview.api.translate(original,task.id,engine);if(!source.isConnected||!pair.requests.accepts(task))return;if(result.cancelled){status.textContent='已停止请求。';return;}if(result.error)throw Error(result.error);
    returnedSource=original;returnedEnglish=previousEnglish;returnedText.value=result.text||result.raw||'';returned.hidden=false;
    const stale=source.value!==original||english.value!==previousEnglish;
    returnedStatus.textContent=[...(result.warnings||[]),stale?'编辑内容已变动，返回内容已保留，未自动覆盖。':''].filter(Boolean).join('\n')||'接口返回内容，可修改或复制。';
@@ -134,6 +170,7 @@ function translatorPair(body,label,sourceValue,textValue,translatedFrom='',place
   } catch (error) { if (source.isConnected && pair.requests.accepts(task)) status.textContent = error.message; }
   finally { pair.requests.finish(task); }
  });
+ if(engineChoice)controls.append(engineChoice.wrap);
  controls.append(translate,reverse,btn('复制翻译请求','复制翻译请求 '+label,()=>copyTranslationRequest(source.value)),status);wrap.append(controls,diagnostics);
  pair.requests=llmRequestControls(controls,status);pair.requests.track(translate);pair.requests.track(reverse);wrap.append(returned);
  if(placeholders)addPolishControls(wrap,controls,pair,label,side,status);

@@ -13,6 +13,7 @@ import threading
 from urllib import error, parse, request
 import truststore
 from offline_translation import OfflineTranslator, EnglishToChinese
+from hunyuan_translation import HunyuanTranslator
 from request_control import Requests
 
 
@@ -63,10 +64,11 @@ def protect(text, decrypt=False):
 
 
 class Translator:
-    def __init__(self, directory):
+    def __init__(self, directory, hunyuan_root=None):
         self.path = Path(directory) / 'translation.json'
         self.lock = threading.Lock()
         self.offline = OfflineTranslator()
+        self.hunyuan = HunyuanTranslator(hunyuan_root or Path(directory).parent / 'hunyuan')
         self.english_to_chinese = EnglishToChinese()
         self.requests = Requests()
 
@@ -89,7 +91,7 @@ class Translator:
             data = self._read()
         return {'engine': self._engine(data), 'local_available': self.offline.available(),
                 'endpoint': data.get('endpoint', ''), 'model': data.get('model', ''),
-                'key_set': bool(data.get('key_encrypted'))}
+                'key_set': bool(data.get('key_encrypted')), 'hunyuan_available': self.hunyuan.available()}
 
     def save(self, value):
         if not isinstance(value, dict):
@@ -122,9 +124,14 @@ class Translator:
             os.replace(pending, self.path)
         return {'saved': True}
 
-    def translate(self, text):
+    def translate(self, text, engine=None):
         if not isinstance(text, str) or not text.strip() or len(text) > 12000:
             raise ValueError('请填写 1～12000 字的中文描述。')
+        if engine == 'local-hunyuan':
+            control = getattr(self.requests.local, 'control', None)
+            return self.hunyuan.translate(text, control.check if control else (lambda: None))
+        if engine not in (None, '', 'default'):
+            raise ValueError('未知翻译引擎。')
         with self.lock:
             data = self._read()
         if self._engine(data) == 'local-opus':

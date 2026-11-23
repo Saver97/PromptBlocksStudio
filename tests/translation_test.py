@@ -34,7 +34,11 @@ class TranslationTests(unittest.TestCase):
                     t.translate('中文')
                 endpoint = f'http://127.0.0.1:{server.server_port}/v1'
                 t.save({'endpoint': endpoint + '/chat/completions', 'model': 'test-model', 'key': 'unit-test-secret'})
-                self.assertEqual(t.settings(), {'endpoint': endpoint, 'model': 'test-model', 'key_set': True, 'engine': 'api', 'local_available': False})
+                self.assertEqual(t.settings(), {'endpoint': endpoint, 'model': 'test-model', 'key_set': True, 'engine': 'api', 'local_available': False, 'hunyuan_available': False})
+                with self.assertRaisesRegex(ValueError, '混元翻译组件未安装'):
+                    t.translate('中文', 'local-hunyuan')
+                with self.assertRaisesRegex(ValueError, '未知翻译引擎'):
+                    t.translate('中文', 'unknown-engine')
                 self.assertNotIn('unit-test-secret', t.path.read_text())
                 source = '{{B}} 握住 {{A}} 的左手。'
                 self.assertEqual(t.translate(source)['text'], answer['text'])
