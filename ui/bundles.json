@@ -4042,7 +4042,7 @@
       },
       {
         "text": "badge",
-        "label": "badge",
+        "label": "徽章",
         "weight": 1,
         "enabled": true
       },
@@ -6442,13 +6442,13 @@
       },
       {
         "text": "uniform",
-        "label": "uniform",
+        "label": "制服",
         "weight": 1,
         "enabled": true
       },
       {
         "text": "badge",
-        "label": "badge",
+        "label": "徽章",
         "weight": 1,
         "enabled": true
       },
@@ -6904,7 +6904,7 @@
       },
       {
         "text": "wet clothes",
-        "label": "wet clothes",
+        "label": "湿衣服",
         "weight": 1,
         "enabled": true
       },
@@ -8014,7 +8014,7 @@
       },
       {
         "text": "fog",
-        "label": "fog",
+        "label": "雾",
         "weight": 1,
         "enabled": true
       },
@@ -8290,7 +8290,7 @@
       },
       {
         "text": "floating hair",
-        "label": "floating hair",
+        "label": "飘动的头发",
         "weight": 1,
         "enabled": true
       },
@@ -8794,7 +8794,7 @@
     "tokens": [
       {
         "text": "full body",
-        "label": "full body",
+        "label": "全身|画出了全身",
         "weight": 1.21,
         "enabled": true
       },
@@ -8920,7 +8920,7 @@
       },
       {
         "text": "floating hair",
-        "label": "floating hair",
+        "label": "飘动的头发",
         "weight": 1,
         "enabled": true
       },
@@ -9388,7 +9388,7 @@
       },
       {
         "text": "full body",
-        "label": "full body",
+        "label": "全身|画出了全身",
         "weight": 1.1,
         "enabled": true
       },
@@ -9424,7 +9424,7 @@
       },
       {
         "text": "floating hair",
-        "label": "floating hair",
+        "label": "飘动的头发",
         "weight": 1,
         "enabled": true
       },
@@ -9508,7 +9508,7 @@
       },
       {
         "text": "bodysuit",
-        "label": "bodysuit",
+        "label": "连体紧身衣",
         "weight": 1,
         "enabled": true
       },
@@ -9574,7 +9574,7 @@
       },
       {
         "text": "dragon wings",
-        "label": "dragon wings",
+        "label": "龙翼",
         "weight": 1,
         "enabled": true
       },
@@ -10264,7 +10264,7 @@
       },
       {
         "text": "colored inner hair",
-        "label": "colored inner hair",
+        "label": "内层挑染",
         "weight": 1,
         "enabled": true
       },
@@ -10324,7 +10324,7 @@
       },
       {
         "text": "colored inner hair",
-        "label": "colored inner hair",
+        "label": "内层挑染",
         "weight": 1,
         "enabled": true
       },
@@ -10366,7 +10366,7 @@
       },
       {
         "text": "blank stare",
-        "label": "blank stare",
+        "label": "无主的眼神",
         "weight": 1,
         "enabled": true
       },
@@ -10498,7 +10498,7 @@
       },
       {
         "text": "floating hair",
-        "label": "floating hair",
+        "label": "飘动的头发",
         "weight": 1,
         "enabled": true
       },
@@ -10792,7 +10792,7 @@
       },
       {
         "text": "light smile",
-        "label": "light smile",
+        "label": "浅笑",
         "weight": 1.21,
         "enabled": true
       },
@@ -10816,7 +10816,7 @@
       },
       {
         "text": "angel wings",
-        "label": "angel wings",
+        "label": "天使的翅膀",
         "weight": 1,
         "enabled": true
       },
@@ -11074,7 +11074,7 @@
       },
       {
         "text": "bandages",
-        "label": "bandages",
+        "label": "绷带",
         "weight": 1,
         "enabled": true
       },
@@ -11182,7 +11182,7 @@
       },
       {
         "text": "bodysuit",
-        "label": "bodysuit",
+        "label": "连体紧身衣",
         "weight": 1,
         "enabled": true
       },
@@ -11218,7 +11218,7 @@
       },
       {
         "text": "rainbow hair",
-        "label": "rainbow hair",
+        "label": "彩虹发",
         "weight": 1,
         "enabled": true
       },
@@ -12148,7 +12148,7 @@
       },
       {
         "text": "photorealistic",
-        "label": "photorealistic",
+        "label": "很像照片的画",
         "weight": 1.4,
         "enabled": true
       },
@@ -13174,7 +13174,7 @@
       },
       {
         "text": "wet clothes",
-        "label": "wet clothes",
+        "label": "湿衣服",
         "weight": 1,
         "enabled": true
       },
@@ -14284,7 +14284,7 @@
       },
       {
         "text": "fog",
-        "label": "fog",
+        "label": "雾",
         "weight": 1,
         "enabled": true
       },
@@ -14560,7 +14560,7 @@
       },
       {
         "text": "floating hair",
-        "label": "floating hair",
+        "label": "飘动的头发",
         "weight": 1,
         "enabled": true
       },
@@ -15064,7 +15064,7 @@
     "tokens": [
       {
         "text": "full body",
-        "label": "full body",
+        "label": "全身|画出了全身",
         "weight": 1.21,
         "enabled": true
       },
@@ -15190,7 +15190,7 @@
       },
       {
         "text": "floating hair",
-        "label": "floating hair",
+        "label": "飘动的头发",
         "weight": 1,
         "enabled": true
       },
@@ -15658,7 +15658,7 @@
       },
       {
         "text": "full body",
-        "label": "full body",
+        "label": "全身|画出了全身",
         "weight": 1.1,
         "enabled": true
       },
@@ -15694,7 +15694,7 @@
       },
       {
         "text": "floating hair",
-        "label": "floating hair",
+        "label": "飘动的头发",
         "weight": 1,
         "enabled": true
       },
@@ -15778,7 +15778,7 @@
       },
       {
         "text": "bodysuit",
-        "label": "bodysuit",
+        "label": "连体紧身衣",
         "weight": 1,
         "enabled": true
       },
@@ -15844,7 +15844,7 @@
       },
       {
         "text": "dragon wings",
-        "label": "dragon wings",
+        "label": "龙翼",
         "weight": 1,
         "enabled": true
       },
@@ -16534,7 +16534,7 @@
       },
       {
         "text": "colored inner hair",
-        "label": "colored inner hair",
+        "label": "内层挑染",
         "weight": 1,
         "enabled": true
       },
@@ -16594,7 +16594,7 @@
       },
       {
         "text": "colored inner hair",
-        "label": "colored inner hair",
+        "label": "内层挑染",
         "weight": 1,
         "enabled": true
       },
@@ -16636,7 +16636,7 @@
       },
       {
         "text": "blank stare",
-        "label": "blank stare",
+        "label": "无主的眼神",
         "weight": 1,
         "enabled": true
       },
@@ -16768,7 +16768,7 @@
       },
       {
         "text": "floating hair",
-        "label": "floating hair",
+        "label": "飘动的头发",
         "weight": 1,
         "enabled": true
       },
@@ -17062,7 +17062,7 @@
       },
       {
         "text": "light smile",
-        "label": "light smile",
+        "label": "浅笑",
         "weight": 1.21,
         "enabled": true
       },
@@ -17086,7 +17086,7 @@
       },
       {
         "text": "angel wings",
-        "label": "angel wings",
+        "label": "天使的翅膀",
         "weight": 1,
         "enabled": true
       },
@@ -17344,7 +17344,7 @@
       },
       {
         "text": "bandages",
-        "label": "bandages",
+        "label": "绷带",
         "weight": 1,
         "enabled": true
       },
@@ -17452,7 +17452,7 @@
       },
       {
         "text": "bodysuit",
-        "label": "bodysuit",
+        "label": "连体紧身衣",
         "weight": 1,
         "enabled": true
       },
@@ -17488,7 +17488,7 @@
       },
       {
         "text": "rainbow hair",
-        "label": "rainbow hair",
+        "label": "彩虹发",
         "weight": 1,
         "enabled": true
       },
@@ -17716,7 +17716,7 @@
       },
       {
         "text": "fellatio",
-        "label": "fellatio",
+        "label": "口交",
         "weight": 1,
         "enabled": true
       }
@@ -17734,7 +17734,7 @@
     "tokens": [
       {
         "text": "breast_sucking",
-        "label": "breast_sucking",
+        "label": "吸奶",
         "weight": 1,
         "enabled": true
       },
@@ -18298,7 +18298,7 @@
       },
       {
         "text": "wet clothes",
-        "label": "wet clothes",
+        "label": "湿衣服",
         "weight": 1,
         "enabled": true
       },
@@ -19408,7 +19408,7 @@
       },
       {
         "text": "fog",
-        "label": "fog",
+        "label": "雾",
         "weight": 1,
         "enabled": true
       },
@@ -19684,7 +19684,7 @@
       },
       {
         "text": "floating hair",
-        "label": "floating hair",
+        "label": "飘动的头发",
         "weight": 1,
         "enabled": true
       },
@@ -20188,7 +20188,7 @@
     "tokens": [
       {
         "text": "full body",
-        "label": "full body",
+        "label": "全身|画出了全身",
         "weight": 1.21,
         "enabled": true
       },
@@ -20314,7 +20314,7 @@
       },
       {
         "text": "floating hair",
-        "label": "floating hair",
+        "label": "飘动的头发",
         "weight": 1,
         "enabled": true
       },
@@ -20782,7 +20782,7 @@
       },
       {
         "text": "full body",
-        "label": "full body",
+        "label": "全身|画出了全身",
         "weight": 1.1,
         "enabled": true
       },
@@ -20818,7 +20818,7 @@
       },
       {
         "text": "floating hair",
-        "label": "floating hair",
+        "label": "飘动的头发",
         "weight": 1,
         "enabled": true
       },
@@ -20902,7 +20902,7 @@
       },
       {
         "text": "bodysuit",
-        "label": "bodysuit",
+        "label": "连体紧身衣",
         "weight": 1,
         "enabled": true
       },
@@ -20968,7 +20968,7 @@
       },
       {
         "text": "dragon wings",
-        "label": "dragon wings",
+        "label": "龙翼",
         "weight": 1,
         "enabled": true
       },
@@ -21658,7 +21658,7 @@
       },
       {
         "text": "colored inner hair",
-        "label": "colored inner hair",
+        "label": "内层挑染",
         "weight": 1,
         "enabled": true
       },
@@ -21718,7 +21718,7 @@
       },
       {
         "text": "colored inner hair",
-        "label": "colored inner hair",
+        "label": "内层挑染",
         "weight": 1,
         "enabled": true
       },
@@ -21760,7 +21760,7 @@
       },
       {
         "text": "blank stare",
-        "label": "blank stare",
+        "label": "无主的眼神",
         "weight": 1,
         "enabled": true
       },
@@ -21892,7 +21892,7 @@
       },
       {
         "text": "floating hair",
-        "label": "floating hair",
+        "label": "飘动的头发",
         "weight": 1,
         "enabled": true
       },
@@ -22186,7 +22186,7 @@
       },
       {
         "text": "light smile",
-        "label": "light smile",
+        "label": "浅笑",
         "weight": 1.21,
         "enabled": true
       },
@@ -22210,7 +22210,7 @@
       },
       {
         "text": "angel wings",
-        "label": "angel wings",
+        "label": "天使的翅膀",
         "weight": 1,
         "enabled": true
       },
@@ -22468,7 +22468,7 @@
       },
       {
         "text": "bandages",
-        "label": "bandages",
+        "label": "绷带",
         "weight": 1,
         "enabled": true
       },
@@ -22576,7 +22576,7 @@
       },
       {
         "text": "bodysuit",
-        "label": "bodysuit",
+        "label": "连体紧身衣",
         "weight": 1,
         "enabled": true
       },
@@ -22612,7 +22612,7 @@
       },
       {
         "text": "rainbow hair",
-        "label": "rainbow hair",
+        "label": "彩虹发",
         "weight": 1,
         "enabled": true
       },
@@ -23056,7 +23056,7 @@
       },
       {
         "text": "raised eyebrow",
-        "label": "raised eyebrow",
+        "label": "扬起的眉毛",
         "weight": 1,
         "enabled": true
       }
@@ -23104,7 +23104,7 @@
       },
       {
         "text": "full body",
-        "label": "full body",
+        "label": "全身|画出了全身",
         "weight": 1,
         "enabled": true
       },
@@ -23176,7 +23176,7 @@
     "tokens": [
       {
         "text": "backlighting",
-        "label": "backlighting",
+        "label": "逆光",
         "weight": 1,
         "enabled": true
       },

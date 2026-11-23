@@ -199,8 +199,18 @@ const Blocks = (() => {
   function validateCharacters(list) {if(list===undefined)return;if(!Array.isArray(list))throw Error('角色定义格式无效');const used=new Set();for(const c of list){if(!c||typeof c.alias!=='string'||!/^[A-Z][A-Z0-9_]{0,15}$/.test(c.alias)||used.has(c.alias)||typeof c.name!=='string'||!c.name.trim()||typeof c.description!=='string'||typeof (c.sourceDescription??'')!=='string'||typeof (c.translatedFrom??'')!=='string'||typeof (c.identityTags??'')!=='string'||!['unknown','female','male','other'].includes(c.gender??'unknown')||/[{}]/.test(c.name+c.description+(c.identityTags||'')))throw Error('角色代号必须唯一，名字、身份标签和描述不能嵌套变量，性别选项须有效');used.add(c.alias);}}
   function languageFields(b) {return {kind:b.kind||'tags',positiveText:b.positiveText||'',negativeText:b.negativeText||'',positiveSource:b.positiveSource||'',negativeSource:b.negativeSource||'',positiveTranslatedFrom:b.positiveTranslatedFrom||'',negativeTranslatedFrom:b.negativeTranslatedFrom||''};}
   function validate(s) {
-    if(s?.theme!==undefined&&!['forest','midnight','violet','ember','paper','mist'].includes(s.theme))throw Error('未知配色');
+    if(s?.theme!==undefined&&!['forest','midnight','violet','ember','graphite','neon','paper','mist','sakura','xuanzhi'].includes(s.theme))throw Error('未知配色');
     if(!s || s.version!==2 || !Array.isArray(s.schemes) || !s.schemes.length || !Array.isArray(s.templates) || !Array.isArray(s.favorites) || !['comfy','nai','plain'].includes(s.format)) throw Error('不是有效的分块版工作区');
+    const customWords = s.customWords === undefined ? [] : s.customWords;
+    if (!Array.isArray(customWords)) throw Error('自定义词库格式无效');
+    const wordKeys = new Set();
+    for (const word of customWords) {
+      if (!word || ['text','label','group'].some(key => typeof word[key] !== 'string' || !word[key].trim()) || typeof word.negative !== 'boolean')
+        throw Error('自定义词条缺少原文、名称、子分类或用途');
+      const key = norm(word.text);
+      if (wordKeys.has(key)) throw Error('自定义词库中已有相同提示词');
+      wordKeys.add(key);
+    }
     const ids=new Set();
     function identity(x){if(!x || typeof x.id!=='string' || !x.id || ids.has(x.id) || typeof x.name!=='string' || !x.name.trim())throw Error('名称或编号无效、重复');ids.add(x.id);}
     function tokens(items){if(!Array.isArray(items)||items.some(t=>!t||typeof t.text!=='string'||!t.text.trim()||typeof t.label!=='string'||!Number.isFinite(t.weight)||Math.abs(t.weight)>20||typeof t.enabled!=='boolean'))throw Error('词条或权重无效');}
@@ -212,7 +222,7 @@ const Blocks = (() => {
     for (const item of [...s.schemes, ...s.templates]) {
       if (item.parameters?.extra_seeds !== undefined) schemeSeeds(item.parameters);
     }
-    const upgraded=copy(s);for(const p of [...upgraded.schemes,...upgraded.templates]){if(p.characters)p.characters=upgradeCharacters(p.characters);for(const b of p.blocks||[])if(b.characters)b.characters=upgradeCharacters(b.characters);}return upgraded;
+    const upgraded=copy(s);upgraded.customWords ??= [];for(const p of [...upgraded.schemes,...upgraded.templates]){if(p.characters)p.characters=upgradeCharacters(p.characters);for(const b of p.blocks||[])if(b.characters)b.characters=upgradeCharacters(b.characters);}return upgraded;
   }
   function fromTemplate(t) {return {...block(t.name,t.role,t.positive,t.negative),...languageFields(t),weight:t.weight??1,sourceTemplateId:t.id,recipe:t.recipe||''};}
   function duplicate(b) {return {...copy(b),id:id(),name:b.name+' · 副本'};}

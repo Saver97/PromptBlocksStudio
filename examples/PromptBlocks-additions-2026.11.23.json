@@ -1,0 +1,1784 @@
+{
+  "version": 2,
+  "activeSchemeId": "b1cb630c-0ecf-47ae-842c-a1bd87e66c08",
+  "schemes": [
+    {
+      "id": "b1cb630c-0ecf-47ae-842c-a1bd87e66c08",
+      "name": "双人纸箱捆绑",
+      "blocks": [
+        {
+          "id": "c896d3a9-9191-489f-b382-4bed6ce9be9d",
+          "name": "公共负面约束",
+          "role": "负面约束",
+          "enabled": true,
+          "weight": 1,
+          "collapsed": false,
+          "positive": [],
+          "negative": [
+            {
+              "text": "lowres",
+              "label": "低分辨率",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "worst quality",
+              "label": "worst quality",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "low quality",
+              "label": "低质量",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "bad anatomy",
+              "label": "错误的解剖",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "bad hands",
+              "label": "坏手",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "extra fingers",
+              "label": "extra fingers",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "missing fingers",
+              "label": "缺少手指",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "extra limbs",
+              "label": "extra limbs",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "cropped head",
+              "label": "cropped head",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "watermark",
+              "label": "水印",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "signature",
+              "label": "签名",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "text",
+              "label": "文字",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "jpeg artifacts",
+              "label": "jpeg artifacts",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "lingerie",
+              "label": "lingerie",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "bra",
+              "label": "bra",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "bare shoulders",
+              "label": "赤肩",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "cleavage",
+              "label": "乳沟",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "revealing clothes",
+              "label": "revealing clothes",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "transparent clothing",
+              "label": "transparent clothing",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "topless",
+              "label": "topless",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "Bent legs",
+              "label": "Bent legs",
+              "weight": 1,
+              "enabled": true
+            }
+          ],
+          "kind": "tags",
+          "positiveText": "",
+          "negativeText": "",
+          "positiveSource": "",
+          "negativeSource": "",
+          "positiveTranslatedFrom": "",
+          "negativeTranslatedFrom": "",
+          "sourceTemplateId": "76629e45-e391-49d3-be89-605eac404c6a",
+          "recipe": ""
+        },
+        {
+          "id": "be38a1f1-7ec1-44be-9294-8bc2d9622109",
+          "name": "公共画质与构图",
+          "role": "公共基础",
+          "enabled": true,
+          "weight": 1,
+          "collapsed": false,
+          "positive": [
+            {
+              "text": "masterpiece",
+              "label": "masterpiece",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "best quality",
+              "label": "best quality",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "looking at viewer",
+              "label": "看向观众",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "full_body",
+              "label": "全身|画出了全身",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "socks",
+              "label": "短袜",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "fine_fabric_emphasis",
+              "label": "精细的面料感|超还原的丝袜",
+              "weight": 1,
+              "enabled": true
+            }
+          ],
+          "negative": [],
+          "kind": "tags",
+          "positiveText": "",
+          "negativeText": "",
+          "positiveSource": "",
+          "negativeSource": "",
+          "positiveTranslatedFrom": "",
+          "negativeTranslatedFrom": "",
+          "sourceTemplateId": "4633b338-8b06-4ace-9342-66b9c062d9fa",
+          "recipe": ""
+        },
+        {
+          "id": "fe7e8c15-9d89-4ec6-85a9-ebd80a7a676b",
+          "name": "自然语言描述",
+          "role": "自由补充",
+          "enabled": false,
+          "weight": 1,
+          "collapsed": false,
+          "positive": [],
+          "negative": [],
+          "kind": "prose",
+          "positiveText": "{{A}} was left to the left, {{B}} to the right, {{A}} to the right, her foot cushion to the back of {{B}} ' s head, {{B}} ' s foot to the mouth of {{A}} and {{A}} to the feet of {{B}}.",
+          "negativeText": "{{A}} and {{B}}'s head are in the same direction, {{A}} and {{B}}'s feet are in the same direction.",
+          "positiveSource": "{{A}}她在左边面向左，{{B}}她在右边面向右，{{A}}她的脚垫在{{B}}的后脑勺下面，{{B}}的脚伸进{{A}}她的嘴里，{{A}}含住{{B}}的脚。",
+          "negativeSource": "{{A}}和{{B}}的头在同一个方向，{{A}}和{{B}}的脚在同一个方向",
+          "positiveTranslatedFrom": "{{A}}她在左边面向左，{{B}}她在右边面向右，{{A}}她的脚垫在{{B}}的后脑勺下面，{{B}}的脚伸进{{A}}她的嘴里，{{A}}含住{{B}}的脚。",
+          "negativeTranslatedFrom": "{{A}}和{{B}}的头在同一个方向，{{A}}和{{B}}的脚在同一个方向"
+        },
+        {
+          "id": "ca8dcb3c-c9c5-4271-8221-e637c50458ad",
+          "name": "双人纸箱捆绑",
+          "role": "自由补充",
+          "enabled": true,
+          "weight": 1,
+          "collapsed": false,
+          "positive": [
+            {
+              "text": "multiple girls",
+              "label": "多个女孩",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "rope",
+              "label": "绳子",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "shibari",
+              "label": "什巴里语Name",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "2girls",
+              "label": "2女孩",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "bdsm",
+              "label": "页: 1",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "bound",
+              "label": "绑住的",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "bondage",
+              "label": "捆绑play",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "breasts",
+              "label": "乳房",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "blush",
+              "label": "脸红",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "looking at viewer",
+              "label": "看向观众",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "in box",
+              "label": "框中",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "in container",
+              "label": "在容器中",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "box",
+              "label": "框中",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "shibari over clothes",
+              "label": "着衣绑缚",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "sweat",
+              "label": "流汗",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "cardboard box",
+              "label": "纸板框",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "on back",
+              "label": "躺",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "closed mouth",
+              "label": "闭嘴",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "lying",
+              "label": "躺着的",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "bangs",
+              "label": "刘海",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "crotch rope",
+              "label": "裆部勒着的绳子",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "heavy breathing",
+              "label": "重呼吸，可能没用",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "restrained",
+              "label": "忍耐",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "arms behind back",
+              "label": "手放在身后",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "pen",
+              "label": "笔",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "kneehighs",
+              "label": "中筒袜",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "large breasts",
+              "label": "巨乳",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "thighs",
+              "label": "大腿",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "full body",
+              "label": "全身|画出了全身",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "pencil",
+              "label": "铅笔",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "hair between eyes",
+              "label": "眼间头发",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "red rope",
+              "label": "红绳子",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "from above",
+              "label": "从上方↘",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "bound arms",
+              "label": "手臂被束缚",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "paper",
+              "label": "纸张",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "bound wrists",
+              "label": "绑定手腕",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "upside-down",
+              "label": "倒立",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "eraser",
+              "label": "橡皮",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "legs",
+              "label": "双腿",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "steaming body",
+              "label": "发情",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "skindentation",
+              "label": "皮肤缩进",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "bound legs",
+              "label": "腿被束缚",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "breast bondage",
+              "label": "乳房绑缚",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "between breasts",
+              "label": "两胸之间",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "notepad",
+              "label": "笔记本",
+              "weight": 1,
+              "enabled": true
+            }
+          ],
+          "negative": []
+        },
+        {
+          "id": "a8ad61e0-b53a-48c7-9e4b-15bad5e90c38",
+          "name": "雷电将军",
+          "role": "角色",
+          "enabled": true,
+          "weight": 1,
+          "collapsed": false,
+          "positive": [
+            {
+              "text": "raiden shogun",
+              "label": "雷电将军",
+              "enabled": true,
+              "weight": 1
+            },
+            {
+              "text": "genshin impact",
+              "label": "原神",
+              "enabled": true,
+              "weight": 1
+            },
+            {
+              "text": "long violet braid",
+              "label": "紫色长辫",
+              "enabled": true,
+              "weight": 1
+            },
+            {
+              "text": "violet eyes",
+              "label": "紫色眼睛",
+              "enabled": true,
+              "weight": 1
+            },
+            {
+              "text": "beauty mark under the right eye",
+              "label": "本人右眼下的泪痣",
+              "enabled": true,
+              "weight": 1
+            },
+            {
+              "text": "calm commanding gaze",
+              "label": "平静而有威严的目光",
+              "enabled": true,
+              "weight": 1
+            },
+            {
+              "text": "Daily clothing",
+              "label": "日常服饰",
+              "weight": 1,
+              "enabled": true
+            }
+          ],
+          "negative": [],
+          "kind": "tags",
+          "positiveText": "",
+          "negativeText": "",
+          "positiveSource": "",
+          "negativeSource": "",
+          "positiveTranslatedFrom": "",
+          "negativeTranslatedFrom": "",
+          "sourceTemplateId": "4ee7a926-25fc-4181-b0a1-5f9596091e01",
+          "recipe": ""
+        },
+        {
+          "id": "bb6da9f8-67c0-4686-870e-b92a494559e5",
+          "name": "八重神子",
+          "role": "角色",
+          "enabled": true,
+          "weight": 1,
+          "collapsed": false,
+          "positive": [
+            {
+              "text": "yae miko",
+              "label": "八重神子",
+              "enabled": true,
+              "weight": 1
+            },
+            {
+              "text": "genshin impact",
+              "label": "原神",
+              "enabled": true,
+              "weight": 1
+            },
+            {
+              "text": "long pink hair",
+              "label": "粉色长发",
+              "enabled": true,
+              "weight": 1
+            },
+            {
+              "text": "drooping fox ears",
+              "label": "下垂的狐耳",
+              "enabled": true,
+              "weight": 1
+            },
+            {
+              "text": "violet eyes",
+              "label": "紫色眼睛",
+              "enabled": true,
+              "weight": 1
+            },
+            {
+              "text": "knowing smile",
+              "label": "含着笑意的从容神态",
+              "enabled": true,
+              "weight": 1
+            },
+            {
+              "text": "Daily clothing",
+              "label": "日常服饰",
+              "weight": 1,
+              "enabled": true
+            }
+          ],
+          "negative": [],
+          "kind": "tags",
+          "positiveText": "",
+          "negativeText": "",
+          "positiveSource": "",
+          "negativeSource": "",
+          "positiveTranslatedFrom": "",
+          "negativeTranslatedFrom": "",
+          "sourceTemplateId": "0f3a6870-a88c-4385-a5d9-eee376f3099f",
+          "recipe": ""
+        },
+        {
+          "id": "dbb4f344-615e-41e2-8325-cf85d66c39ce",
+          "name": "自然语言描述 · 副本",
+          "role": "自由补充",
+          "enabled": true,
+          "weight": 1,
+          "collapsed": false,
+          "positive": [],
+          "negative": [],
+          "kind": "prose",
+          "positiveText": "{{A}} is on the right to the left, {{B}} is on the left to the right, {{A}} is on the right, her legs are on the waist of {{B}}, and {{B}} is on the feet of {{A}}.",
+          "negativeText": "{{A}}'s head is in the same direction as {{B}}'s head, {{A}}'s feet and {{B}}'s feet are in the same direction.",
+          "positiveSource": "{{A}}她在右边面向左，{{B}}她在左边面向右，{{A}}她的双腿夹住{{B}}的腰部，{{B}}伸头闻{{A}}的脚。",
+          "negativeSource": "{{A}}的头和{{B}}的头在同一个方向，{{A}}的脚和{{B}}的脚在同一个方向",
+          "positiveTranslatedFrom": "{{A}}她在右边面向左，{{B}}她在左边面向右，{{A}}她的双腿夹住{{B}}的腰部，{{B}}伸头闻{{A}}的脚。",
+          "negativeTranslatedFrom": "{{A}}的头和{{B}}的头在同一个方向，{{A}}的脚和{{B}}的脚在同一个方向"
+        }
+      ],
+      "characters": [
+        {
+          "alias": "A",
+          "name": "Raiden Shogun",
+          "identityTags": "raiden shogun, genshin impact",
+          "gender": "female",
+          "description": "long violet braid, violet eyes, beauty mark under the right eye, calm commanding gaze",
+          "sourceDescription": "紫色长辫、紫色眼睛、本人右眼下的泪痣、平静而有威严的目光",
+          "translatedFrom": "紫色长辫、紫色眼睛、本人右眼下的泪痣、平静而有威严的目光"
+        },
+        {
+          "alias": "B",
+          "name": "Yae Miko",
+          "identityTags": "yae miko, genshin impact",
+          "gender": "female",
+          "description": "long pink hair, drooping fox ears, violet eyes, knowing smile",
+          "sourceDescription": "粉色长发、下垂的狐耳、紫色眼睛、含着笑意的从容神态",
+          "translatedFrom": "粉色长发、下垂的狐耳、紫色眼睛、含着笑意的从容神态"
+        }
+      ],
+      "parameters": {
+        "seed": 122995365235294
+      },
+      "models": {
+        "unet_name": "",
+        "clip_name": "",
+        "vae_name": ""
+      },
+      "notes": "",
+      "autoIntroduce": true,
+      "autoIdentity": true
+    },
+    {
+      "id": "1a6ca32f-84be-46da-9807-caf54c0ed08a",
+      "name": "玻璃箱束缚",
+      "blocks": [
+        {
+          "id": "fd3218a4-4c1d-44d2-82f6-63d723e7355f",
+          "name": "画质与摄影",
+          "role": "公共基础",
+          "enabled": true,
+          "weight": 1,
+          "collapsed": false,
+          "positive": [
+            {
+              "text": "best quality",
+              "label": "高质量",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "masterpiece",
+              "label": "杰作",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "HDR",
+              "label": "高动态范围",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "UHD",
+              "label": "超高清",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "8K",
+              "label": "8K",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "EOS R8",
+              "label": "EOS R8",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "50mm",
+              "label": "50mm",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "F1.2",
+              "label": "F1.2",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "RAW photo",
+              "label": "RAW 照片",
+              "weight": 1,
+              "enabled": true
+            }
+          ],
+          "negative": []
+        },
+        {
+          "id": "bee51a18-5d25-43fb-a75d-10d84e69e226",
+          "name": "薇塔",
+          "role": "角色",
+          "enabled": true,
+          "weight": 1,
+          "collapsed": false,
+          "positive": [
+            {
+              "text": "vita",
+              "label": "薇塔",
+              "enabled": true,
+              "weight": 1
+            },
+            {
+              "text": "honkai impact 3rd",
+              "label": "崩坏3",
+              "enabled": true,
+              "weight": 1
+            },
+            {
+              "text": "long grey hair with dark green streaks",
+              "label": "灰色长发配深绿发束",
+              "enabled": true,
+              "weight": 1
+            },
+            {
+              "text": "red eyes",
+              "label": "红瞳",
+              "enabled": true,
+              "weight": 1
+            },
+            {
+              "text": "peacock motif",
+              "label": "孔雀纹样",
+              "enabled": true,
+              "weight": 1
+            }
+          ],
+          "negative": [],
+          "kind": "tags",
+          "positiveText": "",
+          "negativeText": "",
+          "positiveSource": "",
+          "negativeSource": "",
+          "positiveTranslatedFrom": "",
+          "negativeTranslatedFrom": "",
+          "sourceTemplateId": "f93ab2b9-858d-474f-8c38-6734dc8742e8",
+          "recipe": ""
+        },
+        {
+          "id": "8309ed31-7903-4ef4-8a78-9ea5c0698f59",
+          "name": "姿势标签",
+          "role": "自由补充",
+          "enabled": true,
+          "weight": 1,
+          "collapsed": false,
+          "positive": [
+            {
+              "text": "wariza",
+              "label": "鸭子坐",
+              "weight": 1.18,
+              "enabled": true
+            },
+            {
+              "text": "cramped in a small glass box",
+              "label": "紧蜷在小玻璃箱内",
+              "weight": 1.25,
+              "enabled": true
+            },
+            {
+              "text": "prostration",
+              "label": "俯伏",
+              "weight": 1.15,
+              "enabled": true
+            },
+            {
+              "text": "arms behind back",
+              "label": "双臂背在身后",
+              "weight": 1.22,
+              "enabled": true
+            },
+            {
+              "text": "forehead touching the floor",
+              "label": "额头贴地",
+              "weight": 1.22,
+              "enabled": true
+            },
+            {
+              "text": "pressed against glass",
+              "label": "身体贴着玻璃",
+              "weight": 1.25,
+              "enabled": true
+            },
+            {
+              "text": "squished",
+              "label": "紧挤在箱内",
+              "weight": 1.16,
+              "enabled": true
+            }
+          ],
+          "negative": []
+        },
+        {
+          "id": "3ee9a84d-54da-4011-896a-7ce946e63ad8",
+          "name": "衣着",
+          "role": "服装",
+          "enabled": true,
+          "weight": 1,
+          "collapsed": false,
+          "positive": [
+            {
+              "text": "fully clothed",
+              "label": "完整着装",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "long blue and white dress",
+              "label": "蓝白长裙",
+              "weight": 1,
+              "enabled": false
+            },
+            {
+              "text": "opaque dark leggings",
+              "label": "不透肤深色打底裤",
+              "weight": 1,
+              "enabled": false
+            },
+            {
+              "text": "torn_legwear",
+              "label": "破损的裤袜",
+              "weight": 1,
+              "enabled": false
+            },
+            {
+              "text": "black_pantyhose",
+              "label": "黑丝裤袜",
+              "weight": 1,
+              "enabled": false
+            },
+            {
+              "text": "close-up",
+              "label": "特写镜头",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "ass_focus",
+              "label": "聚焦在屁股上",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "gloves",
+              "label": "手套",
+              "weight": 1,
+              "enabled": false
+            },
+            {
+              "text": "dildo",
+              "label": "假阴茎",
+              "weight": 1,
+              "enabled": false
+            },
+            {
+              "text": "vaginal_object_insertion",
+              "label": "阴道异物插入",
+              "weight": 1,
+              "enabled": false
+            },
+            {
+              "text": "pussy_peek",
+              "label": "微微渗出的爱液",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "boots_removed",
+              "label": "脱下的靴子",
+              "weight": 1,
+              "enabled": false
+            },
+            {
+              "text": "looking_at_viewer",
+              "label": "看向阅图者",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "clenched_teeth",
+              "label": "牙齿紧咬",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "annoyed",
+              "label": "恼怒的",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "scowl",
+              "label": "怒视|嫌弃的眼神|不满的眼神",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "egg_vibrator",
+              "label": "跳蛋",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "vibrator",
+              "label": "跳蛋",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "vibrator_in_thighhighs",
+              "label": "大腿贴着跳蛋控制器",
+              "weight": 1,
+              "enabled": true
+            }
+          ],
+          "negative": [
+            {
+              "text": "lingerie",
+              "label": "内衣",
+              "weight": 1,
+              "enabled": false
+            },
+            {
+              "text": "cleavage",
+              "label": "露胸",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "revealing clothes",
+              "label": "暴露服装",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "transparent clothing",
+              "label": "透明衣物",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "topless",
+              "label": "赤裸上身",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "mutated hands and fingers",
+              "label": "畸形的手和手指",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "too many fingers",
+              "label": "太多手指",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "fused fingers",
+              "label": "融合的手指",
+              "weight": 1,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "d89446db-0b67-4a95-b420-ccc43e4240fb",
+          "name": "镜头与姿势",
+          "role": "场景",
+          "enabled": true,
+          "weight": 1,
+          "collapsed": false,
+          "positive": [],
+          "negative": [],
+          "kind": "prose",
+          "positiveText": "Her hips and folded lower legs occupy the left half of the picture; her bowed head occupies the bottom right. Seated between her feet in a W-sit, she folds to the right, breastbone resting on her knees and forehead on the glass base just past them. The backs of her heels tuck against her hips and both sock soles press flat to the inside of the square left end panel and the opposite end touches the crown of her head. Her folded silhouette just fills the wide shallow glass box, twice as wide as tall, up to the lid. A faint reflection runs across her knee and toes on the near pane of glass. The folds of her skirt are tucked under her shins. A continuous strip of clear glass runs just outside her feet and hem.",
+          "negativeText": "",
+          "positiveSource": "画面左半是她的臀部和向后折的小腿，画面右下角是她低垂的头。她鸭子坐在两脚之间，上身向右折叠，胸骨落在膝盖上，额头落在膝前的玻璃底板上。两只脚跟收在臀旁，双脚袜底贴平方形左端板内侧，右端板贴着头顶。她蜷起的轮廓刚好撑满这只宽约为高两倍的低矮透明长方箱。近侧玻璃上一道淡淡的反光横过膝盖和脚尖，裙角压在小腿下面，底板前缘在双脚与裙角的外侧连成一条线。",
+          "negativeSource": "",
+          "positiveTranslatedFrom": "画面左半是她的臀部和向后折的小腿，画面右下角是她低垂的头。她鸭子坐在两脚之间，上身向右折叠，胸骨落在膝盖上，额头落在膝前的玻璃底板上。两只脚跟收在臀旁，双脚袜底贴平方形左端板内侧，右端板贴着头顶。她蜷起的轮廓刚好撑满这只宽约为高两倍的低矮透明长方箱。近侧玻璃上一道淡淡的反光横过膝盖和脚尖，裙角压在小腿下面，底板前缘在双脚与裙角的外侧连成一条线。",
+          "negativeTranslatedFrom": ""
+        },
+        {
+          "id": "5dedd67d-ee54-460b-92b9-4a5ea1cd4630",
+          "name": "手部",
+          "role": "自由补充",
+          "enabled": true,
+          "weight": 1,
+          "collapsed": false,
+          "positive": [],
+          "negative": [],
+          "kind": "prose",
+          "positiveText": "On both wrists and behind the back, the wrists were bound by a single short red rope, both of which were stopped by a noose.",
+          "negativeText": "",
+          "positiveSource": "双腕并在后腰，两只手腕被同一根短红色绳束在一起，两截短绳头都停在袖口旁。",
+          "negativeSource": "",
+          "positiveTranslatedFrom": "双腕并在后腰，两只手腕被同一根短红色绳束在一起，两截短绳头都停在袖口旁。",
+          "negativeTranslatedFrom": ""
+        },
+        {
+          "id": "1224c7d6-c861-46b5-b806-6541aa846d6d",
+          "name": "负面",
+          "role": "负面约束",
+          "enabled": true,
+          "weight": 1,
+          "collapsed": false,
+          "positive": [],
+          "negative": [
+            {
+              "text": "clutter inside the case",
+              "label": "箱内杂物",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "duplicate person",
+              "label": "重复人物",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "split panels",
+              "label": "分镜",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "Excessively large box",
+              "label": "过大的箱子",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "Opaque box",
+              "label": "不透明箱子",
+              "weight": 1.3,
+              "enabled": true
+            },
+            {
+              "text": "lowres",
+              "label": "低分辨率",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "worst quality",
+              "label": "最差质量",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "low quality",
+              "label": "低质量",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "bad anatomy",
+              "label": "解剖错误",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "bad hands",
+              "label": "错误的手",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "extra fingers",
+              "label": "多指",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "missing fingers",
+              "label": "缺指",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "extra limbs",
+              "label": "多肢",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "cropped head",
+              "label": "头部裁切",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "watermark",
+              "label": "水印",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "signature",
+              "label": "签名",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "text",
+              "label": "文字",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "jpeg artifacts",
+              "label": "压缩瑕疵",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "missing limb",
+              "label": "缺肢",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "raised hips",
+              "label": "臀部抬高",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "limbs protruding through the glass",
+              "label": "肢体穿出玻璃",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "thong",
+              "label": "细带内裤",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "bare hips",
+              "label": "臀部裸露",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "empty space above her back",
+              "label": "背与盖之间留空",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "lying on back",
+              "label": "仰躺",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "view from above",
+              "label": "俯视",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "hands on floor",
+              "label": "手掌撑地",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "hands beside face",
+              "label": "手在脸旁",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "face resting on knees",
+              "label": "脸停在膝上",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "fused hands",
+              "label": "双手粘连",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "rope around torso",
+              "label": "绳索绕躯干",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "bound legs",
+              "label": "腿部被绑",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "rope around glass box",
+              "label": "绳索绕箱体",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "long trailing cord",
+              "label": "长绳尾垂下",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "extra limb",
+              "label": "多余的肢体",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "extra arms",
+              "label": "多余的手臂",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "extra legs",
+              "label": "多余的腿",
+              "weight": 1,
+              "enabled": true
+            }
+          ]
+        },
+        {
+          "id": "9550306c-a560-4ff1-8dab-ecbfb8ad6cfa",
+          "name": "场景",
+          "role": "场景",
+          "enabled": true,
+          "weight": 1,
+          "collapsed": false,
+          "positive": [
+            {
+              "text": "indoor",
+              "label": "室内",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "on the table",
+              "label": "on the table",
+              "weight": 1,
+              "enabled": true
+            }
+          ],
+          "negative": []
+        }
+      ],
+      "characters": [],
+      "parameters": {
+        "width": 1152,
+        "height": 1024,
+        "seed": 264715287,
+        "steps": 30,
+        "cfg": 4,
+        "sampler_name": "euler",
+        "scheduler": "simple",
+        "denoise": 1,
+        "extra_seeds": [
+          560484911631697
+        ]
+      },
+      "models": {
+        "unet_name": "",
+        "clip_name": "",
+        "vae_name": ""
+      },
+      "notes": "本轮选为保留。\n裙角折在小腿下，底板前缘沿双脚和裙角外侧连续通过。\n27 版 · 主种子 264715287",
+      "autoIdentity": false,
+      "autoIntroduce": false
+    },
+    {
+      "id": "fc50cfd4-e178-4d2e-8c89-4b37688469ac",
+      "name": "裸体围裙",
+      "blocks": [
+        {
+          "id": "905180f8-4c80-4d89-bc71-706fd1689689",
+          "name": "公共负面约束",
+          "role": "负面约束",
+          "enabled": true,
+          "weight": 1,
+          "collapsed": false,
+          "positive": [],
+          "negative": [
+            {
+              "text": "lowres",
+              "label": "低分辨率",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "worst quality",
+              "label": "worst quality",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "low quality",
+              "label": "低质量",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "bad anatomy",
+              "label": "错误的解剖",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "bad hands",
+              "label": "坏手",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "extra fingers",
+              "label": "extra fingers",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "missing fingers",
+              "label": "缺少手指",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "extra limbs",
+              "label": "extra limbs",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "cropped head",
+              "label": "cropped head",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "watermark",
+              "label": "水印",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "signature",
+              "label": "签名",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "text",
+              "label": "文字",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "jpeg artifacts",
+              "label": "jpeg artifacts",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "lingerie",
+              "label": "lingerie",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "bra",
+              "label": "bra",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "revealing clothes",
+              "label": "revealing clothes",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "transparent clothing",
+              "label": "transparent clothing",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "topless",
+              "label": "topless",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "Bent legs",
+              "label": "Bent legs",
+              "weight": 1,
+              "enabled": true
+            }
+          ],
+          "kind": "tags",
+          "positiveText": "",
+          "negativeText": "",
+          "positiveSource": "",
+          "negativeSource": "",
+          "positiveTranslatedFrom": "",
+          "negativeTranslatedFrom": "",
+          "sourceTemplateId": "76629e45-e391-49d3-be89-605eac404c6a",
+          "recipe": ""
+        },
+        {
+          "id": "3348617a-9276-4031-8199-9462a6795516",
+          "name": "八重神子",
+          "role": "角色",
+          "enabled": true,
+          "weight": 1,
+          "collapsed": false,
+          "positive": [
+            {
+              "text": "yae miko",
+              "label": "八重神子",
+              "enabled": true,
+              "weight": 1
+            },
+            {
+              "text": "genshin impact",
+              "label": "原神",
+              "enabled": true,
+              "weight": 1
+            },
+            {
+              "text": "long pink hair",
+              "label": "粉色长发",
+              "enabled": true,
+              "weight": 1
+            },
+            {
+              "text": "drooping fox ears",
+              "label": "下垂的狐耳",
+              "enabled": true,
+              "weight": 1
+            },
+            {
+              "text": "violet eyes",
+              "label": "紫色眼睛",
+              "enabled": true,
+              "weight": 1
+            },
+            {
+              "text": "knowing smile",
+              "label": "含着笑意的从容神态",
+              "enabled": true,
+              "weight": 1
+            }
+          ],
+          "negative": [],
+          "kind": "tags",
+          "positiveText": "",
+          "negativeText": "",
+          "positiveSource": "",
+          "negativeSource": "",
+          "positiveTranslatedFrom": "",
+          "negativeTranslatedFrom": "",
+          "sourceTemplateId": "0f3a6870-a88c-4385-a5d9-eee376f3099f",
+          "recipe": ""
+        },
+        {
+          "id": "1ad1c4a7-a9f5-427f-a626-b4c9f4a01339",
+          "name": "裸体围裙",
+          "role": "自由补充",
+          "enabled": true,
+          "weight": 1,
+          "collapsed": false,
+          "positive": [
+            {
+              "text": "1girl",
+              "label": "1女孩",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "solo",
+              "label": "单人",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "cum",
+              "label": "射精",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "ass",
+              "label": "屁股",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "apron",
+              "label": "围裙",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "from behind",
+              "label": "后背视角",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "after sex",
+              "label": "事后",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "cum in pussy",
+              "label": "内射|中出",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "pussy",
+              "label": "小穴",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "naked apron",
+              "label": "裸体围裙",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "indoors",
+              "label": "室内",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "cum on ass",
+              "label": "射在屁股上",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "cumdrip",
+              "label": "溢出的精液(已拔出)",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "window",
+              "label": "窗口",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "cum on hair",
+              "label": "射在头发上",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "stove",
+              "label": "炉子",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "cum on body",
+              "label": "射在身上",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "after vaginal",
+              "label": "事后阴道特写",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "facial",
+              "label": "颜射",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "back",
+              "label": "背影像",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "kitchen",
+              "label": "厨房",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "bow",
+              "label": "蝴蝶结",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "bare shoulders",
+              "label": "赤肩",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "cum on clothes",
+              "label": "射在衣服上",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "standing",
+              "label": "站立",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "sweat",
+              "label": "流汗",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "backlighting",
+              "label": "逆光",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "cowboy shot",
+              "label": "上半身+上半大腿(牛仔镜头)",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "bukkake",
+              "label": "射满脸",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "anus",
+              "label": "肛门",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "bare arms",
+              "label": "裸臂",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "ribbon",
+              "label": "丝带",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "underwear",
+              "label": "内裤",
+              "weight": 1,
+              "enabled": true
+            },
+            {
+              "text": "breasts",
+              "label": "乳房",
+              "weight": 1,
+              "enabled": true
+            }
+          ],
+          "negative": []
+        }
+      ],
+      "characters": [],
+      "parameters": {
+        "seed": 122995365235294
+      },
+      "models": {
+        "unet_name": "",
+        "clip_name": "",
+        "vae_name": ""
+      },
+      "notes": "",
+      "autoIntroduce": true,
+      "autoIdentity": true
+    }
+  ],
+  "templates": [],
+  "customWords": [
+    {
+      "text": "red bow",
+      "label": "红色蝴蝶结",
+      "group": "常用",
+      "negative": false
+    },
+    {
+      "text": "Daily clothing",
+      "label": "日常服饰",
+      "group": "常用",
+      "negative": false
+    }
+  ],
+  "favorites": [],
+  "format": "comfy"
+}

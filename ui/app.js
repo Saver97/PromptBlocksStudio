@@ -1,6 +1,7 @@
 'use strict';
 const $=id=>document.getElementById(id),copy=Blocks.copy;
 let state,library=[],native=false,selectedId=null,targetSide='positive',libraryView='words',favoritesOnly=false,shown=100;
+let builtinLibrary=[], indexedCustomWords;
 let history=[],future=[],saveTimer,saveChain=Promise.resolve(),toastTimer,modalAction;
 let blockDrag = null;
 let chromeTheme='',chromeUpdate=Promise.resolve();
@@ -25,6 +26,7 @@ function field(body,label,value='',tag='input'){const wrap=el('label','',label),
 function selectField(body,label,options,value){const input=field(body,label,'','select');for(const [v,t] of options)input.append(new Option(t,v));input.value=value;return input;}
 function nameDialog(title,value,action){let input;modal(title,b=>{input=field(b,'名称',value);},()=>{const name=input.value.trim();if(!name)throw Error('请填写名称');action(name);});}
 function render(){
+ syncLibrary();
  const theme=state.theme||'forest';document.documentElement.dataset.theme=theme;$('themeSelect').value=theme;
  syncWindowTheme(theme);
  if(!scheme().blocks.some(b=>b.id===selectedId))selectedId=scheme().blocks[0]?.id||null;
@@ -37,6 +39,41 @@ function render(){
  renderLanguage();renderLibrary();renderBlocks();renderOutput();
 }
 function setGroups(){const cat=$('category').value;const names=[...new Set(library.filter(e=>!cat||e.category===cat).map(e=>e.group))];$('group').replaceChildren(new Option('全部子分类',''),...names.map(n=>new Option(n,n)));}
+function syncLibrary(){
+ if(indexedCustomWords===state.customWords)return;
+ const category=$('category'),group=$('group'),previousCategory=category.value,previousGroup=group.value;
+ const personal=state.customWords.map(word=>({...word,id:'custom:'+norm(word.text),category:'自定义'}));
+ library=personal.concat(builtinLibrary);
+ lookup.clear();
+ for(const entry of library){
+  const key=norm(entry.text);
+  if(!lookup.has(key))lookup.set(key,entry);
+ }
+ const categories=new Set(library.map(entry=>entry.category));
+ category.replaceChildren(new Option('全部分类',''),...Array.from(categories,name=>new Option(name,name)));
+ if(categories.has(previousCategory))category.value=previousCategory;
+ setGroups();
+ if(Array.from(group.options).some(option=>option.value===previousGroup))group.value=previousGroup;
+ $('libraryCount').textContent=library.length.toLocaleString('en-US');
+ indexedCustomWords=state.customWords;
+}
+function addLibraryWord(){
+ let prompt,label,group,direction;
+ modal('新增自定义词条',body=>{
+  prompt=field(body,'提示词原文');
+  label=field(body,'显示名称（可选）');
+  group=field(body,'子分类',$('category').value==='自定义'&&$('group').value||'常用');
+  direction=selectField(body,'添加到',[['target','跟随正面 / 负面选择'],['negative','始终加入负面']],'target');
+ },()=>{
+  const text=prompt.value.trim(),key=norm(text);
+  if(!text)throw Error('请填写提示词原文');
+  if(state.customWords.some(word=>norm(word.text)===key))throw Error('自定义词库中已有相同提示词');
+  const entry={text,label:label.value.trim()||text,group:group.value.trim()||'常用',negative:direction.value==='negative'};
+  commit(()=>{state.customWords=[entry,...state.customWords];});
+  $('search').value='';favoritesOnly=false;shown=100;
+  $('category').value='自定义';setGroups();$('group').value=entry.group;renderLibrary();
+ });
+}
 function addEntry(entry){
  if(!selected()){toast('请先新建一个内容块');return;}
  if(selected().kind==='prose'){toast('自然语言块保留完整段落，请点击编辑；标签请加入其他块。');return;}
@@ -47,6 +84,7 @@ function addEntry(entry){
 function renderLibrary(){
  const q=norm($('search').value),cat=$('category').value,group=$('group').value,frag=document.createDocumentFragment();
  $('wordFilters').classList.toggle('hidden',libraryView!=='words');$('templateTools').classList.toggle('hidden',libraryView!=='templates');
+ $('addLibraryWord').hidden=libraryView!=='words';
  $('bundleFilters').classList.toggle('hidden',libraryView!=='bundles');$('bundleTab').classList.toggle('active',libraryView==='bundles');
  $('libraryTab').classList.toggle('active',libraryView==='words');$('templateTab').classList.toggle('active',libraryView==='templates');
  $('favoriteOnly').classList.toggle('hidden',libraryView!=='words');$('favoriteOnly').setAttribute('aria-pressed',String(favoritesOnly));$('favoriteOnly').textContent=favoritesOnly?'★ 已收藏':'☆ 收藏';
@@ -66,7 +104,7 @@ function renderLibrary(){
  }else{
   const matches=TemplateFilters.list(state.templates,q);
   $('resultCount').textContent=matches.length+' 个组合块';$('more').hidden=true;
-  for(const {t,purpose,ips} of matches){const row=el('div','template');row.append(el('h3','',t.name),el('small','muted',[purpose,...ips].join(' · ')),el('p','',`${t.kind==='prose'?'自然语言 · '+t.role:t.role+' · 正 '+t.positive.length+' / 负 '+t.negative.length}${t.kind!=='prose'&&t.weight&&t.weight!==1?' · 整块 ×'+t.weight:''}`));
+  for(const {t,purpose,ips} of matches){const row=el('div','template');row.dataset.role=t.role;row.append(el('h3','',t.name),el('small','muted',[purpose,...ips].join(' · ')),el('p','',`${t.kind==='prose'?'自然语言 · '+t.role:t.role+' · 正 '+t.positive.length+' / 负 '+t.negative.length}${t.kind!=='prose'&&t.weight&&t.weight!==1?' · 整块 ×'+t.weight:''}`));
    const reviewed = Blocks.characterPresets.find(p => p.review && p.label === t.name);
    if (reviewed && t.positive.filter(v=>v.enabled !== false).map(v=>v.text).join(', ') === reviewed.identityTags + ', ' + reviewed.description) row.append(el('small','warning',reviewed.review));
    const actions=el('div','actions');const replace=btn('替换选中','用 '+t.name+' 替换选中块',()=>useTemplate(t,true));replace.disabled=!selected();
@@ -167,7 +205,7 @@ function dropOnBlock(event, target) {
 function renderBlocks(){
  const frag=document.createDocumentFragment();
  for(const b of scheme().blocks){
-  const card=el('article','block'+(selectedId===b.id?' selected':'')+(!b.enabled?' disabled':''));card.dataset.blockId=b.id;
+  const card=el('article','block'+(selectedId===b.id?' selected':'')+(!b.enabled?' disabled':''));card.dataset.blockId=b.id;card.dataset.role=b.role;
   card.onclick=e=>{if(e.target.closest('button,input,select,textarea,label'))return;selectedId=b.id;render();};
   const collapsed=b.collapsed&&!BlockSearch.isOpen(b);
   const head=el('div','block-head'),handle=btn('⋮⋮','拖动排序 '+b.name,()=>{selectedId=b.id;render();},'drag');handle.draggable=true;
@@ -186,14 +224,15 @@ function renderBlocks(){
   const enabled=el('input');enabled.type='checkbox';enabled.checked=b.enabled;enabled.setAttribute('aria-label','启用块 '+b.name);enabled.onchange=()=>commit(()=>{b.enabled=enabled.checked;});
   const title=el('div','block-title');title.append(el('b','',b.name),el('small','',`${b.kind==='prose'?'自然语言 · '+b.role:b.role+' · 正 '+b.positive.length+' / 负 '+b.negative.length}${b.sourceTemplateId?' · 组合副本':''}`));
   const weight=el('input');weight.type='number';weight.min='-20';weight.max='20';weight.step='.1';weight.value=b.weight;weight.setAttribute('aria-label','整块权重 '+b.name);weight.disabled=b.kind==='prose';if(b.kind==='prose')weight.title='自然语言保留原文，不应用标签倍率';weight.onchange=()=>{const v=Number(weight.value);if(weight.value===''||!Number.isFinite(v)||Math.abs(v)>20){weight.value=b.weight;toast('整块权重范围为 -20～20');return;}commit(()=>{b.weight=v;});};
-  head.append(handle,enabled,title,el('span','weight-label','倍率'),weight,btn(collapsed?'▸':'▾',(collapsed?'展开 ':'折叠 ')+b.name,()=>{BlockSearch.close(b);commit(()=>{b.collapsed=!collapsed;});}));
+  const weightBadge=b.kind!=='prose'&&b.weight!==1?btn('整块 ×'+b.weight,'整块倍率 '+b.weight+'，点击恢复为 1',()=>commit(()=>{b.weight=1;}),'block-weight-badge'):null;
+  head.append(...[handle,enabled,title,weightBadge,btn(collapsed?'▸':'▾',(collapsed?'展开 ':'折叠 ')+b.name,()=>{BlockSearch.close(b);commit(()=>{b.collapsed=!collapsed;});})].filter(Boolean));
   const actions=el('div','block-actions');const up=btn('↑','上移 '+b.name,()=>moveBlock(b.id,-1)),down=btn('↓','下移 '+b.name,()=>moveBlock(b.id,1));up.disabled=scheme().blocks[0]===b;down.disabled=scheme().blocks.at(-1)===b;
   actions.append(btn('编辑','编辑块 '+b.name,()=>editBlock(b)),btn('替换','替换块 '+b.name,()=>{selectedId=b.id;libraryView='templates';$('search').value='';render();toast('左侧找到组合后，点“替换选中”');}),btn('存为组合','保存块 '+b.name,()=>saveBlock(b)),btn('复制','复制块 '+b.name,()=>commit(()=>{const next=Blocks.duplicate(b);scheme().blocks.splice(scheme().blocks.indexOf(b)+1,0,next);selectedId=next.id;})),up,down,btn('移除','移除块 '+b.name,()=>commit(()=>{scheme().blocks=scheme().blocks.filter(x=>x.id!==b.id);})));card.append(head,actions);
   if(b.sourceTemplateId&&state.templates.some(t=>t.id===b.sourceTemplateId))actions.append(btn('更新来源组合','更新来源组合 '+b.name,()=>updateSource(b)));
   if(!collapsed&&b.kind==='prose')card.append(proseCardBody(b));
   if(!collapsed&&b.kind!=='prose'){const body=el('div','block-body');for(const side of ['positive','negative']){
     if(!b[side].length)continue;
-    const label=el('div','token-side-label',side==='positive'?'正面':'负面');const list=el('div','token-list');
+    const label=el('div','token-side-label',side==='positive'?'正面':'负面');const list=el('div','token-list'+(side==='negative'?' negative':''));
     enableTokenSorting(list, b, side);
     b[side].forEach((t,i)=>{const chip=el('div','token'+(!t.enabled?' off':'')),check=el('input');check.type='checkbox';check.checked=t.enabled;check.setAttribute('aria-label',`启用词 ${b.name} ${side} ${i}`);check.onchange=()=>commit(()=>{t.enabled=check.checked;});
       const edit=btn(t.label||t.text,'编辑词 '+t.text,()=>editToken(b,side,i),'edit-token');edit.title=t.text;
@@ -290,10 +329,13 @@ function importData(data){
   const templateIds=new Map();for(const t of incoming.templates){const next=copy(t);next.id=Blocks.id();templateIds.set(t.id,next.id);state.templates.push(next);}
   for(const p of incoming.schemes){const next=copy(p);next.id=Blocks.id();if(state.schemes.some(x=>x.name===next.name))next.name+=' · 导入';for(const b of next.blocks){b.id=Blocks.id();if(b.sourceTemplateId)b.sourceTemplateId=templateIds.get(b.sourceTemplateId)||b.sourceTemplateId;}state.schemes.push(next);state.activeSchemeId=next.id;}
   state.favorites=[...new Set([...state.favorites,...incoming.favorites])];
+  const existing=new Set(state.customWords.map(word=>norm(word.text)));
+  state.customWords=state.customWords.concat(incoming.customWords.filter(word=>!existing.has(norm(word.text))));
  }), '导入');
 }
 function bind(){
  bindLanguage();
+ $('addLibraryWord').onclick=addLibraryWord;
  $('agentTemplateImport').onclick=openAgentImport;
  $('themeSelect').onchange=()=>commit(()=>{state.theme=$('themeSelect').value;});
  $('blocks').ondragover=e=>{if(!blockDrag)return;const rect=$('blocks').getBoundingClientRect();if(e.clientY<rect.top+45)$('blocks').scrollTop-=25;else if(e.clientY>rect.bottom-45)$('blocks').scrollTop+=25;};
@@ -328,8 +370,8 @@ async function boot(){try{
  if(!window.pywebview?.api)await new Promise(r=>{const t=setTimeout(r,1000);window.addEventListener('pywebviewready',()=>{clearTimeout(t);r();},{once:true});});
  native=!!window.pywebview?.api;const loaded=native?await window.pywebview.api.load():{library:await(await fetch('library.json')).json(),bundles:await(await fetch('bundles.json')).json(),state:JSON.parse(localStorage.getItem('prompt-blocks-workspace-v2')||'null')||await(await fetch('starter-workspace.json')).json()};
  bundleLibrary=loaded.bundles||[];for(const source of new Set(bundleLibrary.map(r=>r.source)))$('bundleSource').append(new Option(source,source));
- library=loaded.library;for(const e of library)if(!lookup.has(norm(e.text)))lookup.set(norm(e.text),e);
- state=Blocks.validate(loaded.state);Blocks.installCharacterTemplates(state);$('libraryCount').textContent=library.length.toLocaleString('en-US');
- for(const cat of new Set(library.map(e=>e.category)))$('category').append(new Option(cat,cat));setGroups();bind();render();window.appReady=true;save();
+ builtinLibrary=loaded.library;
+ state=Blocks.validate(loaded.state);syncLibrary();Blocks.installCharacterTemplates(state);
+ bind();render();window.appReady=true;save();
  }catch(e){$('saveStatus').textContent='载入失败';$('blocks').replaceChildren(el('div','empty',e.message+'。原文件未改动。'));console.error(e);}}
 boot();
