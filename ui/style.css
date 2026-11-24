@@ -389,3 +389,14 @@ dialog.hunyuan-guide{width:min(620px,92vw)}
 /* 关联了角色块的角色定义：锁定的字段变淡，说明文字用主色 */
 .linked-character :is(input,textarea,select):disabled{opacity:.45}
 #modalBody .link-note{color:var(--accent);margin:-4px 0 2px}
+
+/* 词条：整个可点击（单击切换、双击或长按编辑），长按时不弹出系统菜单、不选中文字 */
+.token{cursor:pointer;user-select:none;-webkit-touch-callout:none}
+.token .edit-token{cursor:pointer}
+.token .edit-token:active{cursor:grabbing}
+
+/* 首次操作提示条 */
+.first-tip{display:flex;align-items:center;gap:12px;padding:9px 10px 9px 14px;border-radius:10px;background:var(--accent-soft);color:var(--text);font-size:12px;line-height:1.6;box-shadow:inset 3px 0 0 var(--accent);animation:pb-pop .2s ease-out}
+.first-tip span{flex:1}
+.first-tip b{color:var(--accent)}
+.first-tip button{padding:5px 12px;font-size:12px;flex-shrink:0}

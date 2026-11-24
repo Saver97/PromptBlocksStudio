@@ -206,7 +206,20 @@ function dropOnBlock(event, target) {
 }
 // 焦点进入某个块里的输入框/按钮时，只切换选中高亮和左侧“加入”目标，不重绘积木区，避免打断正在输入的内容。
 function selectBlockQuietly(id){if(id===selectedId||!scheme().blocks.some(b=>b.id===id))return;selectedId=id;document.querySelectorAll('#blocks .block').forEach(c=>c.classList.toggle('selected',c.dataset.blockId===id));$('targetName').textContent=selected()?'加入：'+selected().name:'先新建或选择一个块';renderLibrary();}
+// 首次操作提示：第一次看到标签块时，在积木区上方说明词条的点击方式；点“知道了”后不再出现。
+const TOKEN_TIP_KEY='prompt-blocks-tip-token-click-v1';
+function renderTokenTip(){
+ let tip=document.getElementById('tokenTip');
+ const show=localStorage.getItem(TOKEN_TIP_KEY)!=='seen'&&scheme().blocks.some(b=>b.kind!=='prose'&&!b.collapsed&&(b.positive.length||b.negative.length));
+ if(!show){tip?.remove();return;}
+ if(tip)return;
+ tip=el('div','first-tip');tip.id='tokenTip';tip.setAttribute('role','note');
+ const text=el('span','');text.innerHTML='💡 新操作：<b>单击</b>词条切换启用 / 停用 · <b>双击</b>或<b>长按</b>打开编辑面板 · <b>按住拖动</b>调整顺序';
+ tip.append(text,btn('知道了','关闭词条操作提示',()=>{localStorage.setItem(TOKEN_TIP_KEY,'seen');tip.remove();},'primary'));
+ $('blocks').before(tip);
+}
 function renderBlocks(){
+ renderTokenTip();
  const frag=document.createDocumentFragment();
  for(const b of scheme().blocks){
   const card=el('article','block'+(selectedId===b.id?' selected':'')+(!b.enabled?' disabled':''));card.dataset.blockId=b.id;card.dataset.role=b.role;
@@ -239,10 +252,28 @@ function renderBlocks(){
     const label=el('div','token-side-label',side==='positive'?'正面':'负面');const list=el('div','token-list'+(side==='negative'?' negative':''));
     enableTokenSorting(list, b, side);
     b[side].forEach((t,i)=>{const chip=el('div','token'+(!t.enabled?' off':'')),check=el('input');check.type='checkbox';check.checked=t.enabled;check.setAttribute('aria-label',`启用词 ${b.name} ${side} ${i}`);check.onchange=()=>commit(()=>{t.enabled=check.checked;});
-      const edit=btn(t.label||t.text,'编辑词 '+t.text,()=>editToken(b,side,i),'edit-token');edit.title=t.text;
+      // 单击整个词条：切换启用；双击或长按：打开编辑面板；键盘回车：编辑（勾选框仍可用键盘切换）。
+      const edit=btn(t.label||t.text,'编辑词 '+t.text,()=>{},'edit-token');edit.title=t.text+' ｜ 单击切换启用 · 双击或长按编辑 · 拖动排序';
       chip.dataset.tokenIndex = i;
       edit.draggable = true;
-      edit.setAttribute('aria-description', '点击编辑，拖到同栏词条前后可排序，拖到另一标签块可移动');
+      edit.setAttribute('aria-description', '单击切换启用，双击或长按编辑，回车编辑，拖到同栏词条前后可排序，拖到另一标签块可移动');
+      let clickTimer=null,pressTimer=null,pressed=false,origin=null;
+      const openEditor=()=>{clearTimeout(clickTimer);clickTimer=null;clearTimeout(pressTimer);editToken(b,side,i);};
+      const cancelPress=()=>{clearTimeout(pressTimer);pressTimer=null;};
+      chip.addEventListener('click',e=>{
+        if(e.target.closest('input,.remove-token'))return;
+        e.preventDefault();e.stopPropagation();selectBlockQuietly(b.id);
+        if(pressed){pressed=false;return;}
+        if(e.detail===0||e.detail>=2){openEditor();return;}
+        clearTimeout(clickTimer);clickTimer=setTimeout(()=>{clickTimer=null;commit(()=>{t.enabled=!t.enabled;});},240);
+      });
+      chip.addEventListener('pointerdown',e=>{
+        if(e.button!==0||e.target.closest('input,.remove-token'))return;
+        pressed=false;origin=[e.clientX,e.clientY];cancelPress();
+        pressTimer=setTimeout(()=>{pressTimer=null;pressed=true;openEditor();},550);
+      });
+      chip.addEventListener('pointermove',e=>{if(pressTimer&&origin&&Math.hypot(e.clientX-origin[0],e.clientY-origin[1])>6)cancelPress();});
+      for(const type of ['pointerup','pointerleave','pointercancel','dragstart'])chip.addEventListener(type,cancelPress);
       edit.ondragstart = event => startBlockDrag(event, b, side, t);
       edit.ondragend = endBlockDrag;
       chip.append(check,edit);if(t.weight!==1)chip.append(el('span','weight-badge','×'+t.weight));chip.append(btn('×','移除词 '+t.text,()=>commit(()=>{b[side].splice(i,1);}),'remove-token'));list.append(chip);
