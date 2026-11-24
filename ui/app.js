@@ -226,7 +226,7 @@ function renderBlocks(){
   };
   card.ondrop = event => dropOnBlock(event, b);
   const enabled=el('input');enabled.type='checkbox';enabled.checked=b.enabled;enabled.setAttribute('aria-label','启用块 '+b.name);enabled.onchange=()=>commit(()=>{b.enabled=enabled.checked;});
-  const title=el('div','block-title');title.append(el('b','',b.name),el('small','',`${b.kind==='prose'?'自然语言 · '+b.role:b.role+' · 正 '+b.positive.length+' / 负 '+b.negative.length}${b.sourceTemplateId?' · 组合副本':''}`));
+  const title=el('div','block-title');title.append(el('b','',b.name),el('small','',`${b.kind==='prose'?'自然语言 · '+b.role:b.role+' · 正 '+b.positive.length+' / 负 '+b.negative.length}${b.sourceTemplateId?' · 组合副本':''}${(scheme().characters||[]).filter(c=>c.blockId===b.id).map(c=>' · 已作为角色 '+c.alias).join('')}`));
   const weight=el('input');weight.type='number';weight.min='-20';weight.max='20';weight.step='.1';weight.value=b.weight;weight.setAttribute('aria-label','整块权重 '+b.name);weight.disabled=b.kind==='prose';if(b.kind==='prose')weight.title='自然语言保留原文，不应用标签倍率';weight.onchange=()=>{const v=Number(weight.value);if(weight.value===''||!Number.isFinite(v)||Math.abs(v)>20){weight.value=b.weight;toast('整块权重范围为 -20～20');return;}commit(()=>{b.weight=v;});};
   const weightBadge=b.kind!=='prose'&&b.weight!==1?btn('整块 ×'+b.weight,'整块倍率 '+b.weight+'，点击恢复为 1',()=>commit(()=>{b.weight=1;}),'block-weight-badge'):null;
   head.append(...[handle,enabled,title,weightBadge,btn(collapsed?'▸':'▾',(collapsed?'展开 ':'折叠 ')+b.name,()=>{BlockSearch.close(b);commit(()=>{b.collapsed=!collapsed;});})].filter(Boolean));

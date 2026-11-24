@@ -27,6 +27,8 @@ DOWNLOADS = {
     'model_page': 'https://huggingface.co/tencent/HY-MT1.5-1.8B-GGUF',
     'llama': 'https://github.com/ggml-org/llama.cpp/releases',
 }
+CLAUSE = re.compile(r'(?<=[，,、])')
+SENTENCE = re.compile(r'(?<=[。！？；!?;])')
 PROMPT = '将以下文本翻译为英语，注意只需要输出翻译后的结果，不要额外解释：\n\n{text}'
 
 
@@ -189,6 +191,22 @@ class HunyuanTranslator:
             raise ValueError('混元返回空译文，请缩短原文后重试。')
         return text
 
+    def _sentence(self, sentence, names, check):
+        """翻译一句；若角色名的出现次数对不上（例如第二次出现被改成 she），按逗号拆成小段重翻。"""
+        count = lambda value: Counter(n for n in names for _ in re.finditer('(?<![A-Za-z])' + n + '(?![A-Za-z])', value, re.I))
+        result = self._infer(sentence)
+        if count(result) == count(sentence):
+            return result
+        clauses = [part.strip() for part in CLAUSE.split(sentence) if part.strip()]
+        if len(clauses) < 2:
+            return result
+        pieces = []
+        for clause in clauses:
+            check()
+            pieces.append(self._infer(clause).rstrip('.。') if HAN.search(clause) else clause)
+        retry = ', '.join(pieces) + '.'
+        return retry if count(retry) == count(sentence) else result
+
     def translate(self, text, check=lambda: None):
         if not isinstance(text, str) or not text.strip() or len(text) > 12000:
             raise ValueError('请填写 1～12000 字的中文描述。')
@@ -210,11 +228,16 @@ class HunyuanTranslator:
                 raise ValueError('这一段引用的角色太多，请拆分后翻译。')
             mapping = dict(zip(placeholders, names))
             prepared = PLACEHOLDER.sub(lambda m: mapping[m.group()], text)
+            # 逐句翻译：整段一次送入时，小模型容易合并句子、丢掉细节或改写代号；拆成单句后更完整。
             output = []
             for line in prepared.split('\n'):
-                check()
-                output.append(self._infer(line) if HAN.search(line) else line)
-                self.last_used = time.monotonic()
+                sentences = [part for part in SENTENCE.split(line) if part.strip()]
+                translated = []
+                for sentence in sentences:
+                    check()
+                    translated.append(self._sentence(sentence.strip(), names, check) if HAN.search(sentence) else sentence.strip())
+                    self.last_used = time.monotonic()
+                output.append(' '.join(translated))
             result = '\n'.join(output)
             for placeholder, name in mapping.items():
                 result = re.sub(r'\b' + re.escape(name) + r'\b', lambda _: placeholder, result, flags=re.I)

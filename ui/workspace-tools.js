@@ -1,6 +1,6 @@
 'use strict';
 const WorkspaceTools=(()=>{
- function cloneScheme(source,name){const p=Blocks.copy(source);p.id=Blocks.id();p.name=name;for(const b of p.blocks)b.id=Blocks.id();delete p.restoredTemplateId;return p;}
+ function cloneScheme(source,name){const p=Blocks.copy(source);p.id=Blocks.id();p.name=name;const ids=new Map();for(const b of p.blocks){const next=Blocks.id();ids.set(b.id,next);b.id=next;}for(const c of p.characters||[])if(c.blockId)c.blockId=ids.get(c.blockId)||'';delete p.restoredTemplateId;return p;}
  return {cloneScheme};
 })();
 const blockInputDrafts=new Map();

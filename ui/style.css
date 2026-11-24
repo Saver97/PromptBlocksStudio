@@ -385,3 +385,7 @@ dialog.hunyuan-guide{width:min(620px,92vw)}
 .guide-text p{margin:0}
 .guide-folder{font:12px Consolas,monospace;background:var(--input-bg);padding:6px 8px;border-radius:6px;overflow-wrap:anywhere;user-select:all}
 .guide-status{margin:0}
+
+/* 关联了角色块的角色定义：锁定的字段变淡，说明文字用主色 */
+.linked-character :is(input,textarea,select):disabled{opacity:.45}
+#modalBody .link-note{color:var(--accent);margin:-4px 0 2px}

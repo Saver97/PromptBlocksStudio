@@ -147,7 +147,9 @@ function translatorPair(body,label,sourceValue,textValue,translatedFrom='',place
    returnedSource=original;returnedEnglish=previousEnglish;returnedText.value=result.text||result.raw||'';returned.hidden=false;
    const stale=source.value!==original||english.value!==previousEnglish;
    returnedStatus.textContent=[...(result.warnings||[]),stale?'编辑内容已变动，返回内容已保留，未自动覆盖。':''].filter(Boolean).join('\n')||'接口返回内容，可修改或复制。';
-   if(result.valid===false||stale){status.textContent='返回内容已展示，未自动采用；请核对下方结果。';return;}
+   if(stale){status.textContent='返回内容已展示，未自动采用；请核对下方结果。';return;}
+   // 角色代号对不上时也照常填入，只提醒用户核对指代（不再拦截）。
+   if(result.valid===false){english.value=result.text||result.raw||'';pair.translatedFrom=original;english.dispatchEvent(new Event('input'));status.textContent='已填入译文，但角色代号次数和中文不同，请核对下方提示的人物指代。';return;}
    english.value=result.text;pair.translatedFrom=original;english.dispatchEvent(new Event('input'));status.textContent=result.notice||'已翻译，返回内容保留在下方供核对。';
   }catch(e){if(source.isConnected&&pair.requests.accepts(task))status.textContent=e.message;}finally{pair.requests.finish(task);}
  });
@@ -195,28 +197,28 @@ function editCharacters(){let list,auto,autoIdentity;const rows=[];
    const gender=selectField(card,'性别（用于译文检查）',[['unknown','未指定'],['female','女性'],['male','男性'],['other','其他']],c.gender||'unknown');
    const pair=translatorPair(card,'外貌描述',c.sourceDescription||'',c.description||'',c.translatedFrom||'',false);
    const note=el('p','muted','常用角色会一次填入完整姓名、身份标签和已校对的英文外貌。外貌只有主动点击翻译时才会重译；原创角色可不填身份标签。文字组装不等于区域绑定或锁脸。');card.append(note);
-   // 从本方案的“角色”标签块填入：身份标签取块内已启用的正面词；能对上常用角色时，一并填入英文姓名、性别和外貌。
-   const roleBlocks=scheme().blocks.filter(x=>x.role==='角色'&&x.kind!=='prose'&&x.positive.some(t=>t.enabled));
-   const fromBlock=selectField(card,'从本方案角色块填入',[['',roleBlocks.length?'选择角色块…':'本方案没有角色标签块'],...roleBlocks.map(x=>[x.id,x.name+' · '+x.positive.filter(t=>t.enabled).length+' 个词'])],'');fromBlock.disabled=!roleBlocks.length;
-   const blockNote=el('p','muted');blockNote.hidden=true;preset.closest('label').after(fromBlock.closest('label'),blockNote);
-   fromBlock.onchange=()=>{const src=roleBlocks.find(x=>x.id===fromBlock.value);if(!src)return;
+   // 关联本方案的“角色”标签块：该块的词归到这个角色名下输出，原块不再单独输出；不再另加身份标签和外貌介绍。
+   const roleBlocks=scheme().blocks.filter(x=>x.role==='角色'&&x.kind!=='prose');
+   const fromBlock=selectField(card,'从本方案角色块填入',[['',roleBlocks.length?'不关联（手动填写）':'本方案没有角色标签块'],...roleBlocks.map(x=>[x.id,x.name+' · '+x.positive.filter(t=>t.enabled).length+' 个词'])],roleBlocks.some(x=>x.id===c.blockId)?c.blockId:'');fromBlock.disabled=!roleBlocks.length;
+   const blockNote=el('p','muted link-note');preset.closest('label').after(fromBlock.closest('label'),blockNote);
+   const applyLink=fill=>{const src=roleBlocks.find(x=>x.id===fromBlock.value),on=!!src;
+    for(const f of [identity,pair.source,pair.english])f.disabled=on;preset.disabled=on;card.classList.toggle('linked-character',on);
+    if(!on){blockNote.hidden=true;return;}
     const tags=[...new Set(src.positive.filter(t=>t.enabled).map(t=>t.text.replace(/_/g,' ').trim()).filter(Boolean))];
     // 内置角色块的约定：第 1 个词是英文角色名，第 2 个词是作品名，其余是外貌和服装（角色块自己会输出，不再复制）。
     const hit=knownCharacters.find(k=>{const own=Blocks.identityTokens(k)[0];return own&&tags.some(t=>t.toLowerCase()===own.toLowerCase());});
-    identity.value=hit?hit.identityTags:tags.slice(0,2).join(', ');
-    name.value=hit?hit.name:tags[0].replace(/[a-z]/g,c=>c.toUpperCase());
-    if(hit){gender.value=hit.gender;pair.source.value=hit.sourceDescription;pair.english.value=hit.description;pair.english.dispatchEvent(new Event('input'));}
-    blockNote.textContent='已从角色块“'+src.name+'”填入：姓名 '+name.value+'，身份标签 '+identity.value+'。'+(hit?'已识别为常用角色'+hit.label+'，外貌一并填入。':'外貌和服装由角色块本身输出，这里不重复填写；姓名如不准确可直接修改。');
-    blockNote.hidden=false;};
+    if(fill){if(tags[0])name.value=hit?hit.name:tags[0].replace(/\b[a-z]/g,ch=>ch.toUpperCase());if(hit)gender.value=hit.gender;identity.value='';pair.source.value='';pair.english.value='';pair.english.dispatchEvent(new Event('input'));}
+    blockNote.textContent='已关联角色块“'+src.name+'”：它的 '+tags.length+' 个词会整理成单独一段“'+(name.value||'姓名')+': ……”输出，不再混进上面的标签串；不另加身份标签和外貌介绍。改外貌请直接编辑这个角色块。';blockNote.hidden=false;};
+   fromBlock.onchange=()=>applyLink(true);
    preset.onchange=()=>{if(preset.value==='')return;const p=knownCharacters[Number(preset.value)];name.value=p.name;identity.value=p.identityTags;gender.value=p.gender;pair.source.value=p.sourceDescription;pair.english.value=p.description;pair.english.dispatchEvent(new Event('input'));};
    const syncChoice=()=>{const i=knownCharacters.findIndex(p=>p.name===name.value&&p.identityTags===identity.value&&p.gender===gender.value&&p.sourceDescription===pair.source.value&&p.description===pair.english.value);preset.value=i<0?'':String(i);};
    for(const input of [name,identity,gender,pair.source,pair.english])input.addEventListener('input',syncChoice);
-   syncChoice();
-   const row={alias,name,identity,gender,pair,removed:false};rows.push(row);card.append(btn('移除定义','移除角色定义 '+c.alias,()=>{row.removed=true;card.remove();}));list.append(card);
+   syncChoice();applyLink(false);
+   const row={alias,name,identity,gender,pair,fromBlock,removed:false};rows.push(row);card.append(btn('移除定义','移除角色定义 '+c.alias,()=>{row.removed=true;card.remove();}));list.append(card);
   }
   const existing=scheme().characters||[];for(const c of existing.length?existing:[{alias:'A',name:'',description:''},{alias:'B',name:'',description:''}])addRow(c);
   body.append(btn('＋ 增加角色','增加角色定义',()=>{const used=new Set(rows.filter(r=>!r.removed).map(r=>r.alias.value.toUpperCase()));let n=0;while(used.has(n<26?String.fromCharCode(65+n):'R'+n))n++;addRow({alias:n<26?String.fromCharCode(65+n):'R'+n,name:'',description:''});}));
- },()=>{const chars=rows.filter(r=>!r.removed&&(r.name.value.trim()||r.identity.value.trim()||r.pair.source.value.trim()||r.pair.english.value.trim())).map(r=>({alias:r.alias.value.trim().toUpperCase(),name:r.name.value.trim(),identityTags:r.identity.value.trim(),gender:r.gender.value,description:r.pair.english.value.trim(),sourceDescription:r.pair.source.value,translatedFrom:r.pair.translatedFrom}));Blocks.validateCharacters(chars);commit(()=>{scheme().characters=chars;scheme().autoIntroduce=auto.checked;scheme().autoIdentity=autoIdentity.checked;});});
+ },()=>{const chars=rows.filter(r=>!r.removed&&(r.name.value.trim()||r.fromBlock.value||r.identity.value.trim()||r.pair.source.value.trim()||r.pair.english.value.trim())).map(r=>({alias:r.alias.value.trim().toUpperCase(),name:r.name.value.trim(),identityTags:r.identity.value.trim(),gender:r.gender.value,description:r.pair.english.value.trim(),sourceDescription:r.pair.source.value,translatedFrom:r.pair.translatedFrom,...(r.fromBlock.value?{blockId:r.fromBlock.value}:{})}));Blocks.validateCharacters(chars);commit(()=>{scheme().characters=chars;scheme().autoIntroduce=auto.checked;scheme().autoIdentity=autoIdentity.checked;});});
 }
 function proseCardBody(b){const body=el('div','block-body prose-body');for(const side of ['positive','negative'])if(b[side+'Source']||b[side+'Text']){body.append(el('div','token-side-label',side==='positive'?'正面描述':'负面描述'));if(b[side+'Source'])body.append(el('p','prose-source',b[side+'Source']));if(b[side+'Text'])body.append(el('p','prose-english',b[side+'Text']));else body.append(el('p','muted','待翻译 · 点“编辑”继续'));}if(!b.positiveText&&!b.negativeText&&!b.positiveSource&&!b.negativeSource)body.append(el('p','empty','点编辑，用中文写场景和互动；用 {{A}}、{{B}} 引用角色。'));return body;}
 function editProse(b,isTemplate=false,isNew=false){let name,pos,neg,preview;modal(isNew?'新建自然语言块':'编辑自然语言 · 中文与英文',body=>{
