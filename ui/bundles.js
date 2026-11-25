@@ -26,7 +26,7 @@ function previewBundle(recipe){modal('词库配方 · '+recipe.name,body=>{
  },()=>{if(!selected()||selected().kind==='prose'){toast('先选中要加入的标签块');return false;}addBundle(recipe);},'整组加入 / 取消');}
 function renderBundleLibrary(q,frag){
  const source=$('bundleSource').value;
- const matches=bundleLibrary.filter(r=>(!source||r.source===source)&&(!q||norm([r.name,r.raw,r.category,r.source].join(' ')).includes(q)));
+ const matches=bundleLibrary.filter(r=>(!source||r.source===source)&&(!q||(r._search??=norm([r.name,r.raw,r.category,r.source].join(' '))).includes(q)));
  $('resultCount').textContent=matches.length+' 组配方';$('more').hidden=matches.length<=shown;
  for(const recipe of matches.slice(0,shown)){
   const row=el('div','template bundle-option'),side=recipe.negative?'negative':targetSide,key=recipe.id+':'+side,added=selected()?.[side].some(t=>t.bundleId===key);

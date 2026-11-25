@@ -14,7 +14,7 @@ function blockInput(b){
   try{parsed=parsePrompt(input.value);}catch(e){toast(e.message+'；输入内容已保留');return;}
   if(!parsed.length)return;
   const original=draft.text;draft.text='';blockInputDrafts.set(key,draft);
-  try{commit(()=>{b[side.value].push(...parsed);selectedId=b.id;});toast('已加入 '+parsed.length+' 个词条，可撤销');setTimeout(()=>document.querySelector('[data-block-id="'+b.id+'"] .block-quick-input textarea')?.focus(),0);}catch(e){draft.text=original;blockInputDrafts.set(key,draft);toast(e.message);}
+  try{commit(()=>{b[side.value].push(...parsed);selectedId=b.id;},{scope:'block',blockId:b.id});toast('已加入 '+parsed.length+' 个词条，可撤销');setTimeout(()=>document.querySelector('[data-block-id="'+b.id+'"] .block-quick-input textarea')?.focus(),0);}catch(e){draft.text=original;blockInputDrafts.set(key,draft);toast(e.message);}
  });
  add.disabled=!input.value.trim();input.oninput=()=>{remember();add.disabled=!input.value.trim();};side.onchange=remember;
  input.onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey&&!e.isComposing){e.preventDefault();add.click();}};

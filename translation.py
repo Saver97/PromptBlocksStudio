@@ -129,7 +129,9 @@ class Translator:
             raise ValueError('请填写 1～12000 字的中文描述。')
         if engine == 'local-hunyuan':
             control = getattr(self.requests.local, 'control', None)
-            return self.hunyuan.translate(text, control.check if control else (lambda: None))
+            handlers = self.requests.handlers(truststore.SSLContext(ssl.PROTOCOL_TLS_CLIENT))
+            opener = request.build_opener(*handlers)
+            return self.hunyuan.translate(text, control.check if control else (lambda: None), opener=opener)
         if engine not in (None, '', 'default'):
             raise ValueError('未知翻译引擎。')
         with self.lock:

@@ -17,7 +17,7 @@ function el(tag,cls='',text){const e=document.createElement(tag);if(cls)e.classN
 function btn(text,label,action,cls=''){const e=el('button',cls,text);e.type='button';e.title=label;e.setAttribute('aria-label',label);e.onclick=action;return e;}
 function toast(text){$('toast').textContent=text;$('toast').classList.add('show');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.remove('show'),3000);}
 function save(){clearTimeout(saveTimer);$('saveStatus').textContent='正在保存…';saveTimer=setTimeout(()=>{const snapshot=copy(state);saveChain=saveChain.catch(()=>{}).then(async()=>{if(native)await window.pywebview.api.save(snapshot);else localStorage.setItem('prompt-blocks-workspace-v2',JSON.stringify(snapshot));$('saveStatus').textContent='已保存到本机';}).catch(e=>{$('saveStatus').textContent='保存失败';toast(e.message);});},180);}
-function commit(fn){const before=copy(state);try{fn();Blocks.validate(state);}catch(e){state=before;toast(e.message);throw e;}history.push(before);if(history.length>60)history.shift();future=[];render();save();}
+function commit(fn,options){const before=copy(state);try{fn();Blocks.validate(state);}catch(e){state=before;toast(e.message);throw e;}history.push(before);if(history.length>60)history.shift();future=[];if(options?.scope==='block'&&options.blockId&&renderBlock(options.blockId)){$('undo').disabled=!history.length;$('redo').disabled=!future.length;renderLibrary();renderOutput();renderFoldButton();}else{render();}save();}
 function undo(){if(!history.length)return;future.push(copy(state));state=history.pop();render();save();}
 function redo(){if(!future.length)return;history.push(copy(state));state=future.pop();render();save();}
 window.exportState=()=>state;
@@ -25,6 +25,9 @@ function modal(title,build,action,confirm='保存'){$('modalTitle').textContent=
 function field(body,label,value='',tag='input'){const wrap=el('label','',label),input=el(tag);input.setAttribute('aria-label',label);input.value=value;wrap.append(input);body.append(wrap);return input;}
 function selectField(body,label,options,value){const input=field(body,label,'','select');for(const [v,t] of options)input.append(new Option(t,v));input.value=value;return input;}
 function nameDialog(title,value,action){let input;modal(title,b=>{input=field(b,'名称',value);},()=>{const name=input.value.trim();if(!name)throw Error('请填写名称');action(name);});}
+function renderFoldButton(){
+ const canFold=scheme().blocks.some(b=>!b.collapsed||BlockSearch.isOpen(b));$('foldAll').textContent=canFold||!scheme().blocks.length?'全部折叠':'全部展开';$('foldAll').disabled=!scheme().blocks.length;
+}
 function render(){
  syncLibrary();
  const theme=state.theme||'forest';document.documentElement.dataset.theme=theme;$('themeSelect').value=theme;
@@ -37,19 +40,19 @@ function render(){
  $('targetName').textContent=selected()?'加入：'+selected().name:'先新建或选择一个块';
  $('positiveTarget').classList.toggle('active',targetSide==='positive');$('negativeTarget').classList.toggle('active',targetSide==='negative');
  renderLanguage();renderLibrary();renderBlocks();renderOutput();
- // 按钮文字跟随实际状态：有任一块展开时显示“全部折叠”，全部折叠后显示“全部展开”。
- const canFold=scheme().blocks.some(b=>!b.collapsed||BlockSearch.isOpen(b));$('foldAll').textContent=canFold||!scheme().blocks.length?'全部折叠':'全部展开';$('foldAll').disabled=!scheme().blocks.length;
+ renderFoldButton();
 }
 function setGroups(){const cat=$('category').value;const names=[...new Set(library.filter(e=>!cat||e.category===cat).map(e=>e.group))];$('group').replaceChildren(new Option('全部子分类',''),...names.map(n=>new Option(n,n)));}
 function syncLibrary(){
  if(indexedCustomWords===state.customWords)return;
  const category=$('category'),group=$('group'),previousCategory=category.value,previousGroup=group.value;
- const personal=state.customWords.map(word=>({...word,id:'custom:'+norm(word.text),category:'自定义'}));
+ const personal=state.customWords.map(word=>({...word,id:'custom:'+norm(word.text),category:'自定义',custom:true}));
  library=personal.concat(builtinLibrary);
  lookup.clear();
  for(const entry of library){
   const key=norm(entry.text);
   if(!lookup.has(key))lookup.set(key,entry);
+  if(entry._search===undefined||entry.custom)entry._search=norm([entry.label,entry.text,entry.category,entry.group].join(' '));
  }
  const categories=new Set(library.map(entry=>entry.category));
  category.replaceChildren(new Option('全部分类',''),...Array.from(categories,name=>new Option(name,name)));
@@ -76,11 +79,42 @@ function addLibraryWord(){
   $('category').value='自定义';setGroups();$('group').value=entry.group;renderLibrary();
  });
 }
+function editLibraryWord(entry){
+ const oldKey=norm(entry.text),oldId='custom:'+oldKey;
+ let prompt,label,group,direction;
+ modal('编辑自定义词条',body=>{
+  prompt=field(body,'提示词原文',entry.text);
+  label=field(body,'显示名称（可选）',entry.label);
+  group=field(body,'子分类',entry.group||'常用');
+  direction=selectField(body,'添加到',[['target','跟随正面 / 负面选择'],['negative','始终加入负面']],entry.negative?'negative':'target');
+ },()=>{
+  const text=prompt.value.trim(),key=norm(text);
+  if(!text)throw Error('请填写提示词原文');
+  if(key!==oldKey&&state.customWords.some(word=>norm(word.text)===key))throw Error('自定义词库中已有相同提示词');
+  const updated={text,label:label.value.trim()||text,group:group.value.trim()||'常用',negative:direction.value==='negative'};
+  const newId='custom:'+key;
+  commit(()=>{
+   state.customWords=state.customWords.map(w=>norm(w.text)===oldKey?updated:w);
+   if(newId!==oldId&&state.favorites.includes(oldId))state.favorites=[...new Set(state.favorites.map(f=>f===oldId?newId:f))];
+  });
+  toast('已更新自定义词条，可撤销');
+ });
+}
+function deleteLibraryWord(entry){
+ const oldKey=norm(entry.text),oldId='custom:'+oldKey;
+ modal('删除自定义词条',body=>body.append(el('p','',`删除自定义词条“${entry.label}”（${entry.text}）？已加入方案的词条不受影响，可通过撤销恢复。`)),()=>{
+  commit(()=>{
+   state.customWords=state.customWords.filter(w=>norm(w.text)!==oldKey);
+   state.favorites=state.favorites.filter(f=>f!==oldId);
+  });
+  toast('已删除自定义词条，可撤销');
+ },'删除');
+}
 function addEntry(entry){
  if(!selected()){toast('请先新建一个内容块');return;}
  if(selected().kind==='prose'){toast('自然语言块保留完整段落，请点击编辑；标签请加入其他块。');return;}
  const b=selected(),side=entry.negative?'negative':targetSide,key=norm(entry.text),exists=b[side].some(t=>norm(t.text)===key);
- commit(()=>{if(exists)b[side]=b[side].filter(t=>norm(t.text)!==key);else b[side].push(token(entry.text,entry.label));});
+ commit(()=>{if(exists)b[side]=b[side].filter(t=>norm(t.text)!==key);else b[side].push(token(entry.text,entry.label));},{scope:'block',blockId:b.id});
  if(entry.negative&&!exists)toast('已加入该块的负面词');
 }
 function renderLibrary(){
@@ -92,15 +126,21 @@ function renderLibrary(){
  $('favoriteOnly').classList.toggle('hidden',libraryView!=='words');$('favoriteOnly').setAttribute('aria-pressed',String(favoritesOnly));$('favoriteOnly').textContent=favoritesOnly?'★ 已收藏':'☆ 收藏';
  $('libraryHint').textContent=libraryView==='words'?'＋ 添加 · ✓ 取消':libraryView==='bundles'?'整组加入选中块':'可新建块或并入当前块';
  if(libraryView==='bundles'){renderBundleLibrary(q,frag);}else if(libraryView==='words'){
-  const matches=library.filter(e=>(!favoritesOnly||state.favorites.includes(e.id))&&(q?norm([e.label,e.text,e.category,e.group].join(' ')).includes(q):(!cat||e.category===cat)&&(!group||e.group===group)));
+  const favSet=new Set(state.favorites);
+  const cur=selected();
+  const posSet=cur&&cur.kind!=='prose'?new Set(cur.positive.map(t=>norm(t.text))):null;
+  const negSet=cur&&cur.kind!=='prose'?new Set(cur.negative.map(t=>norm(t.text))):null;
+  const matches=library.filter(e=>(!favoritesOnly||favSet.has(e.id))&&(q?e._search.includes(q):(!cat||e.category===cat)&&(!group||e.group===group)));
   $('resultCount').textContent=matches.length+' 个词条';$('more').hidden=matches.length<=shown;
   for(const e of matches.slice(0,shown)){
    const row=el('div','word'),info=el('div','word-info'),name=el('strong','',e.label);if(e.negative)name.append(el('span','badge','负面'));
    info.append(name,el('small','',e.text));info.title=e.category+' / '+e.group;
-   const side=e.negative?'negative':targetSide,added=selected()?.[side].some(t=>norm(t.text)===norm(e.text));
-   const star=btn(state.favorites.includes(e.id)?'★':'☆','收藏 '+e.label,()=>commit(()=>{state.favorites=state.favorites.includes(e.id)?state.favorites.filter(x=>x!==e.id):[...state.favorites,e.id];}),'star');
-   const add=btn(added?'✓':'＋',(added?'移除 ':'添加 ')+e.label,()=>addEntry(e),added?'added':'');add.setAttribute('aria-pressed',String(!!added));add.disabled=!selected()||selected().kind==='prose';
-   row.append(info,star,add);frag.append(row);
+   const side=e.negative?'negative':targetSide,added=!!(side==='positive'?posSet:negSet)?.has(norm(e.text));
+   const star=btn(favSet.has(e.id)?'★':'☆','收藏 '+e.label,()=>commit(()=>{state.favorites=favSet.has(e.id)?state.favorites.filter(x=>x!==e.id):[...state.favorites,e.id];}),'star');
+   const add=btn(added?'✓':'＋',(added?'移除 ':'添加 ')+e.label,()=>addEntry(e),added?'added':'');add.setAttribute('aria-pressed',String(added));add.disabled=!cur||cur.kind==='prose';
+   row.append(info);
+   if(e.custom)row.append(btn('✎','编辑自定义词条 '+e.label,()=>editLibraryWord(e),'word-action'),btn('×','删除自定义词条 '+e.label,()=>deleteLibraryWord(e),'word-action word-delete'));
+   row.append(star,add);frag.append(row);
   }
   if(!matches.length)frag.append(el('div','empty','没有匹配的词条，试试更短的中文或英文。'));
  }else{
@@ -178,7 +218,7 @@ function enableTokenSorting(list, block, side) {
   const to = insert.index - Number(from < insert.index);
   endBlockDrag();
   if (from < 0 || from === to) return;
-  commit(() => { tokens.splice(to, 0, tokens.splice(from, 1)[0]); });
+  commit(() => { tokens.splice(to, 0, tokens.splice(from, 1)[0]); }, {scope: 'block', blockId: block.id});
  };
 }
 function acceptsBlockDrop(target) {
@@ -218,82 +258,130 @@ function renderTokenTip(){
  tip.append(text,btn('知道了','关闭词条操作提示',()=>{localStorage.setItem(TOKEN_TIP_KEY,'seen');tip.remove();},'primary'));
  $('blocks').before(tip);
 }
+function adjustTokenWeight(b,side,i,delta){
+ const t=b[side]?.[i];if(!t)return;
+ const next=Math.max(-20,Math.min(20,Number((t.weight+delta).toFixed(2))));
+ if(next===t.weight)return;
+ commit(()=>{t.weight=next;},{scope:'block',blockId:b.id});
+}
+function buildBlockCard(b){
+ const card=el('article','block'+(selectedId===b.id?' selected':'')+(!b.enabled?' disabled':''));card.dataset.blockId=b.id;card.dataset.role=b.role;
+ card.onclick=e=>{if(e.target.closest('button,input,select,textarea,label'))return;selectBlockQuietly(b.id);};card.addEventListener('focusin',()=>selectBlockQuietly(b.id));
+ const collapsed=b.collapsed&&!BlockSearch.isOpen(b);
+ const head=el('div','block-head'),handle=btn('⋮⋮','拖动排序 '+b.name,()=>{selectBlockQuietly(b.id);},'drag');handle.draggable=true;
+ handle.ondragstart = event => startBlockDrag(event, b);
+ handle.ondragend = endBlockDrag;
+ card.ondragover = event => {
+  if (!acceptsBlockDrop(b)) return;
+  event.preventDefault();
+  event.dataTransfer.dropEffect = 'move';
+  card.classList.add('drag-over');
+ };
+ card.ondragleave = event => {
+  if (!card.contains(event.relatedTarget)) card.classList.remove('drag-over');
+ };
+ card.ondrop = event => dropOnBlock(event, b);
+ const enabled=el('input');enabled.type='checkbox';enabled.checked=b.enabled;enabled.setAttribute('aria-label','启用块 '+b.name);enabled.onchange=()=>commit(()=>{b.enabled=enabled.checked;},{scope:'block',blockId:b.id});
+ const title=el('div','block-title');title.append(el('b','',b.name),el('small','',`${b.kind==='prose'?'自然语言 · '+b.role:b.role+' · 正 '+b.positive.length+' / 负 '+b.negative.length}${b.sourceTemplateId?' · 组合副本':''}${(scheme().characters||[]).filter(c=>c.blockId===b.id).map(c=>' · 已作为角色 '+c.alias).join('')}`));
+ const weightBadge=b.kind!=='prose'&&b.weight!==1?btn('整块 ×'+b.weight,'整块倍率 '+b.weight+'，点击恢复为 1',()=>commit(()=>{b.weight=1;},{scope:'block',blockId:b.id}),'block-weight-badge'):null;
+ head.append(...[handle,enabled,title,weightBadge,btn(collapsed?'▸':'▾',(collapsed?'展开 ':'折叠 ')+b.name,()=>{BlockSearch.close(b);commit(()=>{b.collapsed=!collapsed;},{scope:'block',blockId:b.id});})].filter(Boolean));
+ const actions=el('div','block-actions');const up=btn('↑','上移 '+b.name,()=>moveBlock(b.id,-1)),down=btn('↓','下移 '+b.name,()=>moveBlock(b.id,1));up.disabled=scheme().blocks[0]===b;down.disabled=scheme().blocks.at(-1)===b;
+ actions.append(btn('编辑','编辑块 '+b.name,()=>editBlock(b)),btn('替换','替换块 '+b.name,()=>{selectedId=b.id;libraryView='templates';$('search').value='';render();toast('左侧找到组合后，点“替换选中”');}),btn('存为组合','保存块 '+b.name,()=>saveBlock(b)),btn('复制','复制块 '+b.name,()=>commit(()=>{const next=Blocks.duplicate(b);scheme().blocks.splice(scheme().blocks.indexOf(b)+1,0,next);selectedId=next.id;})),up,down,btn('移除','移除块 '+b.name,()=>commit(()=>{scheme().blocks=scheme().blocks.filter(x=>x.id!==b.id);})));card.append(head,actions);
+ if(b.sourceTemplateId&&state.templates.some(t=>t.id===b.sourceTemplateId))actions.append(btn('更新来源组合','更新来源组合 '+b.name,()=>updateSource(b)));
+ if(!collapsed&&b.kind==='prose')card.append(proseCardBody(b));
+ if(!collapsed&&b.kind!=='prose'){const body=el('div','block-body');for(const side of ['positive','negative']){
+   if(!b[side].length)continue;
+   const label=el('div','token-side-label',side==='positive'?'正面':'负面');const list=el('div','token-list'+(side==='negative'?' negative':''));
+   enableTokenSorting(list, b, side);
+   b[side].forEach((t,i)=>{const chip=el('div','token'+(!t.enabled?' off':'')),check=el('input');check.type='checkbox';check.checked=t.enabled;check.setAttribute('aria-label',`启用词 ${b.name} ${side} ${i}`);check.onchange=()=>commit(()=>{t.enabled=check.checked;},{scope:'block',blockId:b.id});
+     // 单击整个词条：切换启用；双击或长按：打开编辑面板；悬停 -/+ 或 Alt+滚轮：快捷微调权重。
+     const edit=btn(t.label||t.text,'编辑词 '+t.text,()=>{},'edit-token');edit.title=t.text+' ｜ 单击切换启用 · 双击或长按编辑 · Alt+滚轮或 -/+ 调权 · 拖动排序';
+     chip.dataset.tokenSide = side;
+     chip.dataset.tokenIndex = i;
+     chip.dataset.tokenKey = norm(t.text);
+     edit.draggable = true;
+     edit.setAttribute('aria-description', '单击切换启用，双击或长按编辑，回车编辑，Alt加滚轮调权，拖到同栏词条前后可排序，拖到另一标签块可移动');
+     let clickTimer=null,pressTimer=null,pressed=false,origin=null;
+     const openEditor=()=>{clearTimeout(clickTimer);clickTimer=null;clearTimeout(pressTimer);editToken(b,side,i);};
+     const cancelPress=()=>{clearTimeout(pressTimer);pressTimer=null;};
+     chip.addEventListener('click',e=>{
+       if(e.target.closest('input,.remove-token,.weight-step'))return;
+       e.preventDefault();e.stopPropagation();selectBlockQuietly(b.id);
+       if(pressed){pressed=false;return;}
+       if(e.detail===0||e.detail>=2){openEditor();return;}
+       clearTimeout(clickTimer);clickTimer=setTimeout(()=>{clickTimer=null;commit(()=>{t.enabled=!t.enabled;},{scope:'block',blockId:b.id});},240);
+     });
+     chip.addEventListener('wheel',e=>{
+       if(!e.altKey)return;
+       e.preventDefault();e.stopPropagation();
+       const step=e.shiftKey?0.05:0.1;
+       adjustTokenWeight(b,side,i,e.deltaY<0?step:-step);
+     },{passive:false});
+     chip.addEventListener('pointerdown',e=>{
+       if(e.button!==0||e.target.closest('input,.remove-token,.weight-step'))return;
+       pressed=false;origin=[e.clientX,e.clientY];cancelPress();
+       pressTimer=setTimeout(()=>{pressTimer=null;pressed=true;openEditor();},550);
+     });
+     chip.addEventListener('pointermove',e=>{if(pressTimer&&origin&&Math.hypot(e.clientX-origin[0],e.clientY-origin[1])>6)cancelPress();});
+     for(const type of ['pointerup','pointerleave','pointercancel','dragstart'])chip.addEventListener(type,cancelPress);
+     edit.ondragstart = event => startBlockDrag(event, b, side, t);
+     edit.ondragend = endBlockDrag;
+     const dec=btn('−','降低权重 '+t.text,e=>{e.stopPropagation();adjustTokenWeight(b,side,i,e.shiftKey?-0.05:-0.1);},'weight-step');
+     const inc=btn('+','提高权重 '+t.text,e=>{e.stopPropagation();adjustTokenWeight(b,side,i,e.shiftKey?0.05:0.1);},'weight-step');
+     chip.append(check,edit);if(t.weight!==1)chip.append(el('span','weight-badge','×'+t.weight));chip.append(dec,inc,btn('×','移除词 '+t.text,e=>{e.stopPropagation();commit(()=>{b[side].splice(i,1);},{scope:'block',blockId:b.id});},'remove-token'));list.append(chip);
+   });if(!b[side].length)list.append(el('span','empty','暂无词条'));body.append(label,list);
+  }if(!b.positive.length&&!b.negative.length)body.append(el('p','empty','从左侧加词，或在下面直接输入提示词。'));body.append(blockInput(b));card.append(body);}
+ if (b.kind !== 'prose') {
+  const translate = btn('翻译词条', '本地英译中 · '+b.name, () => translateBlockLabels(b, translate));
+  actions.append(translate);
+ }
+ BlockSearch.attach(card,actions,b);
+ return card;
+}
+function renderBlock(id){
+ const b=scheme().blocks.find(x=>x.id===id);
+ const existing=document.querySelector('#blocks .block[data-block-id="'+CSS.escape(id)+'"]');
+ if(!b||!existing)return false;
+ existing.replaceWith(buildBlockCard(b));
+ renderTokenTip();
+ return true;
+}
 function renderBlocks(){
  renderTokenTip();
  const frag=document.createDocumentFragment();
- for(const b of scheme().blocks){
-  const card=el('article','block'+(selectedId===b.id?' selected':'')+(!b.enabled?' disabled':''));card.dataset.blockId=b.id;card.dataset.role=b.role;
-  card.onclick=e=>{if(e.target.closest('button,input,select,textarea,label'))return;selectedId=b.id;render();};card.addEventListener('focusin',()=>selectBlockQuietly(b.id));
-  const collapsed=b.collapsed&&!BlockSearch.isOpen(b);
-  const head=el('div','block-head'),handle=btn('⋮⋮','拖动排序 '+b.name,()=>{selectedId=b.id;render();},'drag');handle.draggable=true;
-  handle.ondragstart = event => startBlockDrag(event, b);
-  handle.ondragend = endBlockDrag;
-  card.ondragover = event => {
-   if (!acceptsBlockDrop(b)) return;
-   event.preventDefault();
-   event.dataTransfer.dropEffect = 'move';
-   card.classList.add('drag-over');
-  };
-  card.ondragleave = event => {
-   if (!card.contains(event.relatedTarget)) card.classList.remove('drag-over');
-  };
-  card.ondrop = event => dropOnBlock(event, b);
-  const enabled=el('input');enabled.type='checkbox';enabled.checked=b.enabled;enabled.setAttribute('aria-label','启用块 '+b.name);enabled.onchange=()=>commit(()=>{b.enabled=enabled.checked;});
-  const title=el('div','block-title');title.append(el('b','',b.name),el('small','',`${b.kind==='prose'?'自然语言 · '+b.role:b.role+' · 正 '+b.positive.length+' / 负 '+b.negative.length}${b.sourceTemplateId?' · 组合副本':''}${(scheme().characters||[]).filter(c=>c.blockId===b.id).map(c=>' · 已作为角色 '+c.alias).join('')}`));
-  const weight=el('input');weight.type='number';weight.min='-20';weight.max='20';weight.step='.1';weight.value=b.weight;weight.setAttribute('aria-label','整块权重 '+b.name);weight.disabled=b.kind==='prose';if(b.kind==='prose')weight.title='自然语言保留原文，不应用标签倍率';weight.onchange=()=>{const v=Number(weight.value);if(weight.value===''||!Number.isFinite(v)||Math.abs(v)>20){weight.value=b.weight;toast('整块权重范围为 -20～20');return;}commit(()=>{b.weight=v;});};
-  const weightBadge=b.kind!=='prose'&&b.weight!==1?btn('整块 ×'+b.weight,'整块倍率 '+b.weight+'，点击恢复为 1',()=>commit(()=>{b.weight=1;}),'block-weight-badge'):null;
-  head.append(...[handle,enabled,title,weightBadge,btn(collapsed?'▸':'▾',(collapsed?'展开 ':'折叠 ')+b.name,()=>{BlockSearch.close(b);commit(()=>{b.collapsed=!collapsed;});})].filter(Boolean));
-  const actions=el('div','block-actions');const up=btn('↑','上移 '+b.name,()=>moveBlock(b.id,-1)),down=btn('↓','下移 '+b.name,()=>moveBlock(b.id,1));up.disabled=scheme().blocks[0]===b;down.disabled=scheme().blocks.at(-1)===b;
-  actions.append(btn('编辑','编辑块 '+b.name,()=>editBlock(b)),btn('替换','替换块 '+b.name,()=>{selectedId=b.id;libraryView='templates';$('search').value='';render();toast('左侧找到组合后，点“替换选中”');}),btn('存为组合','保存块 '+b.name,()=>saveBlock(b)),btn('复制','复制块 '+b.name,()=>commit(()=>{const next=Blocks.duplicate(b);scheme().blocks.splice(scheme().blocks.indexOf(b)+1,0,next);selectedId=next.id;})),up,down,btn('移除','移除块 '+b.name,()=>commit(()=>{scheme().blocks=scheme().blocks.filter(x=>x.id!==b.id);})));card.append(head,actions);
-  if(b.sourceTemplateId&&state.templates.some(t=>t.id===b.sourceTemplateId))actions.append(btn('更新来源组合','更新来源组合 '+b.name,()=>updateSource(b)));
-  if(!collapsed&&b.kind==='prose')card.append(proseCardBody(b));
-  if(!collapsed&&b.kind!=='prose'){const body=el('div','block-body');for(const side of ['positive','negative']){
-    if(!b[side].length)continue;
-    const label=el('div','token-side-label',side==='positive'?'正面':'负面');const list=el('div','token-list'+(side==='negative'?' negative':''));
-    enableTokenSorting(list, b, side);
-    b[side].forEach((t,i)=>{const chip=el('div','token'+(!t.enabled?' off':'')),check=el('input');check.type='checkbox';check.checked=t.enabled;check.setAttribute('aria-label',`启用词 ${b.name} ${side} ${i}`);check.onchange=()=>commit(()=>{t.enabled=check.checked;});
-      // 单击整个词条：切换启用；双击或长按：打开编辑面板；键盘回车：编辑（勾选框仍可用键盘切换）。
-      const edit=btn(t.label||t.text,'编辑词 '+t.text,()=>{},'edit-token');edit.title=t.text+' ｜ 单击切换启用 · 双击或长按编辑 · 拖动排序';
-      chip.dataset.tokenIndex = i;
-      edit.draggable = true;
-      edit.setAttribute('aria-description', '单击切换启用，双击或长按编辑，回车编辑，拖到同栏词条前后可排序，拖到另一标签块可移动');
-      let clickTimer=null,pressTimer=null,pressed=false,origin=null;
-      const openEditor=()=>{clearTimeout(clickTimer);clickTimer=null;clearTimeout(pressTimer);editToken(b,side,i);};
-      const cancelPress=()=>{clearTimeout(pressTimer);pressTimer=null;};
-      chip.addEventListener('click',e=>{
-        if(e.target.closest('input,.remove-token'))return;
-        e.preventDefault();e.stopPropagation();selectBlockQuietly(b.id);
-        if(pressed){pressed=false;return;}
-        if(e.detail===0||e.detail>=2){openEditor();return;}
-        clearTimeout(clickTimer);clickTimer=setTimeout(()=>{clickTimer=null;commit(()=>{t.enabled=!t.enabled;});},240);
-      });
-      chip.addEventListener('pointerdown',e=>{
-        if(e.button!==0||e.target.closest('input,.remove-token'))return;
-        pressed=false;origin=[e.clientX,e.clientY];cancelPress();
-        pressTimer=setTimeout(()=>{pressTimer=null;pressed=true;openEditor();},550);
-      });
-      chip.addEventListener('pointermove',e=>{if(pressTimer&&origin&&Math.hypot(e.clientX-origin[0],e.clientY-origin[1])>6)cancelPress();});
-      for(const type of ['pointerup','pointerleave','pointercancel','dragstart'])chip.addEventListener(type,cancelPress);
-      edit.ondragstart = event => startBlockDrag(event, b, side, t);
-      edit.ondragend = endBlockDrag;
-      chip.append(check,edit);if(t.weight!==1)chip.append(el('span','weight-badge','×'+t.weight));chip.append(btn('×','移除词 '+t.text,()=>commit(()=>{b[side].splice(i,1);}),'remove-token'));list.append(chip);
-    });if(!b[side].length)list.append(el('span','empty','暂无词条'));body.append(label,list);
-   }if(!b.positive.length&&!b.negative.length)body.append(el('p','empty','从左侧加词，或在下面直接输入提示词。'));body.append(blockInput(b));card.append(body);}
-  if (b.kind !== 'prose') {
-   const translate = btn('翻译词条', '本地英译中 · '+b.name, () => translateBlockLabels(b, translate));
-   actions.append(translate);
-  }
-  BlockSearch.attach(card,actions,b);
-  frag.append(card);
- }
+ for(const b of scheme().blocks)frag.append(buildBlockCard(b));
  if(!scheme().blocks.length)frag.append(el('div','empty','新建一个块，或从左侧组合库加入内容。'));
  $('blocks').replaceChildren(frag);
+}
+function locateSource(blockId,tokenKey){
+ const b=scheme().blocks.find(x=>x.id===blockId);if(!b)return;
+ selectedId=b.id;
+ if(b.collapsed){b.collapsed=false;render();}else{selectBlockQuietly(b.id);}
+ const card=document.querySelector('#blocks .block[data-block-id="'+CSS.escape(blockId)+'"]');
+ if(!card)return;
+ card.scrollIntoView({behavior:'smooth',block:'center'});
+ card.classList.remove('locate-flash');void card.offsetWidth;card.classList.add('locate-flash');
+ setTimeout(()=>card.classList.remove('locate-flash'),1400);
+ if(tokenKey&&!tokenKey.startsWith('prose:')&&!tokenKey.startsWith('character:')){
+  for(const chip of card.querySelectorAll('.token')){
+   if(chip.dataset.tokenKey===tokenKey){
+    chip.classList.remove('locate-flash');void chip.offsetWidth;chip.classList.add('locate-flash');
+    setTimeout(()=>chip.classList.remove('locate-flash'),1400);
+   }
+  }
+ }
 }
 function renderOutput(){
  const out=Blocks.assemble(scheme(),state.format);for(const side of ['positive','negative']){$(side+'Output').value=out[side];$(side+'Count').textContent=out.counts[side]+' 标签'+(out.paragraphs[side]?' / '+out.paragraphs[side]+' 段':'');}
  $('formatNote').textContent={comfy:'输出 (tag:权重)。整块倍率 × 词条权重；是否生效取决于编码节点。',nai:'输出 权重::tag::。支持负权重；实际解释取决于所用模型。',plain:'只输出标签，不包含权重语法。'}[state.format];
  $('warnings').replaceChildren(...out.errors.map(w=>el('div','warning error',w)),...out.warnings.map(w=>el('div','warning',w)));$('copyPositive').disabled=$('copyNegative').disabled=out.errors.length>0;
- $('sourceList').replaceChildren(...['positive','negative'].flatMap(side=>out.sources[side].map(t=>el('p','',`${side==='positive'?'正':'负'} · ${t.text}${t.kind==='prose'?'':' ×'+t.weight} ← ${t.blocks.join('、')}`))));
+ $('sourceList').replaceChildren(...['positive','negative'].flatMap(side=>out.sources[side].map(t=>{
+  const text=`${side==='positive'?'正':'负'} · ${t.text}${t.kind==='prose'?'':' ×'+t.weight} ← ${t.blocks.join('、')}`;
+  const targetId=t.blockIds?.[0];
+  if(!targetId)return el('p','',text);
+  const item=btn(text,'定位到 '+t.blocks[0],()=>locateSource(targetId,t.key),'source-item');
+  return item;
+ })));
  const p=scheme().parameters||{},m=scheme().models||{},parts=[];
  if(p.width&&p.height)parts.push(`${p.width} × ${p.height}`);if(p.steps!=null)parts.push(p.steps+' 步');if(p.cfg!=null)parts.push('CFG '+p.cfg);if(p.sampler_name)parts.push(p.sampler_name);if(p.scheduler)parts.push(p.scheduler);if(p.denoise!=null)parts.push('denoise '+p.denoise);
  const seeds=Blocks.schemeSeeds(p);
@@ -318,7 +406,7 @@ function editToken(b,side,i){const t=b[side][i];let text,label,weight;modal('编
   } catch(error) { if(label.isConnected) $('modalError').textContent=error.message; }
   finally { translate.disabled=false; }
  });
- body.append(translate);weight=field(body,'词条权重',t.weight);weight.type='number';weight.step='.1';weight.min='-20';weight.max='20';BlockSearch.editor(b,[text,label]);},()=>{const w=Number(weight.value);if(!text.value.trim()||weight.value===''||!Number.isFinite(w)||Math.abs(w)>20)throw Error('请填写提示词，权重范围为 -20～20');commit(()=>{b[side][i]={...t,text:text.value.trim(),label:label.value.trim()||text.value.trim(),weight:w};});});}
+ body.append(translate);weight=field(body,'词条权重',t.weight);weight.type='number';weight.step='0.01';weight.min='-20';weight.max='20';BlockSearch.editor(b,[text,label]);},()=>{const w=Number(weight.value);if(!text.value.trim()||weight.value===''||!Number.isFinite(w)||Math.abs(w)>20)throw Error('请填写提示词，权重范围为 -20～20');commit(()=>{b[side][i]={...t,text:text.value.trim(),label:label.value.trim()||text.value.trim(),weight:Number(w.toFixed(2))};},{scope:'block',blockId:b.id});});}
 function editBlock(b){if(b.kind==='prose'){editProse(b);return;}let name,role;modal('编辑内容块',body=>{name=field(body,'名称',b.name);role=selectField(body,'类型',Blocks.roles.map(r=>[r,r]),b.role);body.append(el('p','','块内标签可直接点击编辑。需要增加更多词时，选中本块后从词库添加或粘贴。'));if(b.recipe){const info=field(body,'来源配方',b.recipe,'textarea');info.readOnly=true;}},()=>{if(!name.value.trim())throw Error('请填写名称');commit(()=>{b.name=name.value.trim();b.role=role.value;});});}
 function saveBlock(b){nameDialog('保存组合块',b.name,name=>commit(()=>{state.templates.push({id:Blocks.id(),name,role:b.role,positive:copy(b.positive),negative:copy(b.negative),weight:b.weight,recipe:b.recipe||'',...Blocks.languageFields(b),characters:charactersForBlock(b)});}));}
 function updateSource(b){const t=state.templates.find(t=>t.id===b.sourceTemplateId);if(!t)return;modal('更新来源组合',body=>body.append(el('p','',`用当前块的词条、权重与启停状态更新组合库里的“${t.name}”。其他方案中已有的副本保持不变，之后加入会使用更新后的内容。`)),()=>commit(()=>{Object.assign(t,{role:b.role,positive:copy(b.positive),negative:copy(b.negative),weight:b.weight,...Blocks.languageFields(b),characters:charactersForBlock(b)});}),'更新组合');}
@@ -362,7 +450,7 @@ function importData(data){
  modal('导入工作区',body=>{body.append(el('p','',`包含 ${incoming.schemes.length} 个方案、${incoming.templates.length} 个组合。`));mode=selectField(body,'导入方式',[['merge','合并到当前工作区（推荐）'],['replace','替换当前工作区，可撤销']], 'merge');},()=>commit(()=>{
   if(mode.value==='replace'){state=incoming;return;}
   const templateIds=new Map();for(const t of incoming.templates){const next=copy(t);next.id=Blocks.id();templateIds.set(t.id,next.id);state.templates.push(next);}
-  for(const p of incoming.schemes){const next=copy(p);next.id=Blocks.id();if(state.schemes.some(x=>x.name===next.name))next.name+=' · 导入';for(const b of next.blocks){b.id=Blocks.id();if(b.sourceTemplateId)b.sourceTemplateId=templateIds.get(b.sourceTemplateId)||b.sourceTemplateId;}state.schemes.push(next);state.activeSchemeId=next.id;}
+  for(const p of incoming.schemes){const next=copy(p);next.id=Blocks.id();if(state.schemes.some(x=>x.name===next.name))next.name+=' · 导入';const blockIds=new Map();for(const b of next.blocks){const nextId=Blocks.id();blockIds.set(b.id,nextId);b.id=nextId;if(b.sourceTemplateId)b.sourceTemplateId=templateIds.get(b.sourceTemplateId)||b.sourceTemplateId;}for(const c of next.characters||[]){if(c.blockId){const mapped=blockIds.get(c.blockId);if(mapped)c.blockId=mapped;else delete c.blockId;}}state.schemes.push(next);state.activeSchemeId=next.id;}
   state.favorites=[...new Set([...state.favorites,...incoming.favorites])];
   const existing=new Set(state.customWords.map(word=>norm(word.text)));
   state.customWords=state.customWords.concat(incoming.customWords.filter(word=>!existing.has(norm(word.text))));

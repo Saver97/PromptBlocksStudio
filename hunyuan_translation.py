@@ -175,14 +175,21 @@ class HunyuanTranslator:
             self._stop_locked()
 
     # ---------- 翻译 ----------
-    def _infer(self, text):
+    def _infer(self, text, check=lambda: None, opener=None):
+        check()
         body = json.dumps({'messages': [{'role': 'user', 'content': PROMPT.format(text=text)}],
                            'temperature': 0.1, 'top_p': 0.6, 'top_k': 20, 'repeat_penalty': 1.05,
                            'max_tokens': 1024, 'seed': 1}).encode()
         req = request.Request(f'http://127.0.0.1:{self.port}/v1/chat/completions', body,
                               {'Content-Type': 'application/json'})
-        with request.urlopen(req, timeout=300) as response:
-            result = json.load(response)
+        open_fn = opener.open if opener is not None else request.urlopen
+        try:
+            with open_fn(req, timeout=300) as response:
+                result = json.load(response)
+        except Exception:
+            check()
+            raise
+        check()
         choice = result['choices'][0]
         if choice.get('finish_reason') == 'length':
             raise ValueError('译文可能达到长度上限，请把原文拆成更短的段落。')
@@ -191,10 +198,10 @@ class HunyuanTranslator:
             raise ValueError('混元返回空译文，请缩短原文后重试。')
         return text
 
-    def _sentence(self, sentence, names, check):
+    def _sentence(self, sentence, names, check, opener=None):
         """翻译一句；若角色名的出现次数对不上（例如第二次出现被改成 she），按逗号拆成小段重翻。"""
         count = lambda value: Counter(n for n in names for _ in re.finditer('(?<![A-Za-z])' + n + '(?![A-Za-z])', value, re.I))
-        result = self._infer(sentence)
+        result = self._infer(sentence, check, opener)
         if count(result) == count(sentence):
             return result
         clauses = [part.strip() for part in CLAUSE.split(sentence) if part.strip()]
@@ -203,16 +210,18 @@ class HunyuanTranslator:
         pieces = []
         for clause in clauses:
             check()
-            pieces.append(self._infer(clause).rstrip('.。') if HAN.search(clause) else clause)
+            pieces.append(self._infer(clause, check, opener).rstrip('.。') if HAN.search(clause) else clause)
         retry = ', '.join(pieces) + '.'
         return retry if count(retry) == count(sentence) else result
 
-    def translate(self, text, check=lambda: None):
+    def translate(self, text, check=lambda: None, opener=None):
         if not isinstance(text, str) or not text.strip() or len(text) > 12000:
             raise ValueError('请填写 1～12000 字的中文描述。')
         if re.search(r'<lora:|\([^\n()]+:[-\d.]+\)|[-\d.]+::', text, re.I):
             raise ValueError('权重串或 LoRA 语法请保留在标签块中；本地翻译框用于普通句子。')
+        check()
         with self.lock:
+            check()
             if text in self.cache:
                 self.cache.move_to_end(text)
                 self.last_used = time.monotonic()
@@ -235,7 +244,7 @@ class HunyuanTranslator:
                 translated = []
                 for sentence in sentences:
                     check()
-                    translated.append(self._sentence(sentence.strip(), names, check) if HAN.search(sentence) else sentence.strip())
+                    translated.append(self._sentence(sentence.strip(), names, check, opener) if HAN.search(sentence) else sentence.strip())
                     self.last_used = time.monotonic()
                 output.append(' '.join(translated))
             result = '\n'.join(output)

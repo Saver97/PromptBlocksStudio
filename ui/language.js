@@ -132,9 +132,60 @@ function hunyuanInstallGuide(){
  }
  dialog.append(head,form,actions);dialog.addEventListener('close',()=>dialog.remove());document.body.append(dialog);dialog.showModal();refresh(false);
 }
+function attachRoleAutocomplete(textarea){
+ const host=textarea.closest('label');if(!host)return;
+ host.classList.add('role-ac-host');
+ const menu=el('div','role-ac-menu');menu.hidden=true;menu.setAttribute('role','listbox');host.append(menu);
+ let items=[],active=0,triggerStart=-1;
+ const close=()=>{menu.hidden=true;items=[];triggerStart=-1;};
+ const candidates=()=>{
+  const chars=scheme().characters||[];
+  if(chars.length)return chars.map(c=>({alias:c.alias,name:c.name}));
+  return [{alias:'A',name:'未定义角色 A'},{alias:'B',name:'未定义角色 B'}];
+ };
+ const apply=item=>{
+  if(triggerStart<0||!item)return;
+  const end=textarea.selectionStart,token='{{'+item.alias+'}}';
+  textarea.setRangeText(token,triggerStart,end,'end');
+  close();textarea.focus();textarea.dispatchEvent(new Event('input'));
+ };
+ const renderMenu=()=>{
+  menu.replaceChildren();
+  items.forEach((item,index)=>{
+   const option=el('button','role-ac-item'+(index===active?' active':''));
+   option.type='button';option.setAttribute('role','option');option.setAttribute('aria-selected',String(index===active));
+   option.append(el('code','','{{'+item.alias+'}}'),el('span','',item.name));
+   option.onmousedown=e=>{e.preventDefault();apply(item);};
+   menu.append(option);
+  });
+  menu.hidden=!items.length;
+ };
+ const update=()=>{
+  if(textarea.selectionStart!==textarea.selectionEnd){close();return;}
+  const before=textarea.value.slice(0,textarea.selectionStart);
+  const match=before.match(/(?:@|\{\{?)([A-Za-z0-9_]{0,16})$/);
+  if(!match){close();return;}
+  const prefix=match[1].toLowerCase();
+  triggerStart=textarea.selectionStart-match[0].length;
+  items=candidates().filter(c=>!prefix||c.alias.toLowerCase().startsWith(prefix)||c.name.toLowerCase().includes(prefix));
+  active=0;
+  renderMenu();
+ };
+ textarea.addEventListener('input',update);
+ textarea.addEventListener('click',update);
+ textarea.addEventListener('blur',()=>setTimeout(close,120));
+ textarea.addEventListener('keydown',e=>{
+  if(menu.hidden||!items.length)return;
+  if(e.key==='ArrowDown'){e.preventDefault();active=(active+1)%items.length;renderMenu();}
+  else if(e.key==='ArrowUp'){e.preventDefault();active=(active-1+items.length)%items.length;renderMenu();}
+  else if((e.key==='Enter'||e.key==='Tab')&&!e.isComposing){e.preventDefault();apply(items[active]);}
+  else if(e.key==='Escape'){e.preventDefault();e.stopPropagation();close();}
+ });
+}
 function translatorPair(body,label,sourceValue,textValue,translatedFrom='',placeholders=true,side='positive'){
  const wrap=el('div','translation-pair'),row=el('div','form-row');const source=field(row,label+' · 中文',sourceValue,'textarea'),english=field(row,label+' · 英文输出',textValue,'textarea');wrap.append(row);
- source.placeholder=placeholders?'例如：{{B}} 用右手握住 {{A}} 的左手。':'例如：浅蓝色长发，金色眼睛';english.placeholder='点击翻译，或粘贴助手返回的英文';
+ source.placeholder=placeholders?'例如：{{B}} 用右手握住 {{A}} 的左手（输入 @ 或 { 快速插入角色）':'例如：浅蓝色长发，金色眼睛';english.placeholder='点击翻译，或粘贴助手返回的英文';
+ if(placeholders){attachRoleAutocomplete(source);attachRoleAutocomplete(english);}
  const controls=el('div','language-actions'),status=el('span','muted'),diagnostics=el('div','translation-checks'),pair={source,english,translatedFrom};
  const returned=el('div','translation-return polish-panel');returned.hidden=true;const returnedStatus=el('p','muted'),returnedText=field(returned,label+' · 翻译返回内容','','textarea');returned.prepend(returnedStatus);let returnedSource='',returnedEnglish='';
  const returnedActions=el('div','language-actions');returnedActions.append(btn('采用返回内容','采用翻译返回 '+label,()=>{if(!returnedText.value.trim()){status.textContent='返回内容不能为空。';return;}if(source.value!==returnedSource){status.textContent='中文原文已变动，返回内容可复制，请重新翻译后再采用。';return;}english.value=returnedText.value;english.dispatchEvent(new Event('input'));status.textContent='已手动采用返回内容，请核对角色引用。';}),btn('复制返回内容','复制翻译返回 '+label,()=>copyReturnedText(returnedText.value)));returned.append(returnedActions);
@@ -205,7 +256,6 @@ function editCharacters(){let list,auto,autoIdentity;const rows=[];
     for(const f of [identity,pair.source,pair.english])f.disabled=on;preset.disabled=on;card.classList.toggle('linked-character',on);
     if(!on){blockNote.hidden=true;return;}
     const tags=[...new Set(src.positive.filter(t=>t.enabled).map(t=>t.text.replace(/_/g,' ').trim()).filter(Boolean))];
-    // 内置角色块的约定：第 1 个词是英文角色名，第 2 个词是作品名，其余是外貌和服装（角色块自己会输出，不再复制）。
     const hit=knownCharacters.find(k=>{const own=Blocks.identityTokens(k)[0];return own&&tags.some(t=>t.toLowerCase()===own.toLowerCase());});
     if(fill){if(tags[0])name.value=hit?hit.name:tags[0].replace(/\b[a-z]/g,ch=>ch.toUpperCase());if(hit)gender.value=hit.gender;identity.value='';pair.source.value='';pair.english.value='';pair.english.dispatchEvent(new Event('input'));}
     blockNote.textContent='已关联角色块“'+src.name+'”：它的 '+tags.length+' 个词会整理成单独一段“'+(name.value||'姓名')+': ……”输出，不再混进上面的标签串；不另加身份标签和外貌介绍。改外貌请直接编辑这个角色块。';blockNote.hidden=false;};
@@ -269,7 +319,7 @@ function translationSettings(){let engine,endpoint,model,key,status,apiPanel,loc
 function createLanguageDemo(handholding=false){commit(()=>{
  const p=Blocks.scheme(handholding?'双人互动示例 · 单手牵手':'角色变量示例 · 一起看书');
  p.characters=knownCharacters.slice(0,2).map((c,i)=>({alias:i?'B':'A',name:c.name,identityTags:c.identityTags,gender:c.gender,sourceDescription:c.sourceDescription,description:c.description,translatedFrom:c.sourceDescription}));
- p.blocks=[Blocks.block('共同标签','公共基础',parsePrompt(handholding?'masterpiece, best quality, 2girls, casual clothes, garden':'masterpiece, best quality, 2girls, casual clothes, library, upper body'))];
+ p.blocks=[Blocks.block('共同标签','公共基础',parsePrompt(handholding?'masterpiece, best quality, 2girls, school uniform, garden':'masterpiece, best quality, 2girls, school uniform, classroom, upper body'))];
  const b=Blocks.prose(handholding?'单手牵手 · 明确四只手':'一起看书 · 中文模板');
  b.positiveSource=handholding?'{{A}} 站在左边，{{B}} 站在右边。\n{{A}} 向 {{B}} 伸出左手。{{B}} 用右手握住 {{A}} 的左手。\n{{A}} 的右手自然垂在 {{A}} 身侧，{{B}} 的左手自然垂在 {{B}} 身侧。\n{{A}} 看着 {{B}}，露出害羞的微笑。{{B}} 微笑着看向 {{A}}。\n两人站在花园里，身后是绿树和一张白色长椅。':'{{A}} 站在左边，{{B}} 站在右边。\n{{B}} 双手捧着一本打开的书，{{A}} 用右手食指指向书页上的一行文字。两人都低头看着书。';
  b.positiveText=handholding?"{{A}} stands on the left, and {{B}} stands on the right.\n{{A}} extends the left hand toward {{B}}. {{B}} uses the right hand to hold {{A}}'s left hand.\n{{A}}'s free right hand rests at {{A}}'s side, and {{B}}'s free left hand rests at {{B}}'s side.\n{{A}} looks at {{B}} with a shy smile. {{B}} smiles back at {{A}}.\nBoth girls stand in a garden with green trees and a white bench behind them.":'{{A}} stands on the left, and {{B}} stands on the right.\n{{B}} holds an open book with both hands. {{A}} points to a line on the page with her right index finger. Both girls look down at the book.';

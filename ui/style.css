@@ -358,18 +358,23 @@ dialog.tutorial-dialog[open]{display:flex}
 :root[data-theme="graphite"]{color-scheme:dark;--bg:#121212;--panel:#1b1b1d;--block:#242427;--raised:#2c2c30;--input-bg:#0f0f10;--border:#6b6b72;--text:#f2f1ef;--muted:#aeadb3;--accent:#c6e46b;--accent-ink:#1f2a05;--danger:#ff7a8a;--gold:#f0cf8a;--hover:#34343a;--scrollbar:#55555c;--separator:#2b2b2f;--selected-border:#c6e46b;--selection-shadow:#c6e46b22;--token-bg:#2e2e33;--token-border:#56565d;--warning-bg:#33291a;--toast-bg:#262b1a;--overlay:#000000cc;--selected-bg:#272c1c}
 /* 霓虹夜 · 深色：深紫黑底 + 霓虹粉主色 */
 :root[data-theme="neon"]{color-scheme:dark;--bg:#0d0b16;--panel:#161327;--block:#1f1a35;--raised:#282242;--input-bg:#0a0812;--border:#6a5f9a;--text:#f3f0ff;--muted:#b2aad6;--accent:#ff6ec7;--accent-ink:#3d0a2a;--danger:#ff6b6b;--gold:#ffd36e;--hover:#302850;--scrollbar:#5b5088;--separator:#241f3c;--selected-border:#ff6ec7;--selection-shadow:#5ee7ff30;--token-bg:#2a2347;--token-border:#5a4f8a;--warning-bg:#33291a;--toast-bg:#2a1d3f;--overlay:#05030acc;--selected-bg:#2e1838}
+/* 星云极光 · 深色（Gemini）：深空曜石蓝底 + 极光青主色 + 克制星云蓝微光 */
+:root[data-theme="aurora"]{color-scheme:dark;--bg:#080d14;--panel:#101924;--block:#182534;--raised:#203144;--input-bg:#0a1119;--border:#4f6c85;--text:#edf6fb;--muted:#98b4c9;--accent:#63e6d6;--accent-ink:#042523;--danger:#ff9e9e;--gold:#f3cf82;--hover:#283c52;--scrollbar:#446078;--separator:#1f3042;--selected-border:#63e6d6;--selection-shadow:#63e6d628;--token-bg:#1e3144;--token-border:#42617d;--warning-bg:#2e2618;--toast-bg:#132c31;--overlay:#02060bcc;--selected-bg:#14323b}
 /* 樱花粉 · 浅色：淡粉白底 + 深樱红主色 */
 :root[data-theme="sakura"]{color-scheme:light;--bg:#f8eff1;--panel:#fffafb;--block:#fdf3f5;--raised:#f7e6ea;--input-bg:#ffffff;--border:#e0c3cb;--text:#3b2a30;--muted:#84606b;--accent:#b23863;--accent-ink:#fff6f9;--danger:#b3261e;--gold:#8a5a00;--hover:#f3dde3;--scrollbar:#d4aab6;--separator:#f0dde2;--selected-border:#b23863;--selection-shadow:#b2386322;--token-bg:#f7e4e9;--token-border:#e3bfc9;--warning-bg:#fbecc8;--toast-bg:#fbe4ea;--overlay:#3b1a2466;--selected-bg:#fbe7ed}
 /* 宣纸朱砂 · 浅色：宣纸白底、墨色文字 + 朱砂印章红主色 */
 :root[data-theme="xuanzhi"]{color-scheme:light;--bg:#efede8;--panel:#fbfaf7;--block:#f6f4ef;--raised:#eceae4;--input-bg:#ffffff;--border:#cbc6bb;--text:#1f1d1a;--muted:#625d55;--accent:#b23a24;--accent-ink:#fffaf5;--danger:#8e1b3a;--gold:#7d5a12;--hover:#e4e1d9;--scrollbar:#b4aea3;--separator:#e3e0d8;--selected-border:#b23a24;--selection-shadow:#b23a2422;--token-bg:#eeebe4;--token-border:#cfc9bd;--warning-bg:#f5e8c6;--toast-bg:#efe9de;--overlay:#1f1d1a66;--selected-bg:#f6e8e3}
 
 /* 新深色配色沿用深色专用细节；新浅色配色沿用浅色的类型颜色 */
-:root:is([data-theme="graphite"],[data-theme="neon"]) .panel{box-shadow:0 1px 0 color-mix(in srgb,var(--text) 5%,transparent) inset,0 12px 32px -16px #000a}
-:root:is([data-theme="graphite"],[data-theme="neon"]) input::placeholder{color:var(--muted);opacity:.85}
+:root:is([data-theme="graphite"],[data-theme="neon"],[data-theme="aurora"]) .panel{box-shadow:0 1px 0 color-mix(in srgb,var(--text) 5%,transparent) inset,0 12px 32px -16px #000a}
+:root:is([data-theme="graphite"],[data-theme="neon"],[data-theme="aurora"]) input::placeholder{color:var(--muted);opacity:.85}
 :root:is([data-theme="sakura"],[data-theme="xuanzhi"]){--role-free:#5f6b75;--role-base:#2f6497;--role-char:#b23e73;--role-cloth:#6d48b0;--role-scene:#1f7a69;--role-light:#806205;--role-artist:#56751a;--neg:#ad4e18;--warn:#9a5b00}
 /* 霓虹夜：主按钮带一点霓虹光晕 */
 :root[data-theme="neon"] :is(button.primary,.segmented .active){box-shadow:0 0 14px -2px color-mix(in srgb,var(--accent) 60%,transparent)}
 :root[data-theme="neon"] .mark{box-shadow:0 0 16px -4px var(--accent)}
+/* 星云极光：品牌标志与主按钮带克制的极光青蓝渐变微光 */
+:root[data-theme="aurora"] :is(button.primary,.segmented .active){background:linear-gradient(135deg,#63e6d6,#72c7ff);color:#042029;border-color:transparent;box-shadow:0 0 16px -4px rgba(99,230,214,.45)}
+:root[data-theme="aurora"] .mark{background:linear-gradient(135deg,rgba(99,230,214,.22),rgba(114,199,255,.22));box-shadow:0 0 18px -5px rgba(99,230,214,.55)}
 
 /* 自然语言翻译：引擎选择 */
 #modalBody .engine-picker{flex-direction:row;align-items:center;gap:6px;font-weight:400;font-size:12px;color:var(--muted)}
@@ -400,3 +405,32 @@ dialog.hunyuan-guide{width:min(620px,92vw)}
 .first-tip span{flex:1}
 .first-tip b{color:var(--accent)}
 .first-tip button{padding:5px 12px;font-size:12px;flex-shrink:0}
+
+/* ===== 优化新增：自定义词条编辑删除、词条快捷调权、块内批量清理、角色自动补全、来源定位 ===== */
+.word .word-action{border:0;background:transparent;color:var(--muted);padding:3px 5px;font-size:12px;opacity:.55;transition:opacity .12s,color .12s,background-color .12s}
+.word:hover .word-action,.word:focus-within .word-action{opacity:1}
+.word .word-action:hover{background:var(--soft-hover);color:var(--text)}
+.word .word-delete:hover{background:var(--danger-soft);color:var(--danger)}
+
+.token .weight-step{opacity:0;width:16px;height:18px;padding:0;border:0;background:transparent;color:var(--muted);border-radius:4px;font-size:12px;line-height:18px;text-align:center;transition:opacity .12s,background-color .12s,color .12s}
+.token:hover .weight-step,.token:focus-within .weight-step{opacity:1}
+.token .weight-step:hover{background:var(--soft-hover);color:var(--accent)}
+
+.block-find-bar{flex-wrap:wrap;gap:6px 8px}
+.block-find-actions{display:flex;align-items:center;gap:4px;flex-wrap:wrap;margin-left:auto}
+.block-find-actions button{font-size:11px;padding:4px 8px}
+.block-find-actions .block-find-trait.active{background:var(--accent-soft);color:var(--accent);border-color:var(--accent)}
+.block-find-actions .danger-action:hover:not(:disabled){color:var(--danger);background:var(--danger-soft)}
+.token[data-filter-hit="1"]{box-shadow:0 0 0 2px var(--hit-ring);opacity:1}
+.block:has(.token[data-filter-hit="1"]) .token:not([data-filter-hit="1"]):not(:has(.block-find-hit)){opacity:.38}
+
+.role-ac-host{position:relative}
+.role-ac-menu{position:absolute;left:0;right:0;top:100%;margin-top:4px;z-index:40;max-height:190px;overflow:auto;display:flex;flex-direction:column;gap:2px;padding:5px;background:var(--panel);border:1px solid var(--line-strong);border-radius:10px;box-shadow:0 14px 32px -12px #000a}
+.role-ac-item{display:flex;align-items:center;gap:8px;width:100%;text-align:left;padding:6px 9px;background:transparent;border:0;border-radius:7px;font-size:12px;color:var(--text)}
+.role-ac-item:hover,.role-ac-item.active{background:var(--accent-soft);color:var(--accent)}
+.role-ac-item code{font:12px Consolas,monospace;background:var(--soft);padding:1px 5px;border-radius:4px;color:var(--accent)}
+
+#sourceList .source-item{display:block;width:100%;text-align:left;white-space:normal;overflow-wrap:anywhere;line-height:1.5;font-size:11px;color:var(--muted);background:transparent;border:0;border-radius:6px;padding:5px 7px;margin:2px 0}
+#sourceList .source-item:hover{background:var(--soft-hover);color:var(--text)}
+.locate-flash{animation:pb-locate 1.3s ease-out}
+@keyframes pb-locate{0%{box-shadow:0 0 0 3px var(--accent),inset 0 0 0 999px var(--accent-soft)}100%{box-shadow:none}}

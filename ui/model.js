@@ -1,6 +1,6 @@
 'use strict';
 const Blocks = (() => {
-  const copy = value => JSON.parse(JSON.stringify(value));
+  const copy = typeof structuredClone === 'function' ? value => structuredClone(value) : value => JSON.parse(JSON.stringify(value));
   const id = () => crypto.randomUUID();
   const roles = ['自由补充','公共基础','角色','服装','场景','光照','画师串','负面约束','完整组合'];
   const newBandCharacters = [
@@ -199,7 +199,7 @@ const Blocks = (() => {
   function validateCharacters(list) {if(list===undefined)return;if(!Array.isArray(list))throw Error('角色定义格式无效');const used=new Set();for(const c of list){if(!c||typeof c.alias!=='string'||!/^[A-Z][A-Z0-9_]{0,15}$/.test(c.alias)||used.has(c.alias)||typeof c.name!=='string'||!c.name.trim()||typeof c.description!=='string'||typeof (c.sourceDescription??'')!=='string'||typeof (c.translatedFrom??'')!=='string'||typeof (c.identityTags??'')!=='string'||typeof (c.blockId??'')!=='string'||!['unknown','female','male','other'].includes(c.gender??'unknown')||/[{}]/.test(c.name+c.description+(c.identityTags||'')))throw Error('角色代号必须唯一，名字、身份标签和描述不能嵌套变量，性别选项须有效');used.add(c.alias);}}
   function languageFields(b) {return {kind:b.kind||'tags',positiveText:b.positiveText||'',negativeText:b.negativeText||'',positiveSource:b.positiveSource||'',negativeSource:b.negativeSource||'',positiveTranslatedFrom:b.positiveTranslatedFrom||'',negativeTranslatedFrom:b.negativeTranslatedFrom||''};}
   function validate(s) {
-    if(s?.theme!==undefined&&!['forest','midnight','violet','ember','graphite','neon','paper','mist','sakura','xuanzhi'].includes(s.theme))throw Error('未知配色');
+    if(s?.theme!==undefined&&!['forest','midnight','violet','ember','graphite','neon','aurora','paper','mist','sakura','xuanzhi'].includes(s.theme))throw Error('未知配色');
     if(!s || s.version!==2 || !Array.isArray(s.schemes) || !s.schemes.length || !Array.isArray(s.templates) || !Array.isArray(s.favorites) || !['comfy','nai','plain'].includes(s.format)) throw Error('不是有效的分块版工作区');
     const customWords = s.customWords === undefined ? [] : s.customWords;
     if (!Array.isArray(customWords)) throw Error('自定义词库格式无效');
@@ -236,10 +236,10 @@ const Blocks = (() => {
         const blockName=linked.has(b.id)?'角色 '+linked.get(b.id)+'（'+b.name+'）':b.name;
         const w=Number((t.weight*b.weight).toFixed(6)),key=norm(t.text),existing=seen.get(key)||[];
         if(existing.some(x=>x.weight!==w))result.warnings.push(`${side==='positive'?'正面':'负面'}重复词「${t.text}」权重不同：${existing.map(x=>x.block+' ×'+x.weight).join('、')} / ${blockName} ×${w}；已保留两处，请自行调整。`);
-        if(existing.some(x=>x.weight===w)) {result.sources[side].find(x=>x.key===key&&x.weight===w).blocks.push(blockName);continue;}
+        if(existing.some(x=>x.weight===w)) {const src=result.sources[side].find(x=>x.key===key&&x.weight===w);src.blocks.push(blockName);if(!src.blockIds.includes(b.id))src.blockIds.push(b.id);continue;}
         const text=format==='plain'||w===1?t.text:format==='nai'?`${w}::${t.text}::`:`(${t.text}:${w})`;
         out.push(text);existing.push({weight:w,block:blockName});seen.set(key,existing);
-        result.sources[side].push({key,text:t.text,weight:w,blocks:[blockName]});
+        result.sources[side].push({key,text:t.text,weight:w,blocks:[blockName],blockIds:[b.id]});
       }
       result[side]=out.join(', ');result.counts[side]=out.length;
     }
@@ -260,7 +260,7 @@ const Blocks = (() => {
         if(source.trim()&&JSON.stringify(aliases(source).sort())!==JSON.stringify(aliases(text).sort())){const tally=list=>list.reduce((m,a)=>(m[a]=(m[a]||0)+1,m),{}),zh=tally(aliases(source)),en=tally(aliases(text));const diff=[...new Set([...Object.keys(zh),...Object.keys(en)])].filter(a=>zh[a]!==en[a]).map(a=>`{{${a}}} 中文 ${zh[a]||0} 次、英文 ${en[a]||0} 次`);result.warnings.push(`「${b.name}」角色代号次数不同：${diff.join('；')}。可能是译文把人物写成了代词，请确认指代没错。`);}
         const expanded=raw?text:text.replace(/\{\{\s*([A-Za-z][A-Za-z0-9_]{0,15})\s*\}\}/g,(match,key)=>{const alias=key.toUpperCase(),c=chars.get(alias);if(!c){result.errors.push(`未定义角色 {{${alias}}}（${b.name}）`);return match;}if(side==='positive')used.add(alias);return c.name;});
         if(!raw&&/[{}]/.test(expanded))result.errors.push(`「${b.name}」存在未展开的占位符，请使用 {{A}} 这类格式。`);
-        paragraphs.push(expanded.trim());result.sources[side].push({key:'prose:'+b.id,text:expanded,weight:1,blocks:[b.name],kind:'prose'});
+        paragraphs.push(expanded.trim());result.sources[side].push({key:'prose:'+b.id,text:expanded,weight:1,blocks:[b.name],blockIds:[b.id],kind:'prose'});
       }
       result.paragraphs[side]=paragraphs.length;
       const introductions=[];
@@ -268,14 +268,14 @@ const Blocks = (() => {
         const added=[];
         for(const alias of used){const c=chars.get(alias);if(isLinked(c))continue;const tags=identityTokens(c);if(!tags.length)result.warnings.push(`角色 ${alias}（${c.name}）未填写身份标签；原创角色可留空，已有角色建议补全姓名与作品标签。`);
           for(const text of tags){const key=norm(text);const existing=result.sources.positive.find(x=>x.key===key);if(existing){if(!existing.blocks.includes('角色 '+alias))existing.blocks.push('角色 '+alias);continue;}
-            added.push(text);result.sources.positive.push({key,text,weight:1,blocks:['角色 '+alias]});result.counts.positive++;if(neg.has(key))result.warnings.push(`身份标签「${text}」同时出现在负面，请检查用途。`);
+            added.push(text);result.sources.positive.push({key,text,weight:1,blocks:['角色 '+alias],blockIds:[]});result.counts.positive++;if(neg.has(key))result.warnings.push(`身份标签「${text}」同时出现在负面，请检查用途。`);
           }
         }
         result.positive=[result.positive,...added].filter(Boolean).join(', ');
       }
       if(!raw&&side==='positive')for(const c of p.characters||[]){const lb=isLinked(c)&&p.blocks.find(b=>b.id===c.blockId);if(!lb||!lb.enabled)continue;
         const parts=lb.positive.filter(t=>t.enabled).map(t=>{const w=Number((t.weight*lb.weight).toFixed(6));return format==='plain'||w===1?t.text:format==='nai'?`${w}::${t.text}::`:`(${t.text}:${w})`;});
-        if(!parts.length)continue;introductions.push(`${c.name}: ${parts.join(', ')}.`);result.sources.positive.push({key:'character:'+c.alias,text:`${c.name}: ${parts.join(', ')}`,weight:1,blocks:['角色 '+c.alias+'（'+lb.name+'）'],kind:'character'});}
+        if(!parts.length)continue;introductions.push(`${c.name}: ${parts.join(', ')}.`);result.sources.positive.push({key:'character:'+c.alias,text:`${c.name}: ${parts.join(', ')}`,weight:1,blocks:['角色 '+c.alias+'（'+lb.name+'）'],blockIds:[lb.id],kind:'character'});}
       if(!raw&&side==='positive'&&p.autoIntroduce!==false)for(const alias of used){const c=chars.get(alias);if(isLinked(c))continue;if(c.sourceDescription?.trim()&&(!c.description.trim()||c.translatedFrom!==c.sourceDescription))result.errors.push(`角色 ${alias} 的中文外貌尚未翻译或已修改。`);if(c.description.trim())introductions.push(`${c.name}: ${c.description.trim()}${/[.!?。！？]$/.test(c.description.trim())?'':'.'}`);}
       result[side]=[result[side],...introductions,...paragraphs].filter(Boolean).join('\n\n');
     }
